@@ -12,7 +12,7 @@ export default function Routers() {
                 <Route index={true} element={<Main/>} />
             </Route>
             <Route path="/about" element={<About />} />
-            <Route path="/singup" element={<Root />}>
+            <Route path="/signUp" element={<Root />}>
                 <Route index={true} element={<SignUp />}/>
             </Route>
         </Routes>

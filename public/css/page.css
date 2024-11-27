@@ -4,3 +4,22 @@
 .mainPage{
     div{height: 500px; background-color: lightblue;}
 }
+
+/* 로그인, 회원가입 */
+[class^="sign"] form fieldset{max-width: 400px; margin-inline: auto;
+    legend{font-size: 36px; line-height: 43px; font-weight: 700; text-align: center; margin-bottom: 60px;}
+    ul{
+        & li:not(:last-child){margin-bottom: 30px;}
+        li{
+            label{display: block; font-size: 15px; line-height: 18px; font-weight: 700; margin-bottom: 15px;
+                &:has( + div :required)::after{content: '*'; color: var(--color-point);}
+            }
+            input{width: 100%; height: 50px; border: 1px solid rgba(220, 220, 220, 1); padding-inline: 15px; border-radius: 4px; box-sizing: border-box;
+                &::placeholder{color: #bbb;}
+            }
+        }
+    }
+    input[type="submit"]{width: 100%; height: 60px; font-size: 18px; font-weight: 700; background-color: var(--color-point); color: white; margin-top: 65px;}
+}
+/* 로그인 */
+/* 회원가입 */
