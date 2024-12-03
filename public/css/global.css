@@ -4,6 +4,16 @@ input.error{border-color: var(--color-point); outline: var(--color-point);}
 div:has(input.error){position: relative;}
 div:has(input.error)::after{content: attr(data-err-essage); position: absolute; left: 0; top: 100%; font-size: 14px; font-weight: 400; color: var(--color-point);}
 
+/* 체크박스 */
+input[type="checkbox"]{
+    & + label{display: flex; align-items: center; gap: 8px; cursor: pointer;
+        &::before{--idx: 0; content: ''; width: 20px; aspect-ratio: 1; background: url(../images/icon-checkbox.png) no-repeat left top calc(100% * var(--idx)) / 100%;}
+        &:not(:last-of-type){margin-bottom: 20px;}
+    }
+    &:checked + label::before{--idx: 1;}
+    &.error + label span{color: var(--color-point);}
+} 
+
 /* 해더 */
 header{position: fixed; inset: 0 0 auto 0; color: white; margin-inline: 40px;
     & > div{max-width: 1920px; margin-inline: auto; text-align: center; position: relative;

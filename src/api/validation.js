@@ -86,13 +86,10 @@ export const inputChange = (e, setInputs, checkValue) => {
         e.target.value = isFormet(formet, value)['value'];
         e.target.setSelectionRange(cur, cur);
         e.target.classList.add('error')
-        console.log(1);
-        
         return
     }else if(validation && !isValidation(validation, value, checkValue)){
         e.target.classList.add('error')
         setInputs((input)=> ({...input, [name]: ''}) )
-        console.log(2);
         return
     }else if(e.target.classList.contains('error')){
         e.target.classList.remove('error')

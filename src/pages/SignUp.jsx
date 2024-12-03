@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { inputsRequiredAdd, inputChange, inputErrCheck } from '../api/validation.js';
+import { postApi, isSubmit } from '../api/api.js';
 
 const errorMessage = {
     id: '영문 또는 영문/숫자 조합하여 4~20자리',
@@ -32,50 +33,41 @@ export default function SignUp() {
     },[])
 
     const onCheck = (type) =>{
-        fetch('http://localhost:8001/user/check',{
-            method: 'POST',
-            // redirect: 'follow',
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                type: type,
-                value: checkInputs[type]
-            })
-            // body: {test: 'test'}
-        })
-        .then((response) => response.json())
-        .then(({result, message}) => {
+        postApi('signUp/check', {
+            type: type,
+            value: checkInputs[type]
+        }).then(({ result, message })=>{
             if(result){
                 setInputs((input)=>({...input, [type]: checkInputs[type]}))
             }
         })
-        .catch((error) => console.error(error));
-
     }
 
-    const onSubmit = () =>{
+    const agreeCheck = () =>{
+        setInputs((prev)=>({...prev, termsOfService: 'y', privacyPolicy: 'y'}))
+    }
+
+    const onSubmit = (e) =>{
+        e.preventDefault();
         console.log(inputs);
         console.log(checkInputs);
         
-        // fetch('http://localhost:8001/user',{
-        //     method: 'POST',
-        //     // redirect: 'follow',
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify(inputs)
-        //     // body: {test: 'test'}
-        // })
-        // .then((response) => response.json())
-        // .then((result) => console.log(result))
-        // .catch((error) => console.error(error));
+        if(isSubmit(inputs)){
+            return;
+        }
+        
+        postApi('signUp', inputs)
+            .then(({ result, message })=>{
+                if(result){
+                    console.log(result);
+                }
+            })
     }
 
     return (
         <>
             <h2>회원가입</h2>
-            <form onClick={(e)=> e.preventDefault()}>
+            <form>
                 <fieldset>
                     <legend>회원가입</legend>
                     <ul>
@@ -93,7 +85,7 @@ export default function SignUp() {
                                     onBlur={(e)=>inputErrCheck(e)}
                                     required
                                 />
-                                {!inputs?.userId && checkInputs?.userId && <button onClick={()=>onCheck('userId')}>중복 확인</button>}
+                                {!inputs?.userId && checkInputs?.userId && <button onClick={()=>onCheck('userId')} type="button">중복 확인</button>}
                             </div>
                         </li>
                         <li>
@@ -139,7 +131,7 @@ export default function SignUp() {
                                     onBlur={(e)=>inputErrCheck(e)}
                                     required
                                 />
-                                {!inputs?.nickname && checkInputs?.nickname && <button onClick={()=>onCheck('nickname')}>중복 확인</button>}
+                                {!inputs?.nickname && checkInputs?.nickname && <button onClick={()=>onCheck('nickname')} type="button">중복 확인</button>}
                             </div>
                         </li>
                         <li>
@@ -152,7 +144,7 @@ export default function SignUp() {
                                     data-formet='numb'
                                     data-validation='mobile'
                                     maxLength='11'
-                                    onChange={(e)=>inputChange(e, setCheckInputs)}
+                                    onChange={(e)=>inputChange(e, setInputs)}
                                     onBlur={(e)=>inputErrCheck(e)}
                                     required
                                 />
@@ -160,7 +152,31 @@ export default function SignUp() {
                         </li>
                     </ul>
                     <div>
-
+                        <input 
+                            type="checkbox"
+                            id='agreeAll'
+                            checked={inputs?.termsOfService === 'y' && inputs?.privacyPolicy === 'y'}
+                            onChange={agreeCheck}
+                        />
+                        <label htmlFor="agreeAll">이용약관 전체 동의</label>
+                        <input 
+                            type="checkbox"
+                            id='termsOfService'
+                            name='termsOfService'
+                            checked={inputs?.termsOfService === 'y'}
+                            onChange={(e)=>inputChange(e, setInputs)}
+                            required
+                        />
+                        <label htmlFor="termsOfService"><span>[필수]</span> 서비스 이용약관 보기</label>
+                        <input 
+                            type="checkbox"
+                            id='privacyPolicy'
+                            name='privacyPolicy'
+                            checked={inputs?.privacyPolicy === 'y'}
+                            onChange={(e)=>inputChange(e, setInputs)}
+                            required
+                        />
+                        <label htmlFor="privacyPolicy"><span>[필수]</span> 개인정보처리방침 보기</label>
                     </div>
                     <input type="submit" value="회원가입" onClick={onSubmit}/>
                 </fieldset>

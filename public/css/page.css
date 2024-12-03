@@ -22,6 +22,7 @@
             }
         }
     }
+    & > div{margin-top: 60px; padding-block: 30px; border-block-width: 2px 1px; border-block-color: #000 #DCDCDC; border-block-style: solid;}
     input[type="submit"]{width: 100%; height: 60px; font-size: 18px; font-weight: 700; background-color: var(--color-point); color: white; margin-top: 65px;}
 }
 /* 로그인 */
