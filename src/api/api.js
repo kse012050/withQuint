@@ -5,7 +5,7 @@ export function isSubmit(inputs){
         Object.entries(inputs).forEach(([key, value]) =>{
             document.querySelector(`[name="${key}"]`) && 
                 document.querySelectorAll(`[name="${key}"]`).forEach((prev)=>{
-                    if (prev.type === 'checkbox' && value === 'n' || value === '') {
+                    if ((prev.type === 'checkbox' && value === 'n') || value === '') {
                         prev.classList.add('error');
                     }
                 })
