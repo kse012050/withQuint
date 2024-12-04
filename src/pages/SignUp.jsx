@@ -64,12 +64,12 @@ export default function SignUp() {
             return;
         }
         
-        postApi('signUp', inputs)
-            .then(({ result, message })=>{
-                if(result){
-                    console.log(result);
-                }
-            })
+        // postApi('signUp', inputs)
+        //     .then(({ result, message })=>{
+        //         if(result){
+        //             console.log(result);
+        //         }
+        //     })
     }
 
     return (
@@ -83,7 +83,7 @@ export default function SignUp() {
                             <label htmlFor="userId">아이디</label>
                             <div data-err-essage="영문 또는 영문/숫자 조합하여 4~20자리만 가능합니다.">
                                 <input 
-                                    type="text"
+                                    type="password"
                                     placeholder='영문 또는 영문/숫자 조합하여 4~20자리'
                                     name='userId'
                                     id='userId'
@@ -91,6 +91,7 @@ export default function SignUp() {
                                     data-validation='id'
                                     onChange={(e)=>checkInputChange(e, setInputs, setCheckInputs)}
                                     onBlur={(e)=>inputErrCheck(e)}
+                                    autoComplete="off" 
                                     required
                                 />
                                 {!inputs?.userId && checkInputs?.userId && <button onClick={()=>onCheck('userId')} type="button">중복 확인</button>}
@@ -99,7 +100,7 @@ export default function SignUp() {
                         <li>
                             <label htmlFor="checkPW">비밀번호</label>
                             <div data-err-essage="영문/숫자/특수문자 조합하여 8~20자리만 가능합니다.">
-                                <input type="text"
+                                <input type="password"
                                 placeholder='영문/숫자/특수문자 조합하여 8~20자리'
                                 name='checkPW'
                                 id='checkPW'
@@ -108,6 +109,7 @@ export default function SignUp() {
                                 data-reset-name="password"
                                 onChange={(e)=>checkInputChange(e, setInputs, setCheckInputs)}
                                 onBlur={(e)=>inputErrCheck(e)}
+                                autoComplete="off" 
                                 required
                             />
                             </div>
@@ -116,12 +118,13 @@ export default function SignUp() {
                             <label htmlFor="password">비밀번호 확인</label>
                             <div data-err-essage="비밀번호가 다릅니다.">
                                 <input
-                                    type="text"
+                                    type="password"
                                     name='password'
                                     id='password'
                                     data-validation='checkPW'
                                     onChange={(e)=>inputChange(e, setInputs, checkInputs?.checkPW)}
                                     onBlur={(e)=>inputErrCheck(e)}
+                                    autoComplete="off" 
                                     required
                                 />
                             </div>

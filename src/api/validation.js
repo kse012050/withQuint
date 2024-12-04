@@ -15,10 +15,10 @@ export const inputsRequiredAdd = (setInputs) =>{
 // 입력 값 검사
 const formetMap = {
     id(value) {
-        const regex = /^[a-zA-Z][a-zA-Z0-9!@#$%^&*()_+-=,.<>?/;:'"]*$/;
+        const regex = /^[a-zA-Z0-9]*$/;
         return {
             is: regex.test(value),
-            value: /^[0-9!@#$%^&*()_+-=,.<>?/;:'"]/.test(value.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '')) ? value.slice(1) : value.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '')
+            value: value.replace(/[^a-zA-Z0-9\s]/g, '')
         };
     },
     pw(value) {
@@ -81,6 +81,9 @@ export function isValidation(type, value, checkValue){
 export const inputChange = (e, setInputs, checkValue) => {
     const { value, name, checked, type, dataset: { formet, validation } } = e.target;
     
+    if(name === 'userId'){
+        e.target.type = 'text';
+    }
     if(formet && !!value && !isFormet(formet, value)['is']){
         const cur = e.target.selectionStart - 1;
         e.target.value = isFormet(formet, value)['value'];
@@ -110,4 +113,3 @@ export const inputErrCheck = (e) => {
         e.target.classList.remove('error')
     }
 }
-

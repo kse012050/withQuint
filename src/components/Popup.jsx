@@ -4,11 +4,11 @@ export default function Popup({ popup }) {
     const popupRef = useRef();
 
     useEffect(()=>{
-        console.log(popupRef?.current?.matches(':popover-open'));
+        // console.log(popupRef?.current?.matches(':popover-open'));
         if (popupRef.current && popup.is) {
             popupRef.current.showPopover();
         }
-        console.log(popupRef.current);
+        // console.log(popupRef.current);
         return () => {
             
         }
