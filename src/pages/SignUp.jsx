@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { inputsRequiredAdd, inputChange, inputErrCheck } from '../api/validation.js';
 import { postApi, isSubmit } from '../api/api.js';
+import Popup from '../components/Popup.jsx';
 
 const errorMessage = {
     id: '영문 또는 영문/숫자 조합하여 4~20자리',
@@ -27,6 +28,7 @@ const checkInputChange = (e, setInputs, setCheckInputs) =>{
 export default function SignUp() {
     const [inputs, setInputs] = useState();
     const [checkInputs, setCheckInputs] = useState();
+    const [popup, setPopup] = useState(false);
     
     useEffect(()=>{
         inputsRequiredAdd(setInputs)
@@ -39,6 +41,11 @@ export default function SignUp() {
         }).then(({ result, message })=>{
             if(result){
                 setInputs((input)=>({...input, [type]: checkInputs[type]}))
+                setPopup({
+                    is: true,
+                    title: '안내',
+                    description: `사용할 수 있는 ${type === 'userId' ? '아이디' : '닉네임'} 입니다`
+                })
             }
         })
     }
@@ -51,6 +58,7 @@ export default function SignUp() {
         e.preventDefault();
         console.log(inputs);
         console.log(checkInputs);
+        console.log(popup);
         
         if(isSubmit(inputs)){
             return;
@@ -181,6 +189,7 @@ export default function SignUp() {
                     <input type="submit" value="회원가입" onClick={onSubmit}/>
                 </fieldset>
             </form>
+            <Popup popup={popup}/>
         </>
     );
 }

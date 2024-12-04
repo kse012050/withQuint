@@ -14,9 +14,19 @@ input[type="checkbox"]{
     &.error + label span{color: var(--color-point);}
 } 
 
+/* 팝업 */
+[popover]{width: 320px; text-align: center; padding: 30px; border: 1px solid var(--color-point); border-radius: 10px; box-sizing: border-box;
+    strong{display: block; font-size: 18px; font-weight: 700; margin-bottom: 40px;}
+    p{font-size: 15px; font-weight: 400; line-height: 18px; margin-bottom: 30px;}
+    div{
+        button{width: 106px; line-height: 48px; border-radius: 4px; font-size: 15px; font-weight: 700; color: white; background-color: var(--color-point);}
+    }
+}
+[popover]:popover-open::backdrop{background-color: rgba(0, 0, 0, 0.3);}
+
 body{height: 6000px;}
 /* 해더 */
-header{position: fixed; inset: 0 0 auto 0; color: white; padding-inline: 40px; animation: header 1s both; animation-timeline: scroll(); animation-range-start: 0; animation-range-end: 200px;
+header{position: fixed; inset: 0 0 auto 0; color: white; padding-inline: 40px; z-index: 100; animation: header 1s both; animation-timeline: scroll(); animation-range-start: 0; animation-range-end: 200px;
     & > div{max-width: 1920px; margin-inline: auto; text-align: center; position: relative;
         h1{position: absolute; left: 0; top: 50%; transform: translateY(-50%);
             a{--idx: 0; display: block; width: 142px; aspect-ratio: 142 / 48; background: url(../images/logo.png) center top calc(100% * var(--idx)) / 100%; text-indent: -9999px; animation: logo 1s both; animation-timeline: scroll(); animation-range-start: 0; animation-range-end: 200px;}
@@ -44,7 +54,8 @@ header{position: fixed; inset: 0 0 auto 0; color: white; padding-inline: 40px; a
 
 
 [class$="Page"]:not(.mainPage){
-    h2{padding: 240px max(calc((100% - 1240px)/ 2), 20px) 180px; font-size: 50px; line-height: 70px; font-weight: 700; color: white; background-position: center; background-size: cover;}
-    & > *:last-child{margin-top: 90px;}
+    h2{padding: 240px max(calc((100% - 1240px)/ 2), 20px) 180px; font-size: 50px; line-height: 70px; font-weight: 700; color: white; background-position: center; background-size: cover; margin-bottom: 90px;}
+    /* & > *:last-child{margin-top: 90px;} */
+    /* footer{margin-top: 90px;} */
 }
 [class^="sign"] h2{background-image: url(../images/topBG-sign.png);}
