@@ -1,24 +1,19 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
-export default function Popup({ popup }) {
-    const popupRef = useRef();
+export default function Popup({ popup, setPopup }) {
 
-    useEffect(()=>{
-        // console.log(popupRef?.current?.matches(':popover-open'));
-        if (popupRef.current && popup.is) {
-            popupRef.current.showPopover();
-        }
-        // console.log(popupRef.current);
-        return () => {
-            
-        }
-    },[popup])
+    const onPopupClose = () => {
+        setPopup('')
+    }
+
     return (
-        <div popover="auto" id="my-popover" ref={popupRef}>
-            <strong>{popup.title}</strong>
-            <p>{popup.description}</p>
-            <div>
-                <button popovertarget="my-popover" popovertargetaction="hidden">확인</button>
+        <div className='popup' onClick={onPopupClose}>
+            <div onClick={(e)=>e.stopPropagation()}>
+                <strong>{popup.title}</strong>
+                <p>{popup.description}</p>
+                <div>
+                    <button onClick={onPopupClose}>확인</button>
+                </div>
             </div>
         </div>
     );

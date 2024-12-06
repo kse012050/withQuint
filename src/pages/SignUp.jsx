@@ -3,12 +3,12 @@ import { inputsRequiredAdd, inputChange, inputErrCheck } from '../api/validation
 import { postApi, isSubmit } from '../api/api.js';
 import Popup from '../components/Popup.jsx';
 
-const errorMessage = {
-    id: '영문 또는 영문/숫자 조합하여 4~20자리',
-    pw: '영문/숫자/특수문자 조합하여 8~20자리',
-    nickName: '',
-    mobile: ''
-}
+// const errorMessage = {
+//     id: '영문 또는 영문/숫자 조합하여 4~20자리',
+//     pw: '영문/숫자/특수문자 조합하여 8~20자리',
+//     nickName: '',
+//     mobile: ''
+// }
 
 const checkInputChange = (e, setInputs, setCheckInputs) =>{
     const { name, dataset: { resetName } } = e.target;
@@ -42,7 +42,6 @@ export default function SignUp() {
             if(result){
                 setInputs((input)=>({...input, [type]: checkInputs[type]}))
                 setPopup({
-                    is: true,
                     title: '안내',
                     description: `사용할 수 있는 ${type === 'userId' ? '아이디' : '닉네임'} 입니다`
                 })
@@ -192,7 +191,7 @@ export default function SignUp() {
                     <input type="submit" value="회원가입" onClick={onSubmit}/>
                 </fieldset>
             </form>
-            <Popup popup={popup}/>
+            {popup && <Popup popup={popup} setPopup={setPopup}/>}
         </>
     );
 }
