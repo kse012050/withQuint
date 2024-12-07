@@ -21,7 +21,7 @@ const formetMap = {
             value: value.replace(/[^a-zA-Z0-9\s]/g, '')
         };
     },
-    pw(value) {
+    password(value) {
         const regex = /^[a-zA-Z0-9!@#$%^&*()_+-=,.<>?/;:'"]*$/;
         return {
             is: regex.test(value),
@@ -53,7 +53,7 @@ const validationMap = {
         const regex = /^.{4,20}$/;
         return regex.test(value);
     },
-    pw(value) {
+    password(value) {
         const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=,.<>?/;:'"]).{8,20}$/;
         return regex.test(value);
     },

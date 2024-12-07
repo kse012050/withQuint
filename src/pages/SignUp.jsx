@@ -74,125 +74,128 @@ export default function SignUp() {
     return (
         <>
             <h2>회원가입</h2>
-            <form>
-                <fieldset>
-                    <legend>회원가입</legend>
-                    <ul>
-                        <li>
-                            <label htmlFor="userId">아이디</label>
-                            <div data-err-essage="영문 또는 영문/숫자 조합하여 4~20자리만 가능합니다.">
-                                <input 
-                                    type="password"
-                                    placeholder='영문 또는 영문/숫자 조합하여 4~20자리'
-                                    name='userId'
-                                    id='userId'
-                                    data-formet='id'
-                                    data-validation='id'
+            <div>
+                <form>
+                    <fieldset>
+                        <legend>회원가입</legend>
+                        <ul>
+                            <li>
+                                <label htmlFor="userId">아이디</label>
+                                <div data-err-essage="영문 또는 영문/숫자 조합하여 4~20자리만 가능합니다.">
+                                    <input 
+                                        type="password"
+                                        placeholder='영문 또는 영문/숫자 조합하여 4~20자리'
+                                        name='userId'
+                                        id='userId'
+                                        data-formet='id'
+                                        data-validation='id'
+                                        onChange={(e)=>checkInputChange(e, setInputs, setCheckInputs)}
+                                        onBlur={(e)=>inputErrCheck(e)}
+                                        autoComplete="off" 
+                                        required
+                                    />
+                                    {!inputs?.userId && checkInputs?.userId && <button onClick={()=>onCheck('userId')} type="button">중복 확인</button>}
+                                </div>
+                            </li>
+                            <li>
+                                <label htmlFor="checkPW">비밀번호</label>
+                                <div data-err-essage="영문/숫자/특수문자 조합하여 8~20자리만 가능합니다.">
+                                    <input type="password"
+                                    placeholder='영문/숫자/특수문자 조합하여 8~20자리'
+                                    name='checkPW'
+                                    id='checkPW'
+                                    data-formet='password'
+                                    data-validation='password'
+                                    data-reset-name="password"
                                     onChange={(e)=>checkInputChange(e, setInputs, setCheckInputs)}
                                     onBlur={(e)=>inputErrCheck(e)}
                                     autoComplete="off" 
                                     required
                                 />
-                                {!inputs?.userId && checkInputs?.userId && <button onClick={()=>onCheck('userId')} type="button">중복 확인</button>}
-                            </div>
-                        </li>
-                        <li>
-                            <label htmlFor="checkPW">비밀번호</label>
-                            <div data-err-essage="영문/숫자/특수문자 조합하여 8~20자리만 가능합니다.">
-                                <input type="password"
-                                placeholder='영문/숫자/특수문자 조합하여 8~20자리'
-                                name='checkPW'
-                                id='checkPW'
-                                data-formet='pw'
-                                data-validation='pw'
-                                data-reset-name="password"
-                                onChange={(e)=>checkInputChange(e, setInputs, setCheckInputs)}
-                                onBlur={(e)=>inputErrCheck(e)}
-                                autoComplete="off" 
+                                </div>
+                            </li>
+                            <li>
+                                <label htmlFor="password">비밀번호 확인</label>
+                                <div data-err-essage="비밀번호가 다릅니다.">
+                                    <input
+                                        type="password"
+                                        name='password'
+                                        id='password'
+                                        data-validation='checkPW'
+                                        onChange={(e)=>inputChange(e, setInputs, checkInputs?.checkPW)}
+                                        onBlur={(e)=>inputErrCheck(e)}
+                                        autoComplete="off" 
+                                        required
+                                    />
+                                </div>
+                            </li>
+                            <li>
+                                <label htmlFor="nickname">닉네임 (특수문자 제외)</label>
+                                <div data-err-essage="특수문자는 사용할 수 없습니다.">
+                                    <input
+                                        type="text"
+                                        name='nickname'
+                                        id='nickname'
+                                        data-formet='nickname'
+                                        data-validation='nickname'
+                                        onChange={(e)=>checkInputChange(e, setInputs, setCheckInputs)}
+                                        onBlur={(e)=>inputErrCheck(e)}
+                                        required
+                                    />
+                                    {!inputs?.nickname && checkInputs?.nickname && <button onClick={()=>onCheck('nickname')} type="button">중복 확인</button>}
+                                </div>
+                            </li>
+                            <li>
+                                <label htmlFor="mobile">휴대폰 번호</label>
+                                <div data-err-essage="휴대폰 번호를 확인해주세요.">
+                                    <input 
+                                        type="text"
+                                        name='mobile'
+                                        id='mobile'
+                                        data-formet='numb'
+                                        data-validation='mobile'
+                                        maxLength='11'
+                                        onChange={(e)=>inputChange(e, setInputs)}
+                                        onBlur={(e)=>inputErrCheck(e)}
+                                        required
+                                    />
+                                </div>
+                            </li>
+                        </ul>
+                        <div>
+                            <input 
+                                type="checkbox"
+                                id='agreeAll'
+                                checked={inputs?.termsOfService === 'y' && inputs?.privacyPolicy === 'y'}
+                                onChange={agreeCheck}
+                            />
+                            <label htmlFor="agreeAll">이용약관 전체 동의</label>
+                            <input 
+                                type="checkbox"
+                                id='termsOfService'
+                                name='termsOfService'
+                                checked={inputs?.termsOfService === 'y'}
+                                onChange={(e)=>inputChange(e, setInputs)}
                                 required
                             />
-                            </div>
-                        </li>
-                        <li>
-                            <label htmlFor="password">비밀번호 확인</label>
-                            <div data-err-essage="비밀번호가 다릅니다.">
-                                <input
-                                    type="password"
-                                    name='password'
-                                    id='password'
-                                    data-validation='checkPW'
-                                    onChange={(e)=>inputChange(e, setInputs, checkInputs?.checkPW)}
-                                    onBlur={(e)=>inputErrCheck(e)}
-                                    autoComplete="off" 
-                                    required
-                                />
-                            </div>
-                        </li>
-                        <li>
-                            <label htmlFor="nickname">닉네임 (특수문자 제외)</label>
-                            <div data-err-essage="특수문자는 사용할 수 없습니다.">
-                                <input
-                                    type="text"
-                                    name='nickname'
-                                    id='nickname'
-                                    data-formet='nickname'
-                                    data-validation='nickname'
-                                    onChange={(e)=>checkInputChange(e, setInputs, setCheckInputs)}
-                                    onBlur={(e)=>inputErrCheck(e)}
-                                    required
-                                />
-                                {!inputs?.nickname && checkInputs?.nickname && <button onClick={()=>onCheck('nickname')} type="button">중복 확인</button>}
-                            </div>
-                        </li>
-                        <li>
-                            <label htmlFor="mobile">휴대폰 번호</label>
-                            <div data-err-essage="휴대폰 번호를 확인해주세요.">
-                                <input 
-                                    type="text"
-                                    name='mobile'
-                                    id='mobile'
-                                    data-formet='numb'
-                                    data-validation='mobile'
-                                    maxLength='11'
-                                    onChange={(e)=>inputChange(e, setInputs)}
-                                    onBlur={(e)=>inputErrCheck(e)}
-                                    required
-                                />
-                            </div>
-                        </li>
-                    </ul>
-                    <div>
-                        <input 
-                            type="checkbox"
-                            id='agreeAll'
-                            checked={inputs?.termsOfService === 'y' && inputs?.privacyPolicy === 'y'}
-                            onChange={agreeCheck}
-                        />
-                        <label htmlFor="agreeAll">이용약관 전체 동의</label>
-                        <input 
-                            type="checkbox"
-                            id='termsOfService'
-                            name='termsOfService'
-                            checked={inputs?.termsOfService === 'y'}
-                            onChange={(e)=>inputChange(e, setInputs)}
-                            required
-                        />
-                        <label htmlFor="termsOfService"><span>[필수]</span> 서비스 이용약관 보기</label>
-                        <input 
-                            type="checkbox"
-                            id='privacyPolicy'
-                            name='privacyPolicy'
-                            checked={inputs?.privacyPolicy === 'y'}
-                            onChange={(e)=>inputChange(e, setInputs)}
-                            required
-                        />
-                        <label htmlFor="privacyPolicy"><span>[필수]</span> 개인정보처리방침 보기</label>
-                    </div>
-                    <input type="submit" value="회원가입" onClick={onSubmit}/>
-                </fieldset>
-            </form>
-            {popup && <Popup popup={popup} setPopup={setPopup}/>}
+                            <label htmlFor="termsOfService"><span>[필수]</span> 서비스 이용약관 보기</label>
+                            <input 
+                                type="checkbox"
+                                id='privacyPolicy'
+                                name='privacyPolicy'
+                                checked={inputs?.privacyPolicy === 'y'}
+                                onChange={(e)=>inputChange(e, setInputs)}
+                                required
+                            />
+                            <label htmlFor="privacyPolicy"><span>[필수]</span> 개인정보처리방침 보기</label>
+                        </div>
+                        <input type="submit" className='btn-bg' value="회원가입" onClick={onSubmit}/>
+                    </fieldset>
+                </form>
+                {popup && <Popup popup={popup} setPopup={setPopup}/>}
+            </div>
         </>
+
     );
 }
 

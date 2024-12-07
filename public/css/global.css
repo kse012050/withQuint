@@ -1,12 +1,17 @@
+/* 버튼 */
+[class^="btn"]{width: 100%; line-height: 58px; font-size: 18px; font-weight: 700; text-align: center; border: 1px solid var(--color-point); border-radius: 4px;}
+.btn-bg{background-color: var(--color-point); color: white;}
+.btn-border{background-color: white; color: var(--color-point);}
+
 /* 인풋 */
-input{border: 1px solid rgba(220, 220, 220, 1); border-radius: 4px;}
+input:not([type="submit"], [type="checkbox"], [type="radio"]){border: 1px solid rgba(220, 220, 220, 1); border-radius: 4px;}
 input.error{border-color: var(--color-point); outline: var(--color-point);}
 div:has(input.error){position: relative;}
 div:has(input.error)::after{content: attr(data-err-essage); position: absolute; left: 0; top: 100%; font-size: 14px; font-weight: 400; color: var(--color-point);}
 
 /* 체크박스 */
 input[type="checkbox"]{
-    & + label{display: flex; align-items: center; gap: 8px; cursor: pointer;
+    & + label{font-size: 15px; font-weight: 400; display: flex; align-items: center; gap: 8px; cursor: pointer;
         &::before{--idx: 0; content: ''; width: 20px; aspect-ratio: 1; background: url(../images/icon-checkbox.png) no-repeat left top calc(100% * var(--idx)) / 100%;}
         &:not(:last-of-type){margin-bottom: 20px;}
     }
@@ -69,5 +74,7 @@ header{position: fixed; inset: 0 0 auto 0; color: white; padding-inline: 40px; z
     h2{padding: 240px max(calc((100% - 1240px)/ 2), 20px) 180px; font-size: 50px; line-height: 70px; font-weight: 700; color: white; background-position: center; background-size: cover; margin-bottom: 90px;}
     /* & > *:last-child{margin-top: 90px;} */
     /* footer{margin-top: 90px;} */
+    & > div{margin-inline: auto;}
+    &[class^="sign"] > div:first-of-type{max-width: 400px;}
 }
 [class^="sign"] h2{background-image: url(../images/topBG-sign.png);}

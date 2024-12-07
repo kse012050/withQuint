@@ -16,7 +16,7 @@ export default function Header() {
                         <li><NavLink>고객센터</NavLink></li>
                     </ul>
                     <div>
-                        <NavLink>로그인</NavLink>
+                        <NavLink to='/signIn'>로그인</NavLink>
                         <NavLink to='/signUp'>회원가입</NavLink>
                     </div>
                 </nav>
