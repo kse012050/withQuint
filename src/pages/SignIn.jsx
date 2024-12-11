@@ -1,23 +1,56 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { inputChange, inputsRequiredAdd } from '../api/validation';
+import { isSubmit, postApi } from '../api/api';
+import { ThemeContext } from '../context/ThemeContext';
 
 export default function SignIn() {
     const [inputs, setInputs] = useState()
-
+    const { isLogin, setIsLogin } = useContext(ThemeContext)
+    const navigate = useNavigate()
     useEffect(()=>{
+        if(isLogin){
+            navigate('/')
+        }
         inputsRequiredAdd(setInputs)
-    },[])
+    },[navigate, isLogin])
 
     const onSubmit = (e) => {
         e.preventDefault();
         console.log(inputs);
-        
+
+        if(isSubmit(inputs)){
+            return;
+        }
+        postApi('signIn', inputs)
+            .then(({ result, message })=>{
+                console.log(result);
+                console.log(message);
+                if(result){
+                    setIsLogin(true)
+                    // console.log(result);
+                    // console.log(message);
+                }
+            })
+    }
+
+    
+
+    const test = () =>{
+        postApi('test', inputs)
+            .then(({ result, message })=>{
+                console.log(result);
+                console.log(message);
+                if(result){
+                    console.log(result);
+                    console.log(message);
+                }
+            })
     }
 
     return (
         <>
-            <h2>로그인</h2>   
+            <h2 onClick={test}>로그인</h2>   
             <div>
                 <form>
                     <fieldset>
@@ -32,6 +65,8 @@ export default function SignIn() {
                                         data-formet='id'
                                         data-validation='id'
                                         onChange={(e)=>inputChange(e, setInputs)}
+                                        autoComplete="off" 
+                                        required
                                     />
                                 </div>
                                 <div>
@@ -43,13 +78,15 @@ export default function SignIn() {
                                         data-formet='password'
                                         data-validation='password'
                                         onChange={(e)=>inputChange(e, setInputs)}
+                                        autoComplete="off" 
+                                        required
                                     />
                                 </div>
                             </li>
                         </ul>
                         <div>
-                            <input type="checkbox" />
-                            <label htmlFor="">자동 로그인</label>
+                            <input type="checkbox" name='authLogin' id='authLogin' onChange={(e)=>inputChange(e, setInputs)}/>
+                            <label htmlFor="authLogin">자동 로그인</label>
                         </div>
                         <input type="submit" className='btn-bg' value="로그인" onClick={onSubmit}/>
                         <p>아이디 또는 비밀번호가 일치하지 않습니다</p>

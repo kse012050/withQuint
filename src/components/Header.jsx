@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { ThemeContext } from '../context/ThemeContext';
 
 export default function Header() {
+    const { isLogin } = useContext(ThemeContext);
     return (
         <header>
             <div>
@@ -16,8 +18,15 @@ export default function Header() {
                         <li><NavLink>고객센터</NavLink></li>
                     </ul>
                     <div>
-                        <NavLink to='/signIn'>로그인</NavLink>
-                        <NavLink to='/signUp'>회원가입</NavLink>
+                        { !isLogin ? 
+                            <>
+                                <NavLink to='/signIn'>로그인</NavLink>
+                                <NavLink to='/signUp'>회원가입</NavLink>
+                            </> :
+                            <>
+                                <NavLink to='/signIn'>로그아웃</NavLink>
+                            </>
+                        }
                     </div>
                 </nav>
                 <button>메뉴 열기</button>

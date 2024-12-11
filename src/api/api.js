@@ -25,6 +25,7 @@ function apiOption(type, data){
     return {
         method: type,
         headers: {"Content-Type": "application/json",},
+        credentials: 'include',
         body: JSON.stringify(data)
     }
 }
