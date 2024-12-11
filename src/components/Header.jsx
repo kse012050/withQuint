@@ -1,9 +1,19 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { ThemeContext } from '../context/ThemeContext';
+import { postApi } from '../api/api';
 
 export default function Header() {
-    const { isLogin } = useContext(ThemeContext);
+    const { isLogin, setIsLogin } = useContext(ThemeContext);
+
+    const onLogout = () => {
+        postApi('logout')
+            .then(({ result })=>{
+                if(result){
+                    setIsLogin(false)
+                }
+            })
+    }
     return (
         <header>
             <div>
@@ -24,7 +34,7 @@ export default function Header() {
                                 <NavLink to='/signUp'>회원가입</NavLink>
                             </> :
                             <>
-                                <NavLink to='/signIn'>로그아웃</NavLink>
+                                <button onClick={onLogout}>로그아웃</button>
                             </>
                         }
                     </div>

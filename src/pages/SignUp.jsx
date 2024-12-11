@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { inputsRequiredAdd, inputChange, inputErrCheck } from '../api/validation.js';
 import { postApi, isSubmit } from '../api/api.js';
 import Popup from '../components/Popup.jsx';
+import { ThemeContext } from '../context/ThemeContext.jsx';
+import { useNavigate } from 'react-router-dom';
 
 // const errorMessage = {
 //     id: '영문 또는 영문/숫자 조합하여 4~20자리',
@@ -28,11 +30,16 @@ const checkInputChange = (e, setInputs, setCheckInputs) =>{
 export default function SignUp() {
     const [inputs, setInputs] = useState();
     const [checkInputs, setCheckInputs] = useState();
+    const { isLogin } = useContext(ThemeContext)
     const [popup, setPopup] = useState(false);
+    const navigate = useNavigate()
     
     useEffect(()=>{
+        if(isLogin){
+            navigate('/')
+        }
         inputsRequiredAdd(setInputs)
-    },[])
+    },[navigate, isLogin])
 
     const onCheck = (type) =>{
         postApi('signUp/check', {
@@ -67,6 +74,7 @@ export default function SignUp() {
         //     .then(({ result, message })=>{
         //         if(result){
         //             console.log(result);
+        //             navigate('/signIn')
         //         }
         //     })
     }

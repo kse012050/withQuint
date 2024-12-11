@@ -49,15 +49,15 @@ header{position: fixed; inset: 0 0 auto 0; color: white; padding-inline: 40px; z
             a{--idx: 0; display: block; width: 142px; aspect-ratio: 142 / 48; background: url(../images/logo.png) center top calc(100% * var(--idx)) / 100%; text-indent: -9999px; animation: logo 1s both; animation-timeline: scroll(); animation-range-start: 0; animation-range-end: 200px;}
         }
         nav{display: inline-block; 
-            a{line-height: 100px; font-size: 18px;}
+            :is(a, button){line-height: 100px; font-size: 18px;}
             ul{display: flex; gap: 80px;
                 a{font-weight: 700;}
             }
             div{position: absolute; right: 0; top: 50%; transform: translateY(-50%); display: flex; gap: 40px;
-                a{font-weight: 400;}
+                :is(a, button){font-weight: 400;}
             }
         }
-        button{display: none;}
+        & > button{display: none;}
     }
 }
 @keyframes header {
