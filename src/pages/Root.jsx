@@ -5,6 +5,7 @@ import { ThemeContext } from '../context/ThemeContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { postApi } from '../api/api';
+import { styleIdx } from '../js/style';
 
 export default function Root() {
     const pageName = useLocation().pathname.slice(1) || 'main';
@@ -19,6 +20,12 @@ export default function Root() {
                 }
             })
     },[])
+
+    useEffect(() => {
+        return (
+            document.querySelectorAll('[data-styleidx]').length ? styleIdx() : undefined
+        )
+    },[pageName])
 
     return (
         <>

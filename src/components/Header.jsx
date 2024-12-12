@@ -20,7 +20,7 @@ export default function Header() {
                 <h1><Link to='/'>위드퀸트</Link></h1>
                 <nav>
                     <ul>
-                        <li><NavLink>소개</NavLink></li>
+                        <li><NavLink to='/introduction'>소개</NavLink></li>
                         <li><NavLink>VIP상품</NavLink></li>
                         <li><NavLink>추천종목</NavLink></li>
                         <li><NavLink>수익률</NavLink></li>

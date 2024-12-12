@@ -19,6 +19,8 @@ input[type="checkbox"]{
     &.error + label span{color: var(--color-point);}
 } 
 
+[data-styleIdx] > *::before{background-position: left top calc(100% * var(--styleIdx)); background-size: 100%;}
+
 /* 팝업 */
 [popover]{width: 320px; text-align: center; padding: 30px; border: 1px solid var(--color-point); border-radius: 10px; box-sizing: border-box;
     strong{display: block; font-size: 18px; font-weight: 700; margin-bottom: 40px;}
@@ -75,6 +77,10 @@ header{position: fixed; inset: 0 0 auto 0; color: white; padding-inline: 40px; z
     /* & > *:last-child{margin-top: 90px;} */
     /* footer{margin-top: 90px;} */
     & > div{margin-inline: auto;}
+    &:not([class^="sign"]) div:first-of-type{max-width: 1240px;
+        h3{font-size: 36px; line-height: 43px; margin-bottom: 30px; font-weight: 700;}
+    }
     &[class^="sign"] > div:first-of-type{max-width: 400px;}
 }
+.introductionPage h2{background-image: url(../images/topBG-introduction.png);}
 [class^="sign"] h2{background-image: url(../images/topBG-sign.png);}
