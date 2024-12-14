@@ -21,7 +21,7 @@ export default function Header() {
                 <nav>
                     <ul>
                         <li><NavLink to='/introduction'>소개</NavLink></li>
-                        <li><NavLink>VIP상품</NavLink></li>
+                        <li><NavLink to='/vip'>VIP상품</NavLink></li>
                         <li><NavLink>추천종목</NavLink></li>
                         <li><NavLink>수익률</NavLink></li>
                         <li><NavLink>주식정보</NavLink></li>
