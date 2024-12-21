@@ -30,12 +30,30 @@ function apiOption(type, data){
     }
 }
 
+function imgOption(data){
+    const formdata = new FormData();
+    // formdata.append("image", data);
+    Object.entries(data).forEach(([key, value]) =>{
+        formdata.append(key, value);
+    })
+    return {
+        method: 'POST',
+        credentials: 'include',
+        body: formdata
+    }
+}
+
 export function postApi(url, data){
     const options = apiOption('POST', data);
     return userApi(url, options)
     // return fetch(`${userApiUrl}${url}`, options)
     //         .then(response => response.json())
     //         .catch(error => console.log('error', error));
+}
+
+export function imgApi(url, data){
+    const options = imgOption(data);
+    return userApi(url, options)
 }
 
 function userApi(url, apiOptions){

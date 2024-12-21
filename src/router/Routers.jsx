@@ -6,6 +6,7 @@ import Introduction from '../pages/Introduction';
 import Vip from '../pages/Vip';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
+import Test from '../pages/Test';
 
 export default function Routers() {
     return (
@@ -24,6 +25,9 @@ export default function Routers() {
             </Route>
             <Route path="/signUp" element={<Root />}>
                 <Route index={true} element={<SignUp />}/>
+            </Route>
+            <Route path="/test" element={<Root />}>
+                <Route index={true} element={<Test />}/>
             </Route>
         </Routes>
     );

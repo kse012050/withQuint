@@ -79,7 +79,7 @@ export function isValidation(type, value, checkValue){
 }
 
 export const inputChange = (e, setInputs, checkValue) => {
-    const { value, name, checked, type, dataset: { formet, validation } } = e.target;
+    const { value, name, checked, type, dataset: { formet, validation }, files } = e.target;
     
     if(name === 'userId'){
         e.target.type = 'text';
@@ -102,6 +102,8 @@ export const inputChange = (e, setInputs, checkValue) => {
         setInputs((input)=> ({...input, [name]: checked ? 'y': 'n'}))
     }else if(type === 'radio'){
         setInputs((input)=> ({...input, [name]: value}))
+    }else if(type === 'file'){
+        setInputs((input)=> ({...input, [name]: files[0]}))
     }else{
         setInputs((input)=> ({...input, [name]: e.target.value}))
     }
