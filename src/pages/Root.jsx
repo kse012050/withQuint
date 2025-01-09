@@ -13,10 +13,10 @@ export default function Root() {
 
     useEffect(()=>{
         postApi('signIn/auth')
-            .then(({result, isLogin, message})=>{
+            .then((response)=>{
+                const {result, isLogin/* , message */} = response || {};
                 if(result){
                     setIsLogin(isLogin);
-                    console.log(message);
                 }
             })
     },[])

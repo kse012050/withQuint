@@ -33,9 +33,11 @@ function apiOption(type, data){
 function imgOption(data){
     const formdata = new FormData();
     // formdata.append("image", data);
-    Object.entries(data).forEach(([key, value]) =>{
-        formdata.append(key, value);
-    })
+    if(data){
+        Object.entries(data).forEach(([key, value]) =>{
+            formdata.append(key, value);
+        })
+    }
     return {
         method: 'POST',
         credentials: 'include',

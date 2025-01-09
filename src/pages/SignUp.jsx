@@ -45,7 +45,10 @@ export default function SignUp() {
         postApi('signUp/check', {
             type: type,
             value: checkInputs[type]
-        }).then(({ result, message })=>{
+        }).then(( response )=>{
+            const { result, /* message */ } = response || {};
+            console.log(response);
+            
             if(result){
                 setInputs((input)=>({...input, [type]: checkInputs[type]}))
                 setPopup({
@@ -70,13 +73,13 @@ export default function SignUp() {
             return;
         }
         
-        // postApi('signUp', inputs)
-        //     .then(({ result, message })=>{
-        //         if(result){
-        //             console.log(result);
-        //             navigate('/signIn')
-        //         }
-        //     })
+        postApi('signUp', inputs)
+            .then(( response )=>{
+                const { result, /* message */ } = response || {};
+                if(result){
+                    navigate('/signIn')
+                }
+            })
     }
 
     return (

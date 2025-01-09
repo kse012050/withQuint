@@ -23,9 +23,10 @@ export default function SignIn() {
             return;
         }
         postApi('signIn', inputs)
-            .then(({ result, message })=>{
-                console.log(result);
-                console.log(message);
+            .then(( response )=>{
+                const { result/* , message */ } = response || {};
+                // console.log(result);
+                // console.log(message);
                 if(result){
                     setIsLogin(true)
                     // console.log(result);

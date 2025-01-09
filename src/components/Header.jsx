@@ -8,7 +8,8 @@ export default function Header() {
 
     const onLogout = () => {
         postApi('logout')
-            .then(({ result })=>{
+            .then(( response )=>{
+                const { result } = response || {};
                 if(result){
                     setIsLogin(false)
                 }
