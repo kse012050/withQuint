@@ -15,6 +15,8 @@ export default function Root() {
         postApi('signIn/auth')
             .then((response)=>{
                 const {result, isLogin/* , message */} = response || {};
+                console.log(response);
+                
                 if(result){
                     setIsLogin(isLogin);
                 }

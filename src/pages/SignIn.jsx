@@ -51,7 +51,7 @@ export default function SignIn() {
 
     return (
         <>
-            <h2 onClick={test}>로그인</h2>   
+            <h2>로그인</h2>   
             <div>
                 <form>
                     <fieldset>
