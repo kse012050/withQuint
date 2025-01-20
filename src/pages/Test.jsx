@@ -8,7 +8,7 @@ export default function Test() {
     const onSubmit = (e) =>{
         e.preventDefault();
         console.log(inputs);
-        imgApi('vipProducts', inputs)
+        imgApi('vipProducts/create', inputs)
             .then((result)=>{
                 console.log(result);
                 

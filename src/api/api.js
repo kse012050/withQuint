@@ -38,6 +38,8 @@ function imgOption(data){
             formdata.append(key, value);
         })
     }
+    console.log(data);
+    
     return {
         method: 'POST',
         credentials: 'include',
