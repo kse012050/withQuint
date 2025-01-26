@@ -37,17 +37,17 @@ export default function SignIn() {
 
     
 
-    const test = () =>{
-        postApi('test', inputs)
-            .then(({ result, message })=>{
-                console.log(result);
-                console.log(message);
-                if(result){
-                    console.log(result);
-                    console.log(message);
-                }
-            })
-    }
+    // const test = () =>{
+    //     postApi('test', inputs)
+    //         .then(({ result, message })=>{
+    //             console.log(result);
+    //             console.log(message);
+    //             if(result){
+    //                 console.log(result);
+    //                 console.log(message);
+    //             }
+    //         })
+    // }
 
     return (
         <>

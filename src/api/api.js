@@ -60,6 +60,11 @@ export function imgApi(url, data){
     return userApi(url, options)
 }
 
+export function getApi(url, data){
+    const options = apiOption('GET', data);
+    return userApi(url, options)
+}
+
 function userApi(url, apiOptions){
     return fetch(`${userApiUrl}${url}`, apiOptions)
         .then(response => response.json())

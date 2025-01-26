@@ -1,53 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getApi } from '../api/api';
 
 export default function Vip() {
+    const [ vipProducts, setVipProducts ] = useState()
+
+    useEffect(()=>{
+        getApi('vipProducts/read')
+            .then((response)=>{
+                const { result, list } = response || {};
+                if(result){
+                    setVipProducts(list);
+                }
+            })
+    },[])
+
     return (
         <>
             <h2>VIP상품 안내</h2>
             <div>
                 <h3>VIP 상품</h3>
-                <ul>
-                    <li>
-                        <div>TRINITY
-                            <mark>트리니티</mark>
-                        </div>
-                        <strong>
-                            트리니티
-                            <span>300만원</span>
-                        </strong>
-                        <p>
-                            무제한 리딩안내<br/>
-                            실시간 채팅 제공<br/>
-                            월 200%수익보장
-                        </p>
-                        <small>
-                            *자세항 사항은 고객센터 VIP 상품 신청에
-                            글을 남겨 주세요.
-                        </small>
-                        <Link>VIP 상품 신청하기</Link>
-                    </li>
-                    <li>
-                        <div>
-                            <span>상품명 영문</span>
-                            <mark>상품명</mark>
-                        </div>
-                        <strong>
-                            상품 추가 시 반복 유형
-                            <span>300만원</span>
-                        </strong>
-                        <p>
-                            무제한 리딩안내<br/>
-                            실시간 채팅 제공<br/>
-                            월 200%수익보장
-                        </p>
-                        <small>
-                            *자세항 사항은 고객센터 VIP 상품 신청에
-                            글을 남겨 주세요.
-                        </small>
-                        <Link>VIP 상품 신청하기</Link>
-                    </li>
-                </ul>
+                {vipProducts && 
+                    <ul>
+                    {vipProducts.map((data)=>
+                        <li key={data.id}>
+                            <div style={{backgroundImage: `url(${data.image || 'https://placehold.co/600x400'})`}}>
+                                {data.nameEng}
+                                <mark>{data.name}</mark>
+                            </div>
+                            <strong>
+                                {data.name}
+                                <span>{data.price}만원</span>
+                            </strong>
+                            <p>{data.description}</p>
+                            <small>
+                                *자세항 사항은 고객센터 VIP 상품 신청에
+                                글을 남겨 주세요.
+                            </small>
+                            <Link>VIP 상품 신청하기</Link>
+                        </li>
+                    )}
+                    </ul>
+                }
             </div>
         </>
     );
