@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Outlet, useLocation } from 'react-router-dom';
 import { ThemeContext } from '../context/ThemeContext';
@@ -23,11 +23,26 @@ export default function Root() {
             })
     },[])
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         return (
             document.querySelectorAll('[data-styleidx]').length ? styleIdx() : undefined
         )
     },[pageName])
+
+    // useEffect(() => {
+    //     const observer = new MutationObserver(() => {
+    //         console.log('?');
+    //         if (document.querySelectorAll('[data-styleidx]').length) {
+    //             console.log('?');
+                
+    //             styleIdx();
+    //         }
+    //     });
+    
+    //     observer.observe(document.body, { childList: true, subtree: true });
+        
+    //     return () => observer.disconnect();
+    // }, [pageName]);
 
     return (
         <>

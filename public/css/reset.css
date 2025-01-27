@@ -29,7 +29,7 @@ body {
 	line-height: 1;
 	/* font-family: 'Pretendard'; */
 	font-family: 'Pretendard', "Noto Sans JP", sans-serif;
-	color: #222;
+	color: var(--color-basic);
 }
 ol, ul {
 	list-style: none;

@@ -1,54 +1,48 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Pagination from '../components/Pagination';
 
 export default function Recommendation() {
     return (
         <>
             <h2>추천 종목</h2>
-            <ul>
-                <li><NavLink to=''>VIP 상품 신청</NavLink></li>
-                <li><NavLink to=''>주식상담소</NavLink></li>
-                <li><NavLink to=''>공지사항</NavLink></li>
-            </ul>
             <div>
-                <h3>VIP 상품 신청</h3>
-                <div className='boardBox'>
-                    <strong>총 1234건 (1/10page)</strong>
-                    <div>
-                        <input type="search" />
+                <div className='board-menu'>
+                    <span>
+                        <strong>총 1234건</strong>
+                        (1/10page)
+                    </span>
+                    <div className='selectBox'>
+                        <button>분류 전체</button>
+                        <div>
+                            <button>1</button>
+                            <button>2</button>
+                            <button>3</button>
+                        </div>
+                    </div>
+                    <div className='searchBox'>
+                        <input type="search" placeholder='제목'/>
                         <button>검색</button>
                     </div>
-                    <Link to=''>글쓰기</Link>
-                    <div>
-                        <strong>번호</strong>
-                        <strong>제목</strong>
-                        <strong>작성자</strong>
-                        <strong>등록일자</strong>
-                    </div>
-                    <ol>
-                        <li>
-                            <Link to=''>
-                                <span>1234</span>
-                                <p>VIP 상품 신청합니다~!!</p>
-                                <span>전업투자자</span>
-                                <time>2023.10.26</time>
-                            </Link>
-                        </li>
-                    </ol>
-                    <div>
-                        <Link to=''>처음</Link>
-                        <Link to=''>이전</Link>
-                        <ol>
-                            <li><Link to=''>1</Link></li>
-                            <li><Link to=''>2</Link></li>
-                            <li><Link to=''>3</Link></li>
-                            <li><Link to=''>4</Link></li>
-                            <li><Link to=''>5</Link></li>
-                        </ol>
-                        <Link to=''>다음</Link>
-                        <Link to=''>마지막</Link>
-                    </div>
+                    {/* <Link to='' className='btn-bg'>글쓰기</Link> */}
                 </div>
+                <div className='board-title'>
+                    <b>번호</b>
+                    <b>분류</b>
+                    <b>제목</b>
+                    <b>등록일자</b>
+                </div>
+                <ol className="board-list">
+                    <li>
+                        <Link to=''>
+                            <span>1234</span>
+                            <span>무료</span>
+                            <p>10월 26일 목요일 무료추천종목 (35)</p>
+                            <time>2023.10.26</time>
+                        </Link>
+                    </li>
+                </ol>
+                <Pagination />
             </div>
         </>
     );
