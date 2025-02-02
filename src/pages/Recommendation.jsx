@@ -1,16 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Pagination from '../components/Pagination';
+import { getApi } from '../api/api';
 
 export default function Recommendation() {
+    const [info, setInfo] = useState()
+    const [list, setList] = useState()
+    
+    // const queryParams = new URLSearchParams(useLocation().search);
+    // const page = queryParams.get('page'); // '1'과 같은 값이 반환됨
+    // console.log(page);
+
+    const page = new URLSearchParams(useLocation().search).get('page');
+    
+
+    useEffect(()=>{
+        getApi('boards', {boardType: 'recommendation', page: page || 1})
+            .then(({ result, info, list } = {}) => {
+                if(result){
+                    setInfo(info);
+                    setList(list);
+                }
+            })
+    },[page])
+
     return (
         <>
             <h2>추천 종목</h2>
             <div>
                 <div className='board-menu'>
                     <span>
-                        <strong>총 1234건</strong>
-                        (1/10page)
+                        <strong>총 {info?.totalCount}건</strong>
+                        ({info?.page}/{info?.totalPage}page)
                     </span>
                     <div className='selectBox'>
                         <button>분류 전체</button>
@@ -33,16 +54,18 @@ export default function Recommendation() {
                     <b>등록일자</b>
                 </div>
                 <ol className="board-list">
-                    <li>
-                        <Link to=''>
-                            <span>1234</span>
-                            <span>무료</span>
-                            <p>10월 26일 목요일 무료추천종목 (35)</p>
-                            <time>2023.10.26</time>
-                        </Link>
-                    </li>
+                    {list && list.map((data, idx)=>
+                        <li key={data.id}>
+                            <Link to=''>
+                                <span>{data.numb}</span>
+                                <span>{data.type}</span>
+                                <p>{data.title}</p>
+                                <time>{data.created}</time>
+                            </Link>
+                        </li>
+                    )}
                 </ol>
-                <Pagination />
+                {info && <Pagination info={info}/>}
             </div>
         </>
     );

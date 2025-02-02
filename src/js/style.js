@@ -1,3 +1,5 @@
+import { useLayoutEffect } from 'react';
+
 // css용 index
 export function styleIdx(){
     document.querySelectorAll('[data-styleidx]').forEach((parents)=>{
@@ -13,3 +15,13 @@ export function styleIdx(){
         })
     })
 }
+
+
+
+export const useStyleIdx = (dependencies) => {
+    useLayoutEffect(() => {
+        if (document.querySelectorAll('[data-styleidx]').length) {
+            styleIdx(); // 스타일 적용
+        }
+    }, [dependencies]); // 의존성 배열로 스타일 적용
+};

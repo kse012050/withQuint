@@ -22,12 +22,17 @@ export function isSubmit(inputs){
 }
 
 function apiOption(type, data){
-    return {
+    const option = {
         method: type,
         headers: {"Content-Type": "application/json",},
         credentials: 'include',
-        body: JSON.stringify(data)
     }
+
+    if(type === 'POST'){
+        option.body = JSON.stringify(data);
+    }
+
+    return option;
 }
 
 function imgOption(data){
@@ -62,6 +67,11 @@ export function imgApi(url, data){
 
 export function getApi(url, data){
     const options = apiOption('GET', data);
+
+    if(data){
+        url = url + '?' + new URLSearchParams(data)
+    }
+    
     return userApi(url, options)
 }
 
