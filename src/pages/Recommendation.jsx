@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import Pagination from '../components/Pagination';
 import { getApi } from '../api/api';
 import SelectBox from '../components/SelectBox';
@@ -8,25 +8,21 @@ import { inputChange } from '../api/validation';
 export default function Recommendation() {
     const [info, setInfo] = useState()
     const [list, setList] = useState()
-    const [search, setSearch] = useState();
-    const location = useLocation();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
-    
-    const page = new URLSearchParams(location.search).get('page');
-
     const queryObject = Object.fromEntries(searchParams.entries());
-
+    const [search, setSearch] = useState({type: queryObject.type, search: queryObject.search});
+    
     
     useEffect(()=>{
-        getApi('boards', {boardType: 'recommendation', ...queryObject, page: page || 1})
+        getApi('boards', {boardType: 'recommendation', ...queryObject, page: queryObject.page || 1})
             .then(({ result, info, list } = {}) => {
                 if(result){
                     setInfo(info);
                     setList(list);
                 }
             })
-    },[page, searchParams])
+    },[searchParams])
 
     const onSearch = () =>{
         const url = '?' + new URLSearchParams(search);
@@ -44,7 +40,7 @@ export default function Recommendation() {
                     </span>
                     <SelectBox type={search?.type} setSearch={setSearch}/>
                     <div className='searchBox'>
-                        <input type="search" placeholder='제목' name='search' onChange={(e)=> inputChange(e, setSearch)}/>
+                        <input type="search" placeholder='제목' name='search' defaultValue={queryObject.search} onChange={(e)=> inputChange(e, setSearch)}/>
                         <button onClick={onSearch}>검색</button>
                     </div>
                     {/* <Link to='' className='btn-bg'>글쓰기</Link> */}
@@ -57,7 +53,7 @@ export default function Recommendation() {
                 </div>
                 <ol className="board-list">
                     {list && list.map((data, idx)=>
-                        <li key={data.id}>
+                        <li key={data.id} data-new={data.new}>
                             <Link to=''>
                                 <span>{data.numb}</span>
                                 <span>{{ 'free': '무료', 'vip': 'VIP' }[data.type]}</span>

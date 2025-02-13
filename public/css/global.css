@@ -75,7 +75,15 @@ body:has(.popup){overflow: hidden;}
 
 .board-title, .board-list li a{display: flex; align-items: center; padding-inline: 30px;}
 .board-title{height: 56px; font-weight: 700; border-top: 2px solid #000; background-color: #F7F7F7;}
-.board-list li a{height: 80px; border-bottom: 1px solid var(--color-border);}
+.board-list li{
+    &[data-new="y"] {
+        p{font-weight: 700;}
+        time{position: relative;
+            &::before{content: ''; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); width: 20px; aspect-ratio: 1; background: url('../images/icon-new.png') no-repeat center / cover;}
+        }
+    }
+    a{height: 80px; border-bottom: 1px solid var(--color-border);}
+}
 .board-title b, .board-list li a *:not(p){text-align: center;}
 :is(.board-title b, .board-list li a *):nth-child(1){width: 60px; padding-inline: 40px;}
 :is(.board-title b, .board-list li a *):nth-child(2){width: 60px; padding-inline: 40px;}
