@@ -7,13 +7,8 @@ export default function Recommendation() {
     const [info, setInfo] = useState()
     const [list, setList] = useState()
     
-    // const queryParams = new URLSearchParams(useLocation().search);
-    // const page = queryParams.get('page'); // '1'과 같은 값이 반환됨
-    // console.log(page);
-
     const page = new URLSearchParams(useLocation().search).get('page');
     
-
     useEffect(()=>{
         getApi('boards', {boardType: 'recommendation', page: page || 1})
             .then(({ result, info, list } = {}) => {
@@ -58,7 +53,7 @@ export default function Recommendation() {
                         <li key={data.id}>
                             <Link to=''>
                                 <span>{data.numb}</span>
-                                <span>{data.type}</span>
+                                <span>{{ 'free': '무료', 'vip': 'VIP' }[data.type]}</span>
                                 <p>{data.title}</p>
                                 <time>{data.created}</time>
                             </Link>

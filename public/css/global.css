@@ -83,7 +83,9 @@ body:has(.popup){overflow: hidden;}
 .board-paging{display: flex; justify-content: center; align-items: center; --gap: 10px; gap: var(--gap); margin-top: 40px;}
 .board-paging > a{--iconSize: 24px; width: var(--iconSize); aspect-ratio: 1; text-indent: -9999px; background: url('../images/icon-pagination.png') left top calc(100% / (var(--styleTotal) - 1) * var(--styleIdx)) / 100%;}
 .board-paging ol{display: flex; justify-content: center; align-items: center; gap: var(--gap);}
-.board-paging ol li a{width: 20px; line-height: var(--iconSize); font-weight: 700; text-align: center;}
+.board-paging ol li a{width: 20px; line-height: var(--iconSize); font-weight: 700; text-align: center;
+    &.active{color: var(--color-point); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 2px;}
+}
 
 
 body{height: 6000px;}
