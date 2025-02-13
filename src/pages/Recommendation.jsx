@@ -1,23 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import Pagination from '../components/Pagination';
 import { getApi } from '../api/api';
+import SelectBox from '../components/SelectBox';
+import { inputChange } from '../api/validation';
 
 export default function Recommendation() {
     const [info, setInfo] = useState()
     const [list, setList] = useState()
+    const [search, setSearch] = useState();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
     
-    const page = new URLSearchParams(useLocation().search).get('page');
+    const page = new URLSearchParams(location.search).get('page');
+
+    const queryObject = Object.fromEntries(searchParams.entries());
+
     
     useEffect(()=>{
-        getApi('boards', {boardType: 'recommendation', page: page || 1})
+        getApi('boards', {boardType: 'recommendation', ...queryObject, page: page || 1})
             .then(({ result, info, list } = {}) => {
                 if(result){
                     setInfo(info);
                     setList(list);
                 }
             })
-    },[page])
+    },[page, searchParams])
+
+    const onSearch = () =>{
+        const url = '?' + new URLSearchParams(search);
+        navigate(url)
+    }
 
     return (
         <>
@@ -28,17 +42,10 @@ export default function Recommendation() {
                         <strong>총 {info?.totalCount}건</strong>
                         ({info?.page}/{info?.totalPage}page)
                     </span>
-                    <div className='selectBox'>
-                        <button>분류 전체</button>
-                        <div>
-                            <button>1</button>
-                            <button>2</button>
-                            <button>3</button>
-                        </div>
-                    </div>
+                    <SelectBox type={search?.type} setSearch={setSearch}/>
                     <div className='searchBox'>
-                        <input type="search" placeholder='제목'/>
-                        <button>검색</button>
+                        <input type="search" placeholder='제목' name='search' onChange={(e)=> inputChange(e, setSearch)}/>
+                        <button onClick={onSearch}>검색</button>
                     </div>
                     {/* <Link to='' className='btn-bg'>글쓰기</Link> */}
                 </div>

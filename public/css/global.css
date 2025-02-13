@@ -55,13 +55,14 @@ body:has(.popup){overflow: hidden;}
 
     .selectBox, .searchBox{--borderRadius: 4px; --height: 50px; --paddingInline: 15px; --iconSize: 18px; border: 1px solid var(--color-border); position: relative; border-radius: var(--borderRadius);}
     .selectBox > button, .searchBox input{height: var(--height); padding-inline: var(--paddingInline) calc(var(--paddingInline) * 2 + var(--iconSize)); box-sizing: border-box;}
-    .selectBox > button{color: var(--color-placeholder);}
     .selectBox::after, .searchBox button{aspect-ratio: 1; position: absolute; right: var(--paddingInline); top: 50%; transform: translateY(-50%); width: var(--iconSize);}
     .selectBox{width: 160px;
         button{height: var(--height); text-align: left;}
         &:after{content: ''; background: url('../images/icon-arrow.png') var(--BGImg-basic); pointer-events: none;}
-        > button{width: 100%;}
-        div{display: none; position: absolute; left: 0; top: calc(100% + 10px); border: 1px solid black; border-radius: var(--borderRadius); width: 100%;
+        > button{width: 100%; color: var(--color-placeholder);
+            &.active{color: var(--color-basic);}
+        }
+        div{position: absolute; left: 0; top: calc(100% + 10px); border: 1px solid black; border-radius: var(--borderRadius); width: 100%; background-color: white;
             button{padding-inline: var(--paddingInline); width: 100%;}
         }
     }
