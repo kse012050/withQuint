@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function SelectBox({ type, setSearch }) {
     const list = {'free':'무료', 'vip':'VIP'};
@@ -11,9 +11,20 @@ export default function SelectBox({ type, setSearch }) {
         })
     }
 
+    useEffect(()=>{
+        const bodyClick = () => {
+            setActive(false);
+        }
+        document.addEventListener('click',bodyClick);
+
+        return () => {
+            document.removeEventListener('click',bodyClick)
+        }
+    },[])
+
     return (
-        <div className='selectBox'>
-            <button onClick={()=>setActive(true)} className={type ? 'active' : ''}>{list[type] || '분류 전체'}</button>
+        <div className='selectBox' onClick={(e)=> e.stopPropagation()}>
+            <button onClick={()=>setActive(true)}>{list[type]}</button>
             {active &&
                 <div>
                     {Object.entries(list).map(([key, value], idx)=> 

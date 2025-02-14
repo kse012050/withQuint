@@ -55,12 +55,13 @@ body:has(.popup){overflow: hidden;}
 
     .selectBox, .searchBox{--borderRadius: 4px; --height: 50px; --paddingInline: 15px; --iconSize: 18px; border: 1px solid var(--color-border); position: relative; border-radius: var(--borderRadius);}
     .selectBox > button, .searchBox input{height: var(--height); padding-inline: var(--paddingInline) calc(var(--paddingInline) * 2 + var(--iconSize)); box-sizing: border-box;}
-    .selectBox::after, .searchBox button{aspect-ratio: 1; position: absolute; right: var(--paddingInline); top: 50%; transform: translateY(-50%); width: var(--iconSize);}
+    .selectBox > button::after, .searchBox button{aspect-ratio: 1; position: absolute; right: var(--paddingInline); top: 50%; /* transform: translateY(-50%); */ translate: 0 -50%; width: var(--iconSize);}
     .selectBox{width: 160px;
         button{height: var(--height); text-align: left;}
-        &:after{content: ''; background: url('../images/icon-arrow.png') var(--BGImg-basic); pointer-events: none;}
-        > button{width: 100%; color: var(--color-placeholder);
-            &.active{color: var(--color-basic);}
+        > button{width: 100%; color: var(--color-basic);
+            &:empty::before{content: '분류 전체'; color: var(--color-placeholder);}
+            &:after{content: ''; background: url('../images/icon-arrow.png') var(--BGImg-basic); pointer-events: none;}
+            &:has(+ div)::after{rotate: 180deg;}
         }
         div{position: absolute; left: 0; top: calc(100% + 10px); border: 1px solid black; border-radius: var(--borderRadius); width: 100%; background-color: white;
             button{padding-inline: var(--paddingInline); width: 100%;}
@@ -75,14 +76,22 @@ body:has(.popup){overflow: hidden;}
 
 .board-title, .board-list li a{display: flex; align-items: center; padding-inline: 30px;}
 .board-title{height: 56px; font-weight: 700; border-top: 2px solid #000; background-color: #F7F7F7;}
-.board-list li{
-    &[data-new="y"] {
-        p{font-weight: 700;}
-        time{position: relative;
-            &::before{content: ''; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); width: 20px; aspect-ratio: 1; background: url('../images/icon-new.png') no-repeat center / cover;}
-        }
+/* .board-list:empty{text-align: center; border-bottom: 1px solid var(--color-border);
+    &::before{content: '게시물이 없습니다.'; line-height: 100px; text-align: center;}
+} */
+.board-list{
+    &:empty{text-align: center; border-bottom: 1px solid var(--color-border);
+        &::before{content: '게시물이 없습니다.'; line-height: 100px; text-align: center;}
     }
-    a{height: 80px; border-bottom: 1px solid var(--color-border);}
+    li{
+        &[data-new="y"] {
+            p{font-weight: 700;}
+            time{position: relative;
+                &::before{content: ''; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); width: 20px; aspect-ratio: 1; background: url('../images/icon-new.png') no-repeat center / cover;}
+            }
+        }
+        a{height: 80px; border-bottom: 1px solid var(--color-border);}
+    }
 }
 .board-title b, .board-list li a *:not(p){text-align: center;}
 :is(.board-title b, .board-list li a *):nth-child(1){width: 60px; padding-inline: 40px;}
