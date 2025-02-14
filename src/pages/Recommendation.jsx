@@ -4,6 +4,7 @@ import Pagination from '../components/Pagination';
 import { getApi } from '../api/api';
 import SelectBox from '../components/SelectBox';
 import { inputChange } from '../api/validation';
+import Board from '../components/Board';
 
 export default function Recommendation() {
     const [info, setInfo] = useState()
@@ -32,19 +33,7 @@ export default function Recommendation() {
     return (
         <>
             <h2>추천 종목</h2>
-            <div>
-                <div className='board-menu'>
-                    <span>
-                        <strong>총 {info?.totalCount}건</strong>
-                        ({info?.page}/{info?.totalPage}page)
-                    </span>
-                    <SelectBox type={search?.type} setSearch={setSearch}/>
-                    <div className='searchBox'>
-                        <input type="search" placeholder='제목' name='search' defaultValue={queryObject.search} onChange={(e)=> inputChange(e, setSearch)}/>
-                        <button onClick={onSearch}>검색</button>
-                    </div>
-                    {/* <Link to='' className='btn-bg'>글쓰기</Link> */}
-                </div>
+            <Board setList={setList}>
                 <div className='board-title'>
                     <b>번호</b>
                     <b>분류</b>
@@ -63,8 +52,7 @@ export default function Recommendation() {
                         </li>
                     )}
                 </ol>
-                {info && <Pagination info={info}/>}
-            </div>
+            </Board>
         </>
     );
 }
