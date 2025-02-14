@@ -148,4 +148,5 @@ header{position: fixed; inset: 0 0 auto 0; color: white; padding-inline: 40px; z
 .introductionPage h2{background-image: url(../images/topBG-introduction.png);}
 .vipPage h2{background-image: url(../images/topBG-VIP.png);}
 .recommendationPage h2{background-image: url(../images/topBG-introduction.png);}
+.revenuePage h2{background-image: url(../images/topBG-revenue.png);}
 [class^="sign"] h2{background-image: url(../images/topBG-sign.png);}

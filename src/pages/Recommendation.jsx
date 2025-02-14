@@ -8,7 +8,7 @@ export default function Recommendation() {
     return (
         <>
             <h2>추천 종목</h2>
-            <Board setList={setList}>
+            <Board boardType='recommendation' setList={setList}>
                 <div className='board-title'>
                     <b>번호</b>
                     <b>분류</b>

@@ -5,7 +5,7 @@ import SelectBox from './SelectBox';
 import { inputChange } from '../api/validation';
 import Pagination from './Pagination';
 
-export default function Board({ children, setList }) {
+export default function Board({ children, boardType, setList }) {
     const [info, setInfo] = useState()
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
@@ -18,14 +18,14 @@ export default function Board({ children, setList }) {
     },[location, queryObject])
     
     useEffect(()=>{
-        getApi('boards', {boardType: 'recommendation', ...queryObject, page: queryObject.page || 1})
+        getApi('boards', {boardType, ...queryObject, page: queryObject.page || 1})
             .then(({ result, info, list } = {}) => {
                 if(result){
                     setInfo(info);
                     setList(list);
                 }
             })
-    },[queryObject, setList])
+    },[boardType, queryObject, setList])
 
     const onSearch = () =>{
         const url = '?' + new URLSearchParams(search);

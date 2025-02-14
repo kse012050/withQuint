@@ -3,7 +3,7 @@ import React from 'react';
 export default function Main() {
     return (
         <>
-            <div></div>
+            <div data-color="red"></div>
         </>
     );
 }

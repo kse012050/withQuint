@@ -5,6 +5,7 @@ import Main from '../pages/Main';
 import Introduction from '../pages/Introduction';
 import Vip from '../pages/Vip';
 import Recommendation from '../pages/Recommendation';
+import Revenue from '../pages/Revenue';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Test from '../pages/Test';
@@ -23,6 +24,9 @@ export default function Routers() {
             </Route>
             <Route path="/recommendation" element={<Root />}>
                 <Route index={true} element={<Recommendation />}/>
+            </Route>
+            <Route path="/revenue" element={<Root />}>
+                <Route index={true} element={<Revenue />}/>
             </Route>
             <Route path="/signIn" element={<Root />}>
                 <Route index={true} element={<SignIn />}/>
