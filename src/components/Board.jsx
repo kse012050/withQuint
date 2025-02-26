@@ -13,6 +13,8 @@ export default function Board({ children, boardType, setList }) {
     const queryObject = useMemo(() => Object.fromEntries(searchParams.entries()), [searchParams]);
     const [search, setSearch] = useState();
 
+    const isSelectBox = boardType === 'vip' || boardType === 'recommendation';
+
     useEffect(()=>{
         setSearch({...queryObject})
     },[location, queryObject])
@@ -23,6 +25,8 @@ export default function Board({ children, boardType, setList }) {
                 if(result){
                     setInfo(info);
                     setList(list);
+                    console.log(list);
+                    
                 }
             })
     },[boardType, queryObject, setList])
@@ -39,7 +43,7 @@ export default function Board({ children, boardType, setList }) {
                     <strong>총 {info?.totalCount}건</strong>
                     ({info?.totalPage && info?.page}/{info?.totalPage}page)
                 </span>
-                <SelectBox type={search?.type} setSearch={setSearch}/>
+                { isSelectBox && <SelectBox type={search?.type} setSearch={setSearch}/> }
                 <div className='searchBox'>
                     <input type="search" placeholder='제목' name='search' value={search?.search || ''} onChange={(e)=> inputChange(e, setSearch)} onKeyDown={(e)=> e.key === 'Enter' && onSearch(e)}/>
                     <button onClick={onSearch}>검색</button>

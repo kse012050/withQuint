@@ -16,7 +16,7 @@ export default function Revenue() {
                     <b>등록일자</b>
                 </div>
                 <ol className="board-list">
-                    {list && list.map((data, idx)=>
+                    {list && list.map((data)=>
                         <li key={data.id} data-new={data.new}>
                             <Link to=''>
                                 <span>{data.numb}</span>

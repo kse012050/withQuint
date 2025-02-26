@@ -24,7 +24,6 @@ export function isSubmit(inputs){
 function apiOption(type, data){
     const option = {
         method: type,
-        // headers: {"Content-Type": "application/json",},
         credentials: 'include',
     }
     
@@ -41,49 +40,13 @@ function apiOption(type, data){
         option.headers = {"Content-Type": "application/json"}
     }
 
-    // if(type === 'POST'){
-    //     option.body = JSON.stringify(data);
-    //     options.headers = {"Content-Type": "application/json",},
-    // }
-    console.log(option);
-    
-
     return option;
 }
-
-// function imgOption(data){
-//     console.log(data);
-
-
-    
-//     const formdata = new FormData();
-//     // formdata.append("image", data);
-//     if(data){  
-//         Object.entries(data).forEach(([key, value]) =>{
-//             formdata.append(key, value);
-//         })
-//     }
-//     console.log(data);
-    
-//     return {
-//         method: 'POST',
-//         credentials: 'include',
-//         body: formdata
-//     }
-// }
 
 export function postApi(url, data){
     const options = apiOption('POST', data);
     return userApi(url, options)
-    // return fetch(`${userApiUrl}${url}`, options)
-    //         .then(response => response.json())
-    //         .catch(error => console.log('error', error));
 }
-
-// export function imgApi(url, data){
-//     const options = imgOption(data);
-//     return userApi(url, options)
-// }
 
 export function getApi(url, data){
     const options = apiOption('GET', data);

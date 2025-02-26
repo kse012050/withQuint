@@ -76,12 +76,15 @@ body:has(.popup){overflow: hidden;}
 
 .board-title, .board-list li a{display: flex; align-items: center; padding-inline: 30px;}
 .board-title{height: 56px; font-weight: 700; border-top: 2px solid #000; background-color: #F7F7F7;}
-/* .board-list:empty{text-align: center; border-bottom: 1px solid var(--color-border);
-    &::before{content: '게시물이 없습니다.'; line-height: 100px; text-align: center;}
-} */
+
+[class ^= 'board-list']{
+    &:empty{text-align: center;
+        &::before{content: '게시물이 없습니다.';}
+    }
+}
 .board-list{
-    &:empty{text-align: center; border-bottom: 1px solid var(--color-border);
-        &::before{content: '게시물이 없습니다.'; line-height: 100px; text-align: center;}
+    &:empty{border-bottom: 1px solid var(--color-border);
+        &::before{line-height: 100px;}
     }
     li{
         &[data-new="y"] {
@@ -92,13 +95,26 @@ body:has(.popup){overflow: hidden;}
         }
         a{height: 80px; border-bottom: 1px solid var(--color-border);}
     }
+    & ~ .board-paging{margin-top: 40px;}
 }
+.board-list-img{display: flex; flex-wrap: wrap; justify-content: space-between;
+    &:empty&::before{line-height: 300px;}
+    li{max-width: 380px;
+        a{
+            img{width: 100%; object-fit: cover; object-position: center; margin-bottom: 30px; border-radius: 10px;}
+            p{font-size: 20px; line-height: 30px; margin-bottom: 20px; font-weight: 400;}
+            time{font-size: 16px; font-weight: 400; color: #999;}
+        }
+    }
+    & ~ .board-paging{margin-top: 60px;}
+}
+
 .board-title b, .board-list li a *:not(p){text-align: center;}
 :is(.board-title b, .board-list li a *):nth-child(1){width: 60px; padding-inline: 40px;}
 :is(.board-title b, .board-list li a *):nth-child(2){width: 60px; padding-inline: 40px;}
 :is(.board-title b, .board-list li a *):nth-child(3){flex: 1; padding-inline: 60px;}
 :is(.board-title b, .board-list li a *):nth-child(4){width: 75px; padding-inline: 40px;}
-.board-paging{display: flex; justify-content: center; align-items: center; --gap: 10px; gap: var(--gap); margin-top: 40px;}
+.board-paging{display: flex; justify-content: center; align-items: center; --gap: 10px; gap: var(--gap);}
 .board-paging > a{--iconSize: 24px; width: var(--iconSize); aspect-ratio: 1; text-indent: -9999px; background: url('../images/icon-pagination.png') left top calc(100% / (var(--styleTotal) - 1) * var(--styleIdx)) / 100%;}
 .board-paging ol{display: flex; justify-content: center; align-items: center; gap: var(--gap);}
 .board-paging ol li a{width: 20px; line-height: var(--iconSize); font-weight: 700; text-align: center;
@@ -149,4 +165,5 @@ header{position: fixed; inset: 0 0 auto 0; color: white; padding-inline: 40px; z
 .vipPage h2{background-image: url(../images/topBG-VIP.png);}
 .recommendationPage h2{background-image: url(../images/topBG-introduction.png);}
 .revenuePage h2{background-image: url(../images/topBG-revenue.png);}
+.stockPage h2{background-image: url(../images/topBG-stock.png);}
 [class^="sign"] h2{background-image: url(../images/topBG-sign.png);}
