@@ -83,7 +83,7 @@ export default function Test() {
                                 <option value="revenue">revenue</option>
                                 <option value="stock">stock</option>
                                 <option value="vip">vip</option>
-                                <option value="counsel">counsel</option>
+                                <option value="clinic">clinic</option>
                                 <option value="notice">notice</option>
                             </select>
                         </li>
