@@ -104,6 +104,13 @@ export default function Test() {
                             <label htmlFor="">내용</label>
                             <textarea name='content' onChange={(e)=>inputChange(e, setBoardInputs)}></textarea>
                         </li>
+                        <li>
+                            <label htmlFor="">비밀글</label>
+                            <input type="radio" id='secret_y' name='secret' value='y' onChange={(e)=>inputChange(e, setBoardInputs)}/>
+                            <label htmlFor="secret_y">예</label>
+                            <input type="radio" id='secret_n' name='secret' value='n' onChange={(e)=>inputChange(e, setBoardInputs)}/>
+                            <label htmlFor="secret_n">아니오</label>
+                        </li>
                     </ul>
                     <input type="submit" value="게시물 생성" onClick={boardSubmit}/>
                 </fieldset>

@@ -25,8 +25,8 @@ export default function Header() {
                         <li><NavLink to='/vip'>VIP상품</NavLink></li>
                         <li><NavLink to='/recommendation'>추천종목</NavLink></li>
                         <li><NavLink to='/revenue'>수익률</NavLink></li>
-                        <li><NavLink to="/stock">주식정보</NavLink></li>
-                        <li><NavLink>고객센터</NavLink></li>
+                        <li><NavLink to='/stock'>주식정보</NavLink></li>
+                        <li><NavLink to='/customer'>고객센터</NavLink></li>
                     </ul>
                     <div>
                         { !isLogin ? 

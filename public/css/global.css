@@ -1,3 +1,7 @@
+/* 테스트페이지 - 나중에 삭제 */
+input[type='radio']:checked + label{color: red;}
+
+
 /* 버튼 */
 [class^="btn"]{width: 100%; line-height: 58px; font-size: 18px; font-weight: 700; text-align: center; border: 1px solid var(--color-point); border-radius: 4px;}
 .btn-bg{background-color: var(--color-point); color: white;}
@@ -44,6 +48,15 @@ body:has(.popup){overflow: hidden;}
     }
 }
 
+/* 탭 */
+[class $= 'Page']> ul{display: flex; justify-content: center; gap: 60px; border-bottom: 1px solid var(--color-border);
+        :is(:not(:has(.active)) li:first-child a, li a.active){color: var(--color-basic);
+            &::after{content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background-color: var(--color-point);}
+        }
+        li{
+            a{font-size: 16px; font-weight: 700; color: var(--color-gray); line-height: 60px; position: relative;}
+        }
+    }
 /* 게시물 */
 [class^="board"]{font-size: 15px;}
 .board-menu{display: flex; align-items: center; gap: 10px; margin-bottom: 15px;
@@ -109,11 +122,10 @@ body:has(.popup){overflow: hidden;}
     & ~ .board-paging{margin-top: 60px;}
 }
 
-.board-title b, .board-list li a *:not(p){text-align: center;}
-:is(.board-title b, .board-list li a *):nth-child(1){width: 60px; padding-inline: 40px;}
-:is(.board-title b, .board-list li a *):nth-child(2){width: 60px; padding-inline: 40px;}
-:is(.board-title b, .board-list li a *):nth-child(3){flex: 1; padding-inline: 60px;}
-:is(.board-title b, .board-list li a *):nth-child(4){width: 75px; padding-inline: 40px;}
+.board-title, .board-list li a *:not(p){text-align: center;}
+:is(.board-title b, .board-list li a span):not(:last-child){width: 60px; padding-inline: 40px;}
+:is(.board-title p, .board-list li a p){flex: 1; padding-inline: 60px;}
+:is(.board-title b, .board-list li a *):last-child{width: 75px; padding-inline: 40px;}
 .board-paging{display: flex; justify-content: center; align-items: center; --gap: 10px; gap: var(--gap);}
 .board-paging > a{--iconSize: 24px; width: var(--iconSize); aspect-ratio: 1; text-indent: -9999px; background: url('../images/icon-pagination.png') left top calc(100% / (var(--styleTotal) - 1) * var(--styleIdx)) / 100%;}
 .board-paging ol{display: flex; justify-content: center; align-items: center; gap: var(--gap);}
@@ -166,4 +178,5 @@ header{position: fixed; inset: 0 0 auto 0; color: white; padding-inline: 40px; z
 .recommendationPage h2{background-image: url(../images/topBG-introduction.png);}
 .revenuePage h2{background-image: url(../images/topBG-revenue.png);}
 .stockPage h2{background-image: url(../images/topBG-stock.png);}
+.customerPage h2{background-image: url(../images/topBG-customer.png);}
 [class^="sign"] h2{background-image: url(../images/topBG-sign.png);}

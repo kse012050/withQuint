@@ -7,9 +7,13 @@ import Vip from '../pages/Vip';
 import Recommendation from '../pages/Recommendation';
 import Revenue from '../pages/Revenue';
 import Stock from '../pages/Stock';
+import Customer from '../pages/Customer';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Test from '../pages/Test';
+import CustomerVip from '../pages/CustomerVip';
+import CustomerClinic from '../pages/CustomerClinic';
+import CustomerNotice from '../pages/CustomerNotice';
 
 export default function Routers() {
     return (
@@ -31,6 +35,14 @@ export default function Routers() {
             </Route>
             <Route path="/stock" element={<Root />}>
                 <Route index={true} element={<Stock />}/>
+            </Route>
+            <Route path="/customer" element={<Root />}>
+                <Route element={<Customer />}>
+                    <Route index={true} element={<CustomerVip />} />
+                    <Route path='vip' element={<CustomerVip />} />
+                    <Route path='clinic' element={<CustomerClinic />} />
+                    <Route path='notice' element={<CustomerNotice />} />
+                </Route>
             </Route>
             <Route path="/signIn" element={<Root />}>
                 <Route index={true} element={<SignIn />}/>

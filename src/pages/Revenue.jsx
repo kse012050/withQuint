@@ -12,7 +12,7 @@ export default function Revenue() {
                 <div className='board-title'>
                     <b>번호</b>
                     <b>분류</b>
-                    <b>제목</b>
+                    <p>제목</p>
                     <b>등록일자</b>
                 </div>
                 <ol className="board-list">
