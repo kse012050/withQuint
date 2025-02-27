@@ -141,18 +141,24 @@ header{position: fixed; inset: 0 0 auto 0; color: white; padding-inline: 40px; z
         h1{position: absolute; left: 0; top: 50%; transform: translateY(-50%);
             a{--idx: 0; display: block; width: 142px; aspect-ratio: 142 / 48; background: url(../images/logo.png) center top calc(100% * var(--idx)) / 100%; text-indent: -9999px; animation: logo 1s both; animation-timeline: scroll(); animation-range-start: 0; animation-range-end: 200px;}
         }
+        nav:has(.active) ul li a{opacity: 0.5;}
         nav{display: inline-block; 
             :is(a, button){line-height: 100px; font-size: 18px;}
             ul{display: flex; gap: 80px;
-                a{font-weight: 700;}
+                li {
+                    a{font-weight: 700;}
+                    a.active{opacity: 1;}
+                }
             }
             div{position: absolute; right: 0; top: 50%; transform: translateY(-50%); display: flex; gap: 40px;
                 :is(a, button){font-weight: 400;}
+                a.active{font-weight: 700;}
             }
         }
         & > button{display: none;}
     }
 }
+
 @keyframes header {
     0%{background-color: transparent; color: white;}
     100%{background-color: white; color: black;}
