@@ -46,6 +46,32 @@
 }
 
 
+/* 상세페이지 */
+.detailPage > div{font-size: 15px; display: flex; flex-direction: column;
+    > a{width: 86px; line-height: 48px; font-weight: 500; color: var(--color-placeholder); text-align: center; border: 1px solid var(--color-border); border-radius: 4px;
+        &:nth-of-type(1){margin-bottom: 15px; align-self: flex-end;}
+        &:nth-of-type(2){margin-top: 30px; align-self: center;}
+    }
+    > div:has( ~ a ){padding-block: 30px;}
+    .detail-title{padding-inline: 20px; border-top: 2px solid #000; border-bottom: 1px solid var(--color-border);
+        h3{font-size: 30px; line-height: 36px; font-weight: 700;}
+        &::after{content: ''; display: block; clear: both; visibility: hidden;}
+        :is(span, time){--color: #999; font-size: 20px; line-height: 24px; font-weight: 400; color: var(--color); float: left;}
+        span{margin-right: 0.8em; position: relative;
+            &::after{width: 2px; height: 0.9em; right: -0.4em; top: 50%; transform: translateY(-50%); background-color: var(--color); content: ''; position: absolute;}
+        }
+    }
+    .detail-content{padding-inline: 30px; min-height: 290px;}
+    .detail-comments{padding-inline: 50px; border-block: 1px solid var(--color-border); background-color: #f7f7f7;}
+    .detail-post{margin-top: 70px;
+        a{padding: 30px 20px; display: flex; border-bottom: 1px solid var(--color-border);
+            &:first-child{border-top: 1px solid var(--color-border);}
+            strong{margin-left: 80px; font-weight: 700;}
+        }
+    } 
+}
+
+
 /* 로그인, 회원가입 */
 [class^="sign"] div form fieldset{
     legend{font-size: 36px; line-height: 43px; font-weight: 700; text-align: center; margin-bottom: 60px;}

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Outlet, useLocation } from 'react-router-dom';
 import { ThemeContext } from '../context/ThemeContext';
@@ -9,9 +9,13 @@ import { styleIdx } from '../js/style';
 // import '../css/import.module.css';
 
 export default function Root() {
-    const pageName = useLocation().pathname.slice(1).split('/')[0] || 'main';
+    // const pageName = useLocation().pathname.slice(1).split('/').filter((name) => !Number(name)) || ['main'];
+    const location = useLocation();
+    const pageName = useMemo(() => {
+        return location.pathname.slice(1).split('/').filter((name) => !Number(name)) || ['main'];
+    }, [location.pathname]);
     const [isLogin, setIsLogin] = useState(false)
-
+    
     useEffect(()=>{
         postApi('signIn/auth')
             .then((response)=>{
@@ -51,7 +55,7 @@ export default function Root() {
                     <link rel="stylesheet" href="/css/import.css" />
                 </Helmet>
                 <Header />
-                <section className={`${pageName}Page`}>
+                <section className={`${pageName.map((name) => `${name}Page`).join(' ')}`}>
                     <Outlet />
                 </section>
                 <Footer />
