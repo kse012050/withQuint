@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Board from '../components/Board';
-import { Link } from 'react-router-dom';
 import SubTitle from '../components/SubTitle';
+import BoardLink from '../components/BoardLink';
 
 export default function Stock() {
     const [list, setList] = useState();
@@ -12,11 +12,11 @@ export default function Stock() {
                 <ul className='board-list-img'>
                     {list && list.map((data, idx)=>
                         <li key={data.id} data-new={data.new}>
-                            <Link to=''>
+                            <BoardLink id={data.id}>
                                 <img src={data.image} alt={`${data.title} 이미지`} />
                                 <p>{data.title}</p>
                                 <time>{data.created}</time>
-                            </Link>
+                            </BoardLink>
                         </li>
                     )}
                 </ul>

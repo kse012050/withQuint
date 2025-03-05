@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Board from '../components/Board';
-import { Link } from 'react-router-dom';
 import SubTitle from '../components/SubTitle';
+import BoardLink from '../components/BoardLink';
 
 export default function Revenue() {
     const [list, setList] = useState()
@@ -19,12 +19,12 @@ export default function Revenue() {
                 <ol className="board-list">
                     {list && list.map((data)=>
                         <li key={data.id} data-new={data.new}>
-                            <Link to=''>
+                            <BoardLink id={data.id}>
                                 <span>{data.numb}</span>
                                 <span>{{ 'free': '무료', 'vip': 'VIP' }[data.type]}</span>
                                 <p>{data.title}</p>
                                 <time>{data.created}</time>
-                            </Link>
+                            </BoardLink>
                         </li>
                     )}
                 </ol>

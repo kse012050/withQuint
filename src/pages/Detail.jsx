@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import SubTitle from '../components/SubTitle';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { getApi } from '../api/api';
+import BoardLink from '../components/BoardLink';
 
 export default function Detail() {
     const [detail, setDetail] = useState();
@@ -9,8 +10,6 @@ export default function Detail() {
     const pathName = useLocation().pathname;
     const boardId = pathName.slice(1).split('/').at(-1);
     const boardType = pathName.slice(1).split('/').at(0);
-    const postLink = pathName.split('/').filter((data) => !Number(data)).join('/')
-    
     
     useEffect(() => {
         getApi('boards/detail', {boardId, boardType})
@@ -26,13 +25,15 @@ export default function Detail() {
         return (
             <div className='detail-post'>
                 {Object.entries(post).map(([key, data]) => 
-                    <Link to={`${postLink}/${data.id}`} key={data.id}>
-                        {key === 'prev' && '이전 글'}
-                        {key === 'next' && '다음 글'}
-                        <strong>
-                            {data.title}
-                        </strong>
-                    </Link>
+                    <React.Fragment key={data.id}>
+                        <BoardLink id={data.id}>
+                            {key === 'prev' && '이전 글'}
+                            {key === 'next' && '다음 글'}
+                            <strong>
+                                {data.title}
+                            </strong>
+                        </BoardLink>
+                    </React.Fragment>
                 )}
             </div>
         )
@@ -42,7 +43,7 @@ export default function Detail() {
         <>
             <SubTitle />
             <div>
-                <Link to=''>목록</Link>
+                <BoardLink>목록</BoardLink>
                 <div className='detail-title'>
                     <h3>{ detail?.title }</h3>
                     <span>No.{ detail?.id }</span>
@@ -55,7 +56,7 @@ export default function Detail() {
                 <div className='detail-comments'>
                     댓글
                 </div>
-                <Link to=''>목록</Link>
+                <BoardLink>목록</BoardLink>
                 {post && postData(post)}
             </div>
         </>

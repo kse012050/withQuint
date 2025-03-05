@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Board from '../components/Board';
 import SubTitle from '../components/SubTitle';
+import BoardLink from '../components/BoardLink';
 
 export default function Recommendation() {
     const [list, setList] = useState()
@@ -19,12 +19,12 @@ export default function Recommendation() {
                 <ol className="board-list">
                     {list && list.map((data, idx)=>
                         <li key={data.id} data-new={data.new}>
-                            <Link to=''>
+                            <BoardLink id={data.id}>
                                 <span>{data.numb}</span>
                                 <span>{{ 'free': '무료', 'vip': 'VIP' }[data.type]}</span>
                                 <p>{data.title}</p>
                                 <time>{data.created}</time>
-                            </Link>
+                            </BoardLink>
                         </li>
                     )}
                 </ol>

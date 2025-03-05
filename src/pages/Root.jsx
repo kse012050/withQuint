@@ -12,7 +12,7 @@ export default function Root() {
     // const pageName = useLocation().pathname.slice(1).split('/').filter((name) => !Number(name)) || ['main'];
     const location = useLocation();
     const pageName = useMemo(() => {
-        return location.pathname.slice(1).split('/').filter((name) => !Number(name)) || ['main'];
+        return location.pathname.slice(1).split('/').map((name) => !Number(name) ? name : 'detail') || ['main'];
     }, [location.pathname]);
     const [isLogin, setIsLogin] = useState(false)
     
