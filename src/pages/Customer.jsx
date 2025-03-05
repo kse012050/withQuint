@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import SubTitle from '../components/SubTitle';
 
 export default function Customer() {
     return (
         <>
-            <h2>추천 종목</h2>
+            <SubTitle />
             <ul>
                 <li><NavLink to='/customer/vip'>VIP 상품 신청</NavLink></li>
                 <li><NavLink to='/customer/clinic'>주식상담소</NavLink></li>

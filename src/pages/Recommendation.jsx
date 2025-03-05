@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Board from '../components/Board';
+import SubTitle from '../components/SubTitle';
 
 export default function Recommendation() {
     const [list, setList] = useState()
     
     return (
         <>
-            <h2>추천 종목</h2>
+            <SubTitle />
             <Board boardType='recommendation' setList={setList}>
                 <div className='board-title'>
                     <b>번호</b>

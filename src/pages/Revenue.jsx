@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import Board from '../components/Board';
 import { Link } from 'react-router-dom';
+import SubTitle from '../components/SubTitle';
 
 export default function Revenue() {
     const [list, setList] = useState()
 
     return (
         <>
-            <h2>수익률</h2>
+            <SubTitle />
             <Board boardType='revenue' setList={setList}>
                 <div className='board-title'>
                     <b>번호</b>

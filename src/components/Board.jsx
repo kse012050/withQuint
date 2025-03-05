@@ -13,7 +13,7 @@ export default function Board({ children, boardType, setList }) {
     const queryObject = useMemo(() => Object.fromEntries(searchParams.entries()), [searchParams]);
     const [search, setSearch] = useState();
 
-    const isSelectBox = boardType === 'vip' || boardType === 'recommendation';
+    const isSelectBox = boardType === 'revenue' || boardType === 'recommendation';
 
     useEffect(()=>{
         setSearch({...queryObject})

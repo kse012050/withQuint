@@ -8,12 +8,13 @@ import Recommendation from '../pages/Recommendation';
 import Revenue from '../pages/Revenue';
 import Stock from '../pages/Stock';
 import Customer from '../pages/Customer';
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
-import Test from '../pages/Test';
 import CustomerVip from '../pages/CustomerVip';
 import CustomerClinic from '../pages/CustomerClinic';
 import CustomerNotice from '../pages/CustomerNotice';
+import Detail from '../pages/Detail';
+import SignIn from '../pages/SignIn';
+import SignUp from '../pages/SignUp';
+import Test from '../pages/Test';
 
 export default function Routers() {
     return (
@@ -43,6 +44,9 @@ export default function Routers() {
                     <Route path='clinic' element={<CustomerClinic />} />
                     <Route path='notice' element={<CustomerNotice />} />
                 </Route>
+            </Route>
+            <Route path="/:boardType/detail/:id" element={<Root />}>
+                <Route index={true} element={<Detail />}/>
             </Route>
             <Route path="/signIn" element={<Root />}>
                 <Route index={true} element={<SignIn />}/>

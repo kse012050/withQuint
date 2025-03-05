@@ -1,9 +1,10 @@
 import React from 'react';
+import SubTitle from '../components/SubTitle';
 
 export default function Introduction() {
     return (
         <>
-            <h2>위드퀀트 소개</h2>
+            <SubTitle />
             <div>
                 <h3>부(Wealth)에 도달하는 지름길!</h3>
                 <p>
