@@ -45,9 +45,6 @@ export default function Routers() {
                     <Route path='notice' element={<CustomerNotice />} />
                 </Route>
             </Route>
-            <Route path="/:boardType/:id" element={<Root />}>
-                <Route index={true} element={<Detail />}/>
-            </Route>
             <Route path="/signIn" element={<Root />}>
                 <Route index={true} element={<SignIn />}/>
             </Route>
@@ -56,6 +53,9 @@ export default function Routers() {
             </Route>
             <Route path="/test" element={<Root />}>
                 <Route index={true} element={<Test />}/>
+            </Route>
+            <Route path="/:boardType/:id" element={<Root />}>
+                <Route index={true} element={<Detail />}/>
             </Route>
         </Routes>
     );

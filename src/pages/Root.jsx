@@ -12,8 +12,10 @@ export default function Root() {
     // const pageName = useLocation().pathname.slice(1).split('/').filter((name) => !Number(name)) || ['main'];
     const location = useLocation();
     const pageName = useMemo(() => {
-        return location.pathname.slice(1).split('/').map((name) => !Number(name) ? name : 'detail') || ['main'];
+        const pageArr = location.pathname.slice(1);
+        return pageArr ? pageArr.split('/').map((name) => !Number(name) ? name : 'detail') : ['main'];
     }, [location.pathname]);
+    
     const [isLogin, setIsLogin] = useState(false)
     
     useEffect(()=>{
@@ -55,7 +57,7 @@ export default function Root() {
                     <link rel="stylesheet" href="/css/import.css" />
                 </Helmet>
                 <Header />
-                <section className={`${pageName.map((name) => `${name}Page`).join(' ')}`}>
+                <section className={`${pageName.map((name) => `${name}Page`).join(' ') || 'mainPage'}`}>
                     <Outlet />
                 </section>
                 <Footer />
