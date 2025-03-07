@@ -21,12 +21,24 @@ export default function Root() {
     useEffect(()=>{
         postApi('signIn/auth')
             .then((response)=>{
-                const {result, isLogin/* , message */} = response || {};
+                const {result, isLogin, message} = response || {};
                 if(result){
+                    console.log(message);
+                    
                     setIsLogin(isLogin);
                 }
             })
-    },[])
+
+        window.addEventListener('beforeunload', () => {
+            postApi('logout')
+                .then(( response )=>{
+                    const { result } = response || {};
+                    if(result){
+                        setIsLogin(false)
+                    }
+                })
+        });
+    },[pageName])
 
     useLayoutEffect(() => {
         return (

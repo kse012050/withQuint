@@ -12,7 +12,6 @@ export default function Customer() {
                 <li><NavLink to='/customer/notice'>공지사항</NavLink></li>
             </ul>
             <Outlet />
-               
         </>
     );
 }

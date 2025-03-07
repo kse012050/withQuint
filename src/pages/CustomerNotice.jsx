@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Board from '../components/Board';
-import { Link } from 'react-router-dom';
+import BoardCustomerLink from '../components/BoardCustomerLink';
 
 export default function CustomerNotice() {
     const [list, setList] = useState()
@@ -15,11 +15,11 @@ export default function CustomerNotice() {
             <ol className="board-list">
                 {list && list.map((data)=>
                     <li key={data.id} data-new={data.new}>
-                        <Link to=''>
+                        <BoardCustomerLink id={data.id}>
                             <span>{data.numb}</span>
                             <p>{data.title}</p>
                             <time>{data.created}</time>
-                        </Link>
+                        </BoardCustomerLink>
                     </li>
                 )}
             </ol>

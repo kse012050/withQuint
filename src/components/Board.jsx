@@ -1,9 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { getApi } from '../api/api';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import SelectBox from './SelectBox';
 import { inputChange } from '../api/validation';
 import Pagination from './Pagination';
+import { ThemeContext } from '../context/ThemeContext';
 
 export default function Board({ children, boardType, setList }) {
     const [info, setInfo] = useState()
@@ -12,8 +13,11 @@ export default function Board({ children, boardType, setList }) {
     const location = useLocation()
     const queryObject = useMemo(() => Object.fromEntries(searchParams.entries()), [searchParams]);
     const [search, setSearch] = useState();
-
-    const isSelectBox = boardType === 'revenue' || boardType === 'recommendation';
+    const { isLogin } = useContext(ThemeContext);
+    const isSelectBox = ['revenue', 'recommendation'];
+    const isCreateBox = ['vip', 'clinic']
+    
+    // const isSelectBox = boardType === 'revenue' || boardType === 'recommendation';
 
     useEffect(()=>{
         setSearch({...queryObject})
@@ -43,12 +47,12 @@ export default function Board({ children, boardType, setList }) {
                     <strong>총 {info?.totalCount}건</strong>
                     ({info?.totalPage && info?.page}/{info?.totalPage}page)
                 </span>
-                { isSelectBox && <SelectBox type={search?.type} setSearch={setSearch}/> }
+                { isSelectBox.includes(boardType) && <SelectBox type={search?.type} setSearch={setSearch}/> }
                 <div className='searchBox'>
                     <input type="search" placeholder='제목' name='search' value={search?.search || ''} onChange={(e)=> inputChange(e, setSearch)} onKeyDown={(e)=> e.key === 'Enter' && onSearch(e)}/>
                     <button onClick={onSearch}>검색</button>
                 </div>
-                {/* <Link to='' className='btn-bg'>글쓰기</Link> */}
+                { (isCreateBox.includes(boardType) && isLogin) && <Link to='' className='btn-bg'>글쓰기</Link> }
             </div>
 
             {children}

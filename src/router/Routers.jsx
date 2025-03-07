@@ -57,6 +57,9 @@ export default function Routers() {
             <Route path="/:boardType/:id" element={<Root />}>
                 <Route index={true} element={<Detail />}/>
             </Route>
+            <Route path="/customer/:boardType/:id" element={<Root />}>
+                <Route index={true} element={<Detail />}/>
+            </Route>
         </Routes>
     );
 }

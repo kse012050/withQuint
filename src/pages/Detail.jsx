@@ -9,7 +9,7 @@ export default function Detail() {
     const [post, setPost] = useState();
     const pathName = useLocation().pathname;
     const boardId = pathName.slice(1).split('/').at(-1);
-    const boardType = pathName.slice(1).split('/').at(0);
+    const boardType = pathName.slice(1).split('/').at(-2);
     
     useEffect(() => {
         getApi('boards/detail', {boardId, boardType})
