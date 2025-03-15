@@ -16,7 +16,7 @@ export default function CustomerVip() {
             <ol className="board-list">
                 {list && list.map((data)=>
                     <li key={data.id} data-new={data.new}>
-                        <BoardCustomerLink id={data.id} password={data.password}>
+                        <BoardCustomerLink data={data}>
                             <span>{data.numb}</span>
                             <p>{data.title}</p>
                             <span>{data.author}</span>

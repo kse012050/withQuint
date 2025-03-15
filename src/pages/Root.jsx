@@ -17,17 +17,14 @@ export default function Root() {
     }, [location.pathname]);
     
     const [isLogin, setIsLogin] = useState(false)
+    const [user, setUser] = useState()
     
     useEffect(()=>{
         postApi('signIn/auth')
             .then((response)=>{
-                const {result, isLogin, message} = response || {};
+                const {result, isLogin, message, user} = response || {};
                 if(result){
-                    console.log(result);
-                    console.log(isLogin);
-                    
-                    console.log(message);
-                    
+                    setUser(user)
                     setIsLogin(isLogin);
                 }
             })
@@ -66,7 +63,7 @@ export default function Root() {
 
     return (
         <>
-            <ThemeContext.Provider value={{isLogin, setIsLogin}}>
+            <ThemeContext.Provider value={{isLogin, setIsLogin, user}}>
                 <Helmet>
                     <base href="/" />
                     <link rel="stylesheet" href="/css/import.css" />

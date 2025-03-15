@@ -1,26 +1,35 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Popup from './Popup';
 import { postApi } from '../api/api';
+import { ThemeContext } from '../context/ThemeContext';
 
-export default function BoardCustomerLink({ id, children, password }) {
+export default function BoardCustomerLink({ data, children }) {
+    const { isLogin, user } = useContext(ThemeContext);
     const [popup, setPopup] = useState();
     const pathName = useLocation().pathname + (useLocation().pathname === '/customer' && '/vip');
     const postLink = pathName.split('/').filter((data) => !Number(data)).join('/')
+    const id = data.id;
+    const isSecret = data.secret === 'y';
+    const isAuthor = data.author === user?.userId;
+
+    console.log(user);
     
+
     const onClick = (e) => {
         e.preventDefault();
         // postApi('boards/isIdentity', )
         setPopup({
-            title: '안내',
-            description: '비밀번호를 입력해주세요.',
-            password: () => {
-            }
+            type: 'lock'
         })
     }
     return (
         <>
-            <Link to={`${postLink}${id ? `/${id}` : ''}`} className={password ? 'secret' : ''} onClick={password && onClick}>
+            <Link 
+                to={`${postLink}${id ? `/${id}` : ''}`}
+                className={isSecret ? 'secret' : ''}
+                onClick={isSecret && !isAuthor && onClick}
+            >
                 {children}
             </Link>
             { popup && 

@@ -13,8 +13,9 @@ export default function Detail() {
     
     useEffect(() => {
         getApi('boards/detail', {boardId, boardType})
-            .then(({ result, data, post } = {}) => {
+            .then(({ result, data, post, isSecretUser } = {}) => {
                 if(result){
+                    console.log(isSecretUser);
                     setDetail(data)
                     setPost(post)
                 }
