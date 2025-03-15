@@ -23,21 +23,24 @@ export default function Root() {
             .then((response)=>{
                 const {result, isLogin, message} = response || {};
                 if(result){
+                    console.log(result);
+                    console.log(isLogin);
+                    
                     console.log(message);
                     
                     setIsLogin(isLogin);
                 }
             })
 
-        window.addEventListener('beforeunload', () => {
-            postApi('logout')
-                .then(( response )=>{
-                    const { result } = response || {};
-                    if(result){
-                        setIsLogin(false)
-                    }
-                })
-        });
+        // window.addEventListener('beforeunload', () => {
+        //     postApi('logout')
+        //         .then(( response )=>{
+        //             const { result } = response || {};
+        //             if(result){
+        //                 setIsLogin(false)
+        //             }
+        //         })
+        // });
     },[pageName])
 
     useLayoutEffect(() => {

@@ -10,11 +10,11 @@ export default function BoardCustomerLink({ id, children, password }) {
     
     const onClick = (e) => {
         e.preventDefault();
+        // postApi('boards/isIdentity', )
         setPopup({
             title: '안내',
             description: '비밀번호를 입력해주세요.',
             password: () => {
-                postApi('')
             }
         })
     }
