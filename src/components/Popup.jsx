@@ -7,9 +7,11 @@ const messageType = {
     }
 }
 
-export default function Popup({ popup, setPopup, children }) {
+export default function Popup({ popup, setPopup }) {
     const popupRef = useRef();
-    const func = Object.values(popup).filter((value) => typeof(value) === 'function')[0]
+    // const func = Object.values(popup).filter((value) => typeof(value) === 'function')[0]
+    // console.log(popup);
+    
     const message = {...messageType[popup.type]}
 
     useEffect(()=>{

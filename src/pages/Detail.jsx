@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import SubTitle from '../components/SubTitle';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getApi } from '../api/api';
 import BoardLink from '../components/BoardLink';
+import Popup from '../components/Popup';
+import { ThemeContext } from '../context/ThemeContext';
 
 export default function Detail() {
+    const { isLogin } = useContext(ThemeContext);
     const [detail, setDetail] = useState();
     const [post, setPost] = useState();
+    const [popup, setPopup] = useState();
+    const navigate = useNavigate()
     const pathName = useLocation().pathname;
     const boardId = pathName.slice(1).split('/').at(-1);
     const boardType = pathName.slice(1).split('/').at(-2);
@@ -15,12 +20,14 @@ export default function Detail() {
         getApi('boards/detail', {boardId, boardType})
             .then(({ result, data, post, isSecretUser } = {}) => {
                 if(result){
-                    console.log(isSecretUser);
+                    if(isSecretUser === false){
+                        navigate('/customer/vip')
+                    }
                     setDetail(data)
                     setPost(post)
                 }
-            })
-    },[boardId, boardType])
+            }) 
+    },[boardId, boardType, navigate, isLogin])
 
     function postData(post){
         return (
@@ -59,6 +66,7 @@ export default function Detail() {
                 </div>
                 <BoardLink>목록</BoardLink>
                 {post && postData(post)}
+                { popup && <Popup popup={popup} setPopup={setPopup}/> }
             </div>
         </>
     );

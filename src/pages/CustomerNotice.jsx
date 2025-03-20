@@ -15,7 +15,7 @@ export default function CustomerNotice() {
             <ol className="board-list">
                 {list && list.map((data)=>
                     <li key={data.id} data-new={data.new}>
-                        <BoardCustomerLink id={data.id}>
+                        <BoardCustomerLink data={data}>
                             <span>{data.numb}</span>
                             <p>{data.title}</p>
                             <time>{data.created}</time>
