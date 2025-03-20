@@ -9,7 +9,7 @@ export function styleIdx(){
                 element.tagName.toLowerCase() === parents.getAttribute('data-styleIdx') && children.push(element)
             }) : 
             (children = [...parents.childNodes]);
-        parents.style.setProperty('--styleTotal', children.length);
+        parents.style.setProperty('--styleTotal', children.length - 1);
         children.forEach((element, idx)=>{
             element.style.setProperty('--styleIdx', idx);
         })

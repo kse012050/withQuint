@@ -1,6 +1,8 @@
 /* 테스트페이지 - 나중에 삭제 */
 input[type='radio']:checked + label{color: red;}
 
+/* 텍스트 숨기기 */
+.textHide{text-indent: -9999px; background: var(--BGImg-basic);}
 
 /* 버튼 */
 [class^="btn"]{width: 100%; line-height: 58px; font-size: 18px; font-weight: 700; text-align: center; border: 1px solid var(--color-point); border-radius: 4px;}
@@ -29,7 +31,7 @@ input[type="checkbox"]{
 
 /* 팝업 */
 body:has([popover]){pointer-events: none; overflow: hidden;}
-[popover]{pointer-events: all; width: 320px; text-align: center; padding: 30px; border: 1px solid var(--color-point); border-radius: 10px; box-sizing: border-box;
+[popover]{pointer-events: all; width: 320px; text-align: center; padding: 30px; border: 1px solid var(--color-point); border-radius: var(--box-radius); box-sizing: border-box;
     strong{display: block; font-size: 18px; font-weight: 700; margin-bottom: 40px;}
     p{font-size: 15px; font-weight: 400; line-height: 18px; margin-bottom: 30px;}
     input[type="password"]{height: 50px; margin-bottom: 30px;}
@@ -41,7 +43,7 @@ body:has([popover]){pointer-events: none; overflow: hidden;}
 /* ----------------- */
 body:has(.popup){overflow: hidden;}
 .popup{position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.3); display: flex; justify-content: center; align-items: center; z-index: 100;
-    & > div{width: 320px; text-align: center; padding: 30px; background-color: white; border: 1px solid var(--color-point); border-radius: 10px; box-sizing: border-box;
+    & > div{width: 320px; text-align: center; padding: 30px; background-color: white; border: 1px solid var(--color-point); border-radius: var(--box-radius); box-sizing: border-box;
         strong{display: block; font-size: 18px; font-weight: 700; margin-bottom: 40px;}
         p{font-size: 15px; font-weight: 400; line-height: 18px; margin-bottom: 30px;}
         div{
@@ -52,13 +54,14 @@ body:has(.popup){overflow: hidden;}
 
 /* 탭 */
 [class $= 'Page']> ul{display: flex; justify-content: center; gap: 60px; border-bottom: 1px solid var(--color-border);
-        :is(:not(:has(.active)) li:first-child a, li a.active){color: var(--color-basic);
-            &::after{content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background-color: var(--color-point);}
-        }
-        li{
-            a{font-size: 16px; font-weight: 700; color: var(--color-gray); line-height: 60px; position: relative;}
-        }
+    :is(:not(:has(.active)) li:first-child a, li a.active){color: var(--color-basic);
+        &::after{content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background-color: var(--color-point);}
     }
+    li{
+        a{font-size: 16px; font-weight: 700; color: var(--color-gray); line-height: 60px; position: relative;}
+    }
+}
+
 /* 게시물 */
 [class^="board"]{font-size: 15px;}
 .board-menu{display: flex; align-items: center; gap: 10px; margin-bottom: 15px;
@@ -121,7 +124,7 @@ body:has(.popup){overflow: hidden;}
     &:empty&::before{line-height: 300px;}
     li{max-width: 380px;
         a{
-            img{width: 100%; object-fit: cover; object-position: center; margin-bottom: 30px; border-radius: 10px;}
+            img{width: 100%; object-fit: cover; object-position: center; margin-bottom: 30px; border-radius: var(--box-radius);}
             p{font-size: 20px; line-height: 30px; margin-bottom: 20px; font-weight: 400;}
             time{font-size: 16px; font-weight: 400; color: #999;}
         }
@@ -134,7 +137,7 @@ body:has(.popup){overflow: hidden;}
 :is(.board-title p, .board-list li a p){flex: 1; padding-inline: 60px;}
 :is(.board-title b, .board-list li a *):last-child{width: 75px; padding-inline: 40px;}
 .board-paging{display: flex; justify-content: center; align-items: center; --gap: 10px; gap: var(--gap);}
-.board-paging > a{--iconSize: 24px; width: var(--iconSize); aspect-ratio: 1; text-indent: -9999px; background: url('../images/icon-pagination.png') left top calc(100% / (var(--styleTotal) - 1) * var(--styleIdx)) / 100%;}
+.board-paging > a{--iconSize: 24px; width: var(--iconSize); aspect-ratio: 1; text-indent: -9999px; background: url('../images/icon-pagination.png') left top calc(100% / var(--styleTotal) * var(--styleIdx)) / 100%;}
 .board-paging ol{display: flex; justify-content: center; align-items: center; gap: var(--gap);}
 .board-paging ol li a{width: 20px; line-height: var(--iconSize); font-weight: 700; text-align: center;
     &.active{color: var(--color-point); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 2px;}
@@ -175,13 +178,17 @@ header{position: fixed; inset: 0 0 auto 0; color: white; padding-inline: 40px; z
     100%{--idx: 1;}
 }
 
+/* 모든 페이지 */
+[class$="Page"]{
+    & > div{margin-inline: auto;}
+    &:not([class^="sign"]) > div:first-of-type{max-width: var(--content-margin);}
+}
 
+/* 서브 페이지 */
 [class$="Page"]:not(.mainPage){
-    h2{padding: 240px max(calc((100% - 1240px)/ 2), 20px) 180px; font-size: 50px; line-height: 70px; font-weight: 700; color: white; background-position: center; background-size: cover; /* margin-bottom: 90px; */}
-    /* & > *:last-child{margin-top: 90px;} */
-    /* footer{margin-top: 90px;} */
-    & > div{margin-inline: auto; margin-top: 90px;}
-    &:not([class^="sign"]) > div:first-of-type{max-width: 1240px;
+    h2{padding: 240px var(--content-padding-inline) 180px; font-size: 50px; line-height: 70px; font-weight: 700; color: white; background-position: center; background-size: cover; /* margin-bottom: 90px; */}
+    & > div{margin-block: 90px 200px;}
+    &:not([class^="sign"]) > div:first-of-type{
         h3{font-size: 36px; line-height: 43px; margin-bottom: 30px; font-weight: 700;}
     }
     &[class^="sign"] > div:first-of-type{max-width: 400px;}
