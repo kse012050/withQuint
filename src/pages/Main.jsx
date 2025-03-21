@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getApi } from '../api/api';
 
 export default function Main() {
+    const [data, setData] = useState();
+
+    useEffect(()=>{
+        getApi('boards/main')
+            .then(({ result, data } = {}) => {
+                if(result){
+                    console.log(data);
+                    setData(data);
+                }
+            })
+    }, [])
+
     return (
         <>
             <p>
@@ -12,24 +25,14 @@ export default function Main() {
                 <section>
                     <h2>공지사항</h2>
                     <ul>
-                        <li>
-                            <Link to=''>
-                                <p>123123123123123</p>
-                                <time>123</time>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to=''>
-                                <p>123123123123123</p>
-                                <time>123</time>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to=''>
-                                <p>123123123123123</p>
-                                <time>123</time>
-                            </Link>
-                        </li>
+                        {data && data.notice.map((data) => 
+                            <li key={data.id}>
+                                <Link to=''>
+                                    <p>{ data.title }</p>
+                                    <time>{ data.time }</time>
+                                </Link>
+                            </li>
+                        )}
                     </ul>
                 </section>
                 <div>
@@ -42,7 +45,7 @@ export default function Main() {
                 </div>
                 <section className='serviceArea'>
                     <h2>주요 서비스</h2>
-                    <ul data-styleIdx>
+                    <ul data-styleidx>
                         <li><Link to=''>무료 추천종목</Link></li>
                         <li><Link to=''>주식 상담소</Link></li>
                         <li><Link to=''>VIP 추천종목</Link></li>
@@ -53,90 +56,56 @@ export default function Main() {
                     <h2>무료 추천종목</h2>
                     <Link to='' className='textHide'>게시판 바로가기</Link>
                     <ul>
-                        <li>
-                            <Link to=''>
-                                <p>123123123123123</p>
-                                <time>123</time>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to=''>
-                                <p>123123123123123</p>
-                                <time>123</time>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to=''>
-                                <p>123123123123123</p>
-                                <time>123</time>
-                            </Link>
-                        </li>
+                        {data && data.recommendation.map((data) => 
+                            <li key={data.id}>
+                                <Link to=''>
+                                    <p>{ data.title }</p>
+                                    <time>{ data.created }</time>
+                                </Link>
+                            </li>
+                        )}
                     </ul>
                 </section>
                 <section>
                     <h2>VIP 상품 신청</h2>
                     <Link to='' className='textHide'>게시판 바로가기</Link>
                     <ul>
-                        <li>
-                            <Link to=''>
-                                <p>123123123123123</p>
-                                <time>123</time>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to=''>
-                                <p>123123123123123</p>
-                                <time>123</time>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to=''>
-                                <p>123123123123123</p>
-                                <time>123</time>
-                            </Link>
-                        </li>
+                        {data && data.vip.map((data) => 
+                            <li key={data.id}>
+                                <Link to=''>
+                                    <p>{ data.title }</p>
+                                    <time>{ data.created }</time>
+                                </Link>
+                            </li>
+                        )}
                     </ul>
                 </section>
                 <section>
                     <h2>위드퀀트 주식정보</h2>
                     <Link to='' className='textHide'>게시판 바로가기</Link>
                     <ul>
-                        <li style={{backgroundColor: 'dodgerblue'}}>
-                            <Link to=''>
-                                <p>123123123123123 1231231231231231231231231231 2312312312312312312312312312 3123123123123123123123123123123123123123123123123123123123123123123 12312312312312312312312312312312312312312312312312312312 3123123123123123123123123123123123123123123123123123123123123</p>
-                                <time>123</time>
-                            </Link>
-                        </li>
-                        <li style={{backgroundColor: 'dodgerblue'}}>
-                            <Link to=''>
-                                <p>123123123123123</p>
-                                <time>123</time>
-                            </Link>
-                        </li>
+                        {data && data.stock.map((data) => 
+                            <li key={data.id} style={{backgroundImage: `url(${data.image})`}}>
+                                <Link to=''>
+                                    <p>{ data.title }</p>
+                                    <time>{ data.created }</time>
+                                </Link>
+                            </li>
+                        )}
                     </ul>
                 </section>
                 <section>
                     <h2>수익률</h2>
                     <Link to='' className='textHide'>게시판 바로가기</Link>
                     <ul>
-                        <li>
-                            <Link to=''>
-                                <p>123123123123123</p>
-                                <time>123</time>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to=''>
-                                <p>123123123123123</p>
-                                <time>123</time>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to=''>
-                                <p>123123123123123</p>
-                                <time>123</time>
-                            </Link>
-                        </li>
+                        {data && data.revenue.map((data) => 
+                            <li key={data.id}>
+                                <Link to=''>
+                                    <p>{ data.title }</p>
+                                    <time>{ data.created }</time>
+                                </Link>
+                            </li>
+                        )}
                     </ul>
                 </section>
             </div>
