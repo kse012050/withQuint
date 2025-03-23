@@ -202,7 +202,7 @@ header{position: fixed; inset: 0 0 auto 0; color: white; padding-inline: 40px; z
 
 
 /* 푸터 */
-footer{padding: 40px var(--content-padding-inline) 70px; color: var(--color-gray); display: grid; justify-content: space-between; grid-template-columns: 1fr auto; background-color: #F2F3F8; 
+footer{padding: 40px var(--content-padding-inline) 70px; color: var(--color-gray); display: grid; justify-content: space-between; grid-template-columns: 1fr; background-color: #F2F3F8; 
     ul:has(a):not(:has(p)){grid-column: 1 / 3; display: flex; gap: 50px; font-size: 18px; line-height: 30px; margin-bottom: 50px; font-weight: 700;}
     div{margin-bottom: 30px; grid-column: 1 / 2; grid-row: 2 / 3; width: 142px; aspect-ratio: 142 / 48; text-indent: -9999px; background: url(../images/logo.png) no-repeat center bottom / 100%; }
     address{grid-column: 1 / 2; grid-row: 3 / 4; --fontSize: 15px; font-size: var(--fontSize); line-height: 30px; font-weight: 400; max-width: 350px; display: flex; flex-wrap: wrap; gap: 0 0.8em; margin-bottom: 30px;

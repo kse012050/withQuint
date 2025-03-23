@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getApi } from '../api/api';
+import BoardLink from '../components/BoardLink';
 
 export default function Main() {
     const [data, setData] = useState();
@@ -27,10 +28,10 @@ export default function Main() {
                     <ul>
                         {data && data.notice.map((data) => 
                             <li key={data.id}>
-                                <Link to=''>
+                                <BoardLink data={data} path='customer/notice'>
                                     <p>{ data.title }</p>
-                                    <time>{ data.time }</time>
-                                </Link>
+                                    <time>{ data.created }</time>
+                                </BoardLink>
                             </li>
                         )}
                     </ul>
@@ -58,10 +59,10 @@ export default function Main() {
                     <ul>
                         {data && data.recommendation.map((data) => 
                             <li key={data.id}>
-                                <Link to=''>
+                                <BoardLink data={data} path='recommendation'>
                                     <p>{ data.title }</p>
                                     <time>{ data.created }</time>
-                                </Link>
+                                </BoardLink>
                             </li>
                         )}
                     </ul>
@@ -72,10 +73,10 @@ export default function Main() {
                     <ul>
                         {data && data.vip.map((data) => 
                             <li key={data.id}>
-                                <Link to=''>
+                                <BoardLink data={data} path='customer/vip'>
                                     <p>{ data.title }</p>
                                     <time>{ data.created }</time>
-                                </Link>
+                                </BoardLink>
                             </li>
                         )}
                     </ul>
@@ -86,10 +87,10 @@ export default function Main() {
                     <ul>
                         {data && data.stock.map((data) => 
                             <li key={data.id} style={{backgroundImage: `url(${data.image})`}}>
-                                <Link to=''>
+                                <BoardLink data={data} path='stock'>
                                     <p>{ data.title }</p>
                                     <time>{ data.created }</time>
-                                </Link>
+                                </BoardLink>
                             </li>
                         )}
                     </ul>
@@ -100,10 +101,10 @@ export default function Main() {
                     <ul>
                         {data && data.revenue.map((data) => 
                             <li key={data.id}>
-                                <Link to=''>
+                                <BoardLink data={data} path='revenue'>
                                     <p>{ data.title }</p>
                                     <time>{ data.created }</time>
-                                </Link>
+                                </BoardLink>
                             </li>
                         )}
                     </ul>

@@ -12,7 +12,7 @@ export default function Stock() {
                 <ul className='board-list-img'>
                     {list && list.map((data, idx)=>
                         <li key={data.id} data-new={data.new}>
-                            <BoardLink id={data.id}>
+                            <BoardLink data={data}>
                                 <img src={data.image} alt={`${data.title} 이미지`} />
                                 <p>{data.title}</p>
                                 <time>{data.created}</time>
