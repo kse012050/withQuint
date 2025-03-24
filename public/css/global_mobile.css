@@ -32,3 +32,22 @@ header{padding-inline: var(--content-size-mobile); --headerHeight: 56px; backgro
     0%{background-position-y: 0;}
     100%{background-position-y: calc(var(--height) * -1);}
 }
+
+
+/* 푸터 */
+footer{padding-block: 50px 120px;
+    ul:has(a):not(:has(p)){gap: 20px; font-size: 13px; line-height: 16px; margin-bottom: 30px;}
+    div{margin-bottom: 20px; width: 88px;}
+    address{font-size: 12px; line-height: 18px; margin-bottom: 30px;}
+    > p{font-size: 11px; line-height: 15px; margin-bottom: 30px;}
+    ul:has(a):has(p){ margin-bottom: 30px;
+        li{font-size: 12px; line-height: 18px;
+            &:not(:last-child){margin-bottom: 10px;}
+            p{color: #666;}
+            br{content: ''; margin-left: 0.4em;}
+        }
+    }
+    ul:not(:has(a), :has(p)){gap: 10px;
+        li{width: 84px;}
+    }
+}

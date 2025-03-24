@@ -8,6 +8,9 @@
         section{
             h2{font-size: 26px; line-height: 36px; margin-bottom: 15px;}
         }
+        > section:not(.serviceArea){
+            > a{top: 8px;}
+        }
         > div{min-height: 222px;
             h2{margin-bottom: 15px; font-weight: 500;}
             strong{font-size: 18px; line-height: 24px;}
