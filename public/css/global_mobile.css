@@ -1,19 +1,19 @@
 
 /* 해더 */
 body:has(header.active){overflow: hidden;}
-header{--paddingInline: 20px; padding-inline: var(--paddingInline); --headerHeight: 56px; background-color: transparent; 
+header{padding-inline: var(--content-size-mobile); --headerHeight: 56px; background-color: transparent; 
     & > div{height: var(--headerHeight); display: flex; justify-content: space-between; align-items: center;
         h1{
             a{--height: 34px; background-position-y: 0;}
         }
-        nav{display: none; --paddingBlock: 30px; position: fixed; inset: var(--headerHeight) 0 0 0; background-color: white; padding: var(--paddingBlock) var(--paddingInline);
+        nav{display: none; --paddingBlock: 30px; position: fixed; inset: var(--headerHeight) 0 0 0; background-color: white; padding: var(--paddingBlock) var(--content-size-mobile);
             ul{
                 li {
                     a{font-size: 20px; line-height: 24px; font-weight: 700; color: var(--color-basic);}
                     &:not(:last-child){margin-bottom: 30px;}
                 }
             }
-            div{left: var(--paddingInline); bottom: var(--paddingBlock); transform: translateY(-50%); display: flex; gap: 24px;
+            div{left: var(--content-size-mobile); bottom: var(--paddingBlock); transform: translateY(-50%); display: flex; gap: 24px;
                 :is(a, button){font-size: 15px; line-height: 18px; font-weight: 500;}
             }
         }

@@ -1,0 +1,33 @@
+/* 메인 페이지 */
+.mainPage{
+    > p{font-size: 70px; line-height: 100px; padding-block: 225px;
+        &::after{width: 50px;}
+    }
+    > div:first-of-type{margin-block: 100px 80px; display: flex; flex-wrap: wrap; --gap: 80px; gap: var(--gap);
+        section{
+            h2{font-size: 36px; line-height: 43px; margin-bottom: 25px;}
+        }
+        > div{min-height: 307px;
+            h2{margin-bottom: 20px;}
+            strong{font-size: 28px; line-height: 38px;}
+            a{width: 48px;}
+        }
+        .serviceArea{width: 100%;
+            ul{display: flex; gap: 20px;
+                li{flex: 1;
+                    a{height: 204px; font-size: 20px; line-height: 24px;
+                        &::after{width: 70px;}
+                    }
+                }
+            }
+        }
+    }
+    .principleArea{padding-block: 120px 90px;
+        h2{font-size: 36px; line-height: 43px; margin-bottom: 70px;}
+        ul{--gap: 35px; display: flex; flex-wrap: wrap; gap: 30px var(--gap);
+            li{font-size: 20px; line-height: 1; padding-block: 30px; width: calc((100% - (var(--gap) * 2)) / 3);
+                strong{font-size: 26px; line-height: 38px; margin-top: 16px;}
+            }
+        }
+    }
+}

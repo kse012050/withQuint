@@ -1,0 +1,36 @@
+/* 메인 페이지 */
+.mainPage{
+    > p{font-size: 34px; line-height: 48px; height: 100vh; display: flex; flex-direction: column; justify-content: center;
+        &::after{width: 30px;}
+    }
+    > div:first-of-type{margin-block: 60px 50px;
+        & > *:not(:last-child){margin-bottom: 50px;}
+        section{
+            h2{font-size: 26px; line-height: 36px; margin-bottom: 15px;}
+        }
+        > div{min-height: 222px;
+            h2{margin-bottom: 15px; font-weight: 500;}
+            strong{font-size: 18px; line-height: 24px;}
+            a{width: 40px;}
+        }
+        .serviceArea{
+            ul{
+                li{
+                    &:not(:last-child){margin-bottom: 15px;}
+                    a{height: 158px; font-size: 16px; line-height: 19px;
+                        &::after{width: 50px;}
+                    }
+                }
+            }
+        }
+    }
+    .principleArea{padding-block: 70px 55px;
+        h2{font-size: 26px; line-height: 31px; margin-bottom: 30px;}
+        ul{
+            li:not(:last-child){margin-bottom: 15px;}
+            li{line-height: 18px; padding-block: 15px;
+                strong{font-size: 18px; line-height: 21px; margin-top: 15px;}
+            }
+        }
+    }
+}

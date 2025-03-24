@@ -1,13 +1,13 @@
 
 /* 메인 페이지 */
 .mainPage{
-    > p{font-size: 70px; line-height: 100px; font-weight: 400; color: white; text-align: center; padding-block: 225px; background: url(../images/main-slider01.png) no-repeat center / cover; position: relative;
+    > p{font-weight: 400; color: white; text-align: center; background: url(../images/main-slider01.png) no-repeat center / cover; position: relative;
         strong{font-weight: 700; display: block;}
-        &::after{content: ''; position: absolute; left: 50%; bottom: 50px; transform: translateX(-50%); width: 50px; aspect-ratio: 1; background: url(../images/icon-scroll.png) no-repeat center / cover;}
+        &::after{content: ''; position: absolute; left: 50%; bottom: 50px; transform: translateX(-50%); aspect-ratio: 1; background: url(../images/icon-scroll.png) no-repeat center / cover;}
     }
-    > div:first-of-type{margin-block: 100px 80px; font-size: 15px; display: flex; flex-wrap: wrap; --gap: 80px; gap: var(--gap);
+    > div:first-of-type{font-size: 15px;
         section{
-            h2{font-size: 36px; line-height: 43px; font-weight: 700; margin-bottom: 25px;}
+            h2{font-weight: 700;}
             ul li a p{font-weight: 500; text-overflow: ellipsis; overflow: hidden;}
         }
         > *:not(.serviceArea){width: calc((100% - var(--gap)) / 2); position: relative;}
@@ -31,26 +31,26 @@
             }
             > a{position: absolute; right: 0; top: 13px; width: 20px; aspect-ratio: 1; background-image: url(../images/icon-more.png);}
         }
-        > div{min-height: 307px; --padding: 30px; padding: var(--padding); color: white; background-color: var(--color-point); border-radius: var(--box-radius); box-sizing: border-box;
-            h2{margin-bottom: 20px; font-weight: 600;}
-            strong{font-size: 28px; line-height: 38px; font-weight: 700;}
-            a{position: absolute; right: var(--padding); bottom: var(--padding); width: 48px; aspect-ratio: 1; text-indent: -9999px; background: url(../images/icon-link.png) left top / 100%;}
+        > div{--padding: 30px; padding: var(--padding); color: white; background-color: var(--color-point); border-radius: var(--box-radius); box-sizing: border-box;
+            h2{font-weight: 600;}
+            strong{font-weight: 700;}
+            a{position: absolute; right: var(--padding); bottom: var(--padding); aspect-ratio: 1; text-indent: -9999px; background: url(../images/icon-link.png) left top / 100%;}
         }
-        .serviceArea{width: 100%;
-            ul{display: flex; gap: 20px;
-                li{flex: 1;
-                    a{--padding: 30px; width: 100%; height: 204px; font-size: 20px; line-height: 24px; font-weight: 700; padding: var(--padding); background-color: #f7f7f7; border-radius: var(--box-radius); box-sizing: border-box; position: relative;
-                        &::after{content: ''; position: absolute; right: var(--padding); bottom: var(--padding); width: 70px; aspect-ratio: 1; background: url(../images/icon-service.png) no-repeat left top calc(100% / var(--styleTotal) * var(--styleIdx)) / 100%;}
+        .serviceArea{
+            ul{
+                li{
+                    a{display: block; --padding: 30px; height: 204px; font-weight: 700; padding: var(--padding); background-color: #f7f7f7; border-radius: var(--box-radius); box-sizing: border-box; position: relative;
+                        &::after{content: ''; position: absolute; right: var(--padding); bottom: var(--padding); aspect-ratio: 1; background: url(../images/icon-service.png) no-repeat left top calc(100% / var(--styleTotal) * var(--styleIdx)) / 100%;}
                     }
                 }
             }
         }
     }
-    .principle{padding: 120px var(--content-padding-inline) 90px; background: url(../images/main-rule.png) no-repeat center / cover; color: white;
-        h2{font-size: 36px; line-height: 43px; margin-bottom: 70px; font-weight: 700; text-align: center;}
-        ul{--gap: 35px; display: flex; flex-wrap: wrap; gap: 30px var(--gap);
-            li{font-size: 20px; line-height: 1; padding-block: 30px; width: calc((100% - (var(--gap) * 2)) / 3); border-top: 2px solid white;
-                strong{font-size: 26px; line-height: 38px; margin-top: 16px; font-weight: 700; display: block;}
+    .principleArea{padding-inline: var(--content-padding-inline); background: url(../images/main-rule.png) no-repeat center / cover; color: white;
+        h2{font-weight: 700; text-align: center;}
+        ul{
+            li{border-top: 2px solid white;
+                strong{font-weight: 700; display: block;}
             }
         }
     }

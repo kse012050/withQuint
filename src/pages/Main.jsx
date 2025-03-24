@@ -110,7 +110,7 @@ export default function Main() {
                     </ul>
                 </section>
             </div>
-            <div className='principle'>
+            <div className='principleArea'>
                 <h2>위드퀀트의 원칙</h2>
                 <ul>
                     <li>
