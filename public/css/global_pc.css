@@ -1,0 +1,27 @@
+
+/* 해더 */
+header{padding-inline: 40px; color: white;
+    & > div{text-align: center;
+        h1{position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+            a{--height: 48px;}
+        }
+        nav:has(.active) ul li a{opacity: 0.5;}
+        nav{display: inline-block; 
+            :is(a, button){line-height: 100px; font-size: 18px;}
+            ul{display: flex; gap: 80px;
+                li {
+                    a.active{opacity: 1;}
+                }
+            }
+            div{right: 0; top: 50%; transform: translateY(-50%); display: flex; gap: 40px;
+                a.active{font-weight: 700;}
+            }
+        }
+        & > button{display: none;}
+    }
+}
+
+@keyframes headerColor {
+    0%{color: white;}
+    100%{color: var(--color-basic);}
+}

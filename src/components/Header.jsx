@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { ThemeContext } from '../context/ThemeContext';
 import { postApi } from '../api/api';
 
 export default function Header() {
     const { isLogin, setIsLogin } = useContext(ThemeContext);
+    const [ isMobileMenu, setIsMobileMenu ] = useState(false)
 
     const onLogout = () => {
         postApi('logout')
@@ -16,7 +17,7 @@ export default function Header() {
             })
     }
     return (
-        <header>
+        <header className={isMobileMenu ? 'active' : ''}>
             <div>
                 <h1><Link to='/'>위드퀸트</Link></h1>
                 <nav>
@@ -40,7 +41,7 @@ export default function Header() {
                         }
                     </div>
                 </nav>
-                <button>메뉴 열기</button>
+                <button onClick={() => setIsMobileMenu(cur => !cur)}>메뉴 열기</button>
             </div>
         </header>
     );

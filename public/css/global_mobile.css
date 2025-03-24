@@ -1,0 +1,34 @@
+
+/* 해더 */
+body:has(header.active){overflow: hidden;}
+header{--paddingInline: 20px; padding-inline: var(--paddingInline); --headerHeight: 56px; background-color: transparent; 
+    & > div{height: var(--headerHeight); display: flex; justify-content: space-between; align-items: center;
+        h1{
+            a{--height: 34px; background-position-y: 0;}
+        }
+        nav{display: none; --paddingBlock: 30px; position: fixed; inset: var(--headerHeight) 0 0 0; background-color: white; padding: var(--paddingBlock) var(--paddingInline);
+            ul{
+                li {
+                    a{font-size: 20px; line-height: 24px; font-weight: 700; color: var(--color-basic);}
+                    &:not(:last-child){margin-bottom: 30px;}
+                }
+            }
+            div{left: var(--paddingInline); bottom: var(--paddingBlock); transform: translateY(-50%); display: flex; gap: 24px;
+                :is(a, button){font-size: 15px; line-height: 18px; font-weight: 500;}
+            }
+        }
+        & > button{--height: 26px; height: var(--height); aspect-ratio: 1; background: url(../images/icon-menu.png) left top / 100%; text-indent: -9999px; animation: menu 1s forwards; animation-timeline: scroll(); animation-range-start: 0; animation-range-end: 200px;}
+    }
+    &.active{animation: none; background-color: white;
+        div{
+            h1 a{animation: none; background-position-y: var(--height); transition: background-position-y 1s;}
+            nav{display: block;}
+            & > button{animation: none; background-position-y: calc(var(--height) * 2 * -1);}
+        }
+    }
+}
+
+@keyframes menu {
+    0%{background-position-y: 0;}
+    100%{background-position-y: calc(var(--height) * -1);}
+}
