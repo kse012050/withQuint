@@ -55,7 +55,9 @@ export default function Board({ children, boardType, setList }) {
                 { (isCreateBox.includes(boardType) && isLogin) && <Link to='' className='btn-bg'>글쓰기</Link> }
             </div>
 
-            {children}
+            <div className="board-scroll">
+                {children}
+            </div>
 
             {!!info?.totalPage && info && <Pagination info={info}/>}
         </div>

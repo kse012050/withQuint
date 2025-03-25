@@ -1,3 +1,44 @@
+/* 게시물 */
+.board-menu{margin-bottom: 20px; row-gap: 30px; flex-wrap: wrap;
+    :is(strong, span){font-size: 15px; line-height: 18px;}
+    span{order: 1; width: 100%;}
+
+    .selectBox{width: 125px;}
+
+    .searchBox{flex: 1;}
+}
+
+.board-scroll{overflow: auto;
+    .board-title, .board-list li a{padding-inline: 30px; min-width: 800px;}
+    :is(.board-title b, .board-list li a span):not(:last-child){padding-inline: 20px;}
+    :is(.board-title p, .board-list li a p){padding-inline: 10px;}
+    :is(.board-title b, .board-list li a *):last-child{padding-inline: 20px;}
+
+    .board-list{
+        li{
+            a{height: 70px;}
+        }
+    }
+    &:has(.board-list) ~ .board-paging{margin-top: 50px;}
+    
+    .board-list-img{
+        li{
+            &:not(:last-child){margin-bottom: 30px;}
+            a{display: block; 
+                img{width: 100%; max-height: 210px; margin-bottom: 20px;}
+                p{font-size: 15px; line-height: 22px; margin-bottom: 10px;}
+                time{font-size: 13px; line-height: 16px;}
+            }
+        }
+    }
+    &:has(.board-list-img) ~ .board-paging{margin-top: 30px;}
+    
+}
+.board-paging ol{margin-inline: 10px;
+    li a{font-size: 13px;}
+}
+
+
 
 /* 해더 */
 body:has(header.active){overflow: hidden;}

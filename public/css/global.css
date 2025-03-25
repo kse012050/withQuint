@@ -64,18 +64,17 @@ body:has(.popup){overflow: hidden;}
 
 /* 게시물 */
 [class^="board"]{font-size: 15px;}
-.board-menu{display: flex; align-items: center; gap: 10px; margin-bottom: 15px;
+.board-menu{display: flex; align-items: center; column-gap: 10px;
     :is(strong, span){font-size: 20px; line-height: 24px; font-weight: 500;}
     span{color: #999;
         strong{color: var(--color-basic);}
-        + *{margin-left: auto;}
     }
-    .btn-bg{max-width: 100px; font-size: 15px; line-height: 48px;}
+    .btn-bg{font-size: 15px; line-height: 48px;}
 
     .selectBox, .searchBox{--borderRadius: 4px; --height: 50px; --paddingInline: 15px; --iconSize: 18px; border: 1px solid var(--color-border); position: relative; border-radius: var(--borderRadius);}
     .selectBox > button, .searchBox input{height: var(--height); padding-inline: var(--paddingInline) calc(var(--paddingInline) * 2 + var(--iconSize)); box-sizing: border-box;}
-    .selectBox > button::after, .searchBox button{aspect-ratio: 1; position: absolute; right: var(--paddingInline); top: 50%; /* transform: translateY(-50%); */ translate: 0 -50%; width: var(--iconSize);}
-    .selectBox{width: 160px;
+    .selectBox > button::after, .searchBox button{aspect-ratio: 1; position: absolute; right: var(--paddingInline); top: 50%; translate: 0 -50%; width: var(--iconSize);}
+    .selectBox{
         button{height: var(--height); text-align: left;}
         > button{width: 100%; color: var(--color-basic);
             &:empty::before{content: '분류 전체'; color: var(--color-placeholder);}
@@ -88,58 +87,60 @@ body:has(.popup){overflow: hidden;}
     }
 
     .searchBox{
-        input{width: 300px;}
         button{text-indent: -9999px; background: url('../images/icon-search.png') var(--BGImg-basic);}
     }
 }
 
-.board-title, .board-list li a{display: flex; align-items: center; padding-inline: 30px;}
-.board-title{height: 56px; font-weight: 700; border-top: 2px solid #000; background-color: #F7F7F7;}
+.board-scroll{
+    .board-title, .board-list li a{display: flex; align-items: center;}
+    .board-title{height: 56px; font-weight: 700; border-top: 2px solid #000; background-color: #F7F7F7;}
+    .board-title, .board-list li a *:not(p){text-align: center;}
+    :is(.board-title b, .board-list li a span):not(:last-child){width: 60px;}
+    :is(.board-title p, .board-list li a p){flex: 1;}
+    :is(.board-title b, .board-list li a *):last-child{width: 75px;}
 
-[class ^= 'board-list']{
-    &:empty{text-align: center;
-        &::before{content: '게시물이 없습니다.';}
+    [class ^= 'board-list']{
+        &:empty{text-align: center;
+            &::before{content: '게시물이 없습니다.';}
+        }
     }
-}
-.board-list{
-    &:empty{border-bottom: 1px solid var(--color-border);
-        &::before{line-height: 100px;}
-    }
-    li{
-        &[data-new="y"] {
-            p{font-weight: 700;}
-            time{position: relative;
-                &::before{content: ''; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); width: 20px; aspect-ratio: 1; background: url('../images/icon-new.png') no-repeat center / cover;}
+
+    .board-list{
+        &:empty{border-bottom: 1px solid var(--color-border);
+            &::before{line-height: 100px;}
+        }
+        li{
+            &[data-new="y"] {
+                p{font-weight: 700;}
+                time{position: relative;
+                    &::before{content: ''; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); width: 20px; aspect-ratio: 1; background: url('../images/icon-new.png') no-repeat center / cover;}
+                }
+            }
+            a{height: 80px; border-bottom: 1px solid var(--color-border);
+                &.secret p{ display: flex; align-items: center;
+                    &::before{content: ''; width: 24px; aspect-ratio: 1; background: url('../images/icon-lock.png') no-repeat center / cover; margin-right: 0.4em;}
+                }
             }
         }
-        a{height: 80px; border-bottom: 1px solid var(--color-border);
-            &.secret p{ display: flex; align-items: center;
-                &::before{content: ''; width: 24px; aspect-ratio: 1; background: url('../images/icon-lock.png') no-repeat center / cover; margin-right: 0.4em;}
+    }
+
+    .board-list-img{
+        &:empty&::before{line-height: 300px;}
+        li{
+            a{
+                img{width: 100%; object-fit: cover; object-position: center; border-radius: var(--box-radius);}
+                p{font-weight: 400;}
+                time{font-weight: 400; color: #999;}
             }
         }
     }
-    & ~ .board-paging{margin-top: 40px;}
-}
-.board-list-img{display: flex; flex-wrap: wrap; justify-content: space-between;
-    &:empty&::before{line-height: 300px;}
-    li{max-width: 380px;
-        a{
-            img{width: 100%; object-fit: cover; object-position: center; margin-bottom: 30px; border-radius: var(--box-radius);}
-            p{font-size: 20px; line-height: 30px; margin-bottom: 20px; font-weight: 400;}
-            time{font-size: 16px; font-weight: 400; color: #999;}
-        }
-    }
-    & ~ .board-paging{margin-top: 60px;}
 }
 
-.board-title, .board-list li a *:not(p){text-align: center;}
-:is(.board-title b, .board-list li a span):not(:last-child){width: 60px; padding-inline: 40px;}
-:is(.board-title p, .board-list li a p){flex: 1; padding-inline: 60px;}
-:is(.board-title b, .board-list li a *):last-child{width: 75px; padding-inline: 40px;}
+
 .board-paging{display: flex; justify-content: center; align-items: center; --gap: 10px; gap: var(--gap);}
 .board-paging > a{--iconSize: 24px; width: var(--iconSize); aspect-ratio: 1; text-indent: -9999px; background: url('../images/icon-pagination.png') left top calc(100% / var(--styleTotal) * var(--styleIdx)) / 100%;}
 .board-paging ol{display: flex; justify-content: center; align-items: center; gap: var(--gap);}
-.board-paging ol li a{width: 20px; line-height: var(--iconSize); font-weight: 700; text-align: center;
+.board-paging ol li a{width: 24px; line-height: 24px; font-weight: 700; text-align: center;
     &.active{color: var(--color-point); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 2px;}
 }
 
