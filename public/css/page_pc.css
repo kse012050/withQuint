@@ -112,3 +112,9 @@
         &:not(:first-of-type){margin-top: 30px;}
     }
 }
+
+/* 회원가입 */
+.signUpPage div form fieldset{
+    & > div{margin-top: 60px;}
+    input[type="submit"]{margin-top: 65px;}
+}

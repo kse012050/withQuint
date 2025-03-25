@@ -151,6 +151,5 @@
 
 /* 회원가입 */
 .signUpPage div form fieldset{
-    & > div{margin-top: 60px; padding-block: 30px; border-block-width: 2px 1px; border-block-color: #000 #DCDCDC; border-block-style: solid;}
-    input[type="submit"]{margin-top: 65px;}
+    & > div{padding-block: 30px; border-block-width: 2px 1px; border-block-color: #000 #DCDCDC; border-block-style: solid;}
 }
