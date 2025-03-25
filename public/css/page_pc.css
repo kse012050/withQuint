@@ -72,3 +72,23 @@
         a{max-width: 169px; margin-top: 50px;}
     }
 }
+
+
+/* 상세페이지 */
+.detailPage > div{
+    > a{width: 86px; line-height: 48px;
+        &:nth-of-type(2){margin-top: 30px;}
+    }
+    > div:has( ~ a ){padding-block: 30px;}
+    .detail-title{padding-inline: 20px;
+        h3{font-size: 30px; line-height: 36px;}
+        :is(span, time){font-size: 20px; line-height: 24px;}
+    }
+    .detail-content{padding-inline: 30px; min-height: 290px;}
+    .detail-comments{padding-inline: 50px;}
+    .detail-post{margin-top: 70px;
+        a{padding-inline: 20px;
+            strong{margin-left: 80px;}
+        }
+    } 
+}

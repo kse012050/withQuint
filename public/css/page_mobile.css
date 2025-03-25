@@ -72,3 +72,22 @@
         a{margin-top: 30px; display: block;}
     }
 }
+
+
+/* 상세페이지 */
+.detailPage > div{
+    > a{width: 50px; font-size: 13px; line-height: 38px;
+        &:nth-of-type(2){margin-top: 20px;}
+    }
+    .detail-title{padding-block: 20px;
+        h3{font-size: 18px; line-height: 21px;}
+        :is(span, time){font-size: 15px; line-height: 18px;}
+    }
+    .detail-content{padding: 30px 20px; min-height: 240px;}
+    .detail-comments{padding: 20px;}
+    .detail-post{margin-top: 40px;
+        a{padding-block: 20px;
+            strong{margin-left: 40px;}
+        }
+    } 
+}
