@@ -34,3 +34,22 @@
         }
     }
 }
+
+
+/* 소개 */
+.introductionPage div{
+    p{font-size: 20px; line-height: 32px; margin-bottom: 70px;}
+    ul{gap: 20px; margin-bottom: 120px;
+        li{font-size: 28px; line-height: 33px; padding: 40px;
+            &:nth-child(1){background-image: url(../images/introduction-wealth01.png); grid-column: 1/ 3; aspect-ratio: 1240 / 300;}
+            &:nth-child(2){background-image: url(../images/introduction-wealth02.png); aspect-ratio: 610 / 300;}
+            &:nth-child(3){background-image: url(../images/introduction-wealth03.png); aspect-ratio: 610 / 300;}
+        }
+    }
+    dl{display: flex; gap: 60px; margin-top: 50px;
+        dt{margin-right: 20px; font-size: 24px; line-height: 34px;}
+        dd{font-size: 20px; line-height: 32px;
+            &::before{width: 32px; margin-right: 20px;}
+        }
+    }
+}
