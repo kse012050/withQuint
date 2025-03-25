@@ -25,10 +25,6 @@ export default function Vip() {
                     <ul>
                     {vipProducts.map((data)=>
                         <li key={data.id}>
-                            <div style={{backgroundImage: `url(${data.image || 'https://placehold.co/600x400'})`}}>
-                                {data.nameEng}
-                                <mark>{data.name}</mark>
-                            </div>
                             <strong>
                                 {data.name}
                                 <span>{data.price}만원</span>
@@ -38,6 +34,10 @@ export default function Vip() {
                                 *자세항 사항은 고객센터 VIP 상품 신청에
                                 글을 남겨 주세요.
                             </small>
+                            <div style={{backgroundImage: `url(${data.image || 'https://placehold.co/600x400'})`}}>
+                                {data.nameEng}
+                                <mark>{data.name}</mark>
+                            </div>
                             <Link>VIP 상품 신청하기</Link>
                         </li>
                     )}

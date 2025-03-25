@@ -57,3 +57,18 @@
         }
     }
 }
+
+
+/* vip */
+.vipPage div{
+    ul li{
+        &:not(:last-child){margin-bottom: 60px;}
+        div{height: 260px; padding: 20px; font-size: 15px; line-height: 18px;
+            mark{font-size: 28px; line-height: 33px; margin-top: 6px;}
+        }
+        strong{font-size: 18px; line-height: 24px; margin-bottom: 15px; display: flex; justify-content: space-between;}
+        p{font-size: 15px; line-height: 22px; margin-bottom: 20px;}
+        small{font-size: 13px; line-height: 18px; max-width: 230px; margin-bottom: 30px; display: block;}
+        a{margin-top: 30px; display: block;}
+    }
+}
