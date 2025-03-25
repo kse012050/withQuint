@@ -12,6 +12,9 @@
         }
         > *:not(.serviceArea){width: calc((100% - var(--gap)) / 2); position: relative;}
         > section:not(.serviceArea){
+            ul:empty{text-align: center; padding-block: 65px;
+                &::before{content: '게시물이 없습니다.';}
+            }
             ul:not(:has([style])){border-block: 1px; border-block-color: black var(--color-border); border-block-style: solid;
                 li{
                     &:not(:last-child) a{border-bottom: 1px solid var(--color-gray);}

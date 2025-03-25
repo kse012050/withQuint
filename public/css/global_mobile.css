@@ -9,7 +9,7 @@ header{padding-inline: var(--content-size-mobile); --headerHeight: 56px; backgro
         nav{display: none; --paddingBlock: 30px; position: fixed; inset: var(--headerHeight) 0 0 0; background-color: white; padding: var(--paddingBlock) var(--content-size-mobile);
             ul{
                 li {
-                    a{font-size: 20px; line-height: 24px; font-weight: 700; color: var(--color-basic);}
+                    a{display: block; font-size: 20px; line-height: 24px; font-weight: 700; color: var(--color-basic);}
                     &:not(:last-child){margin-bottom: 30px;}
                 }
             }
@@ -32,6 +32,26 @@ header{padding-inline: var(--content-size-mobile); --headerHeight: 56px; backgro
     0%{background-position-y: 0;}
     100%{background-position-y: calc(var(--height) * -1);}
 }
+
+
+/* 모든 페이지 */
+
+
+/* 서브 페이지 */
+[class$="Page"]:not(.mainPage){
+    h2{font-size: 30px; line-height: 36px; text-align: center;}
+    & > div{margin-block: 60px;}
+    &:not([class^="sign"]) > div:first-of-type{
+        h3{font-size: 26px; line-height: 36px; margin-bottom: 20px;}
+    }
+}
+.introductionPage h2{background-image: url(../images/topBG-introduction-m.png);}
+.vipPage h2{background-image: url(../images/topBG-VIP-m.png);}
+.recommendationPage h2{background-image: url(../images/topBG-introduction-m.png);}
+.revenuePage h2{background-image: url(../images/topBG-revenue-m.png);}
+.stockPage h2{background-image: url(../images/topBG-stock-m.png);}
+.customerPage h2{background-image: url(../images/topBG-customer-m.png);}
+[class^="sign"] h2{background-image: url(../images/topBG-sign-m.png);}
 
 
 /* 푸터 */

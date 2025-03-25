@@ -1,7 +1,7 @@
 :root{
     --content-size: 1240px;
     --content-size-mobile: 20px;
-    --content-margin: min(var(--content-size), calc(100% - var(--content-size-mobile) * 2));
+    --content-margin: calc(100% - var(--content-size-mobile) * 2);
     --content-padding-inline: max(calc((100% - var(--content-size))/ 2), var(--content-size-mobile));
     --color-basic: #222;
     --color-gray: #999;
