@@ -1,3 +1,7 @@
+/* 버튼 */
+[class^="btn"]{font-size: 15px; line-height: 48px;}
+
+
 /* 게시물 */
 .board-menu{margin-bottom: 20px; row-gap: 30px; flex-wrap: wrap;
     :is(strong, span){font-size: 15px; line-height: 18px;}

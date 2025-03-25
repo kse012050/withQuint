@@ -92,3 +92,23 @@
         }
     } 
 }
+
+
+/* 로그인, 회원가입 */
+[class^="sign"] div form fieldset{
+    legend{font-size: 36px; line-height: 43px; margin-bottom: 60px;}
+}
+
+/* 로그인 */
+.signInPage div{
+    form fieldset {
+        input[type="submit"]{margin-top: 30px;}
+        p{font-size: 14px; line-height: 17px; margin-top: 15px;
+            &.error{visibility: visible;}
+        }
+    }
+    strong{margin-bottom: 10px;
+        &:first-of-type{margin-top: 70px;}
+        &:not(:first-of-type){margin-top: 30px;}
+    }
+}

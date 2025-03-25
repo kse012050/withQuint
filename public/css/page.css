@@ -120,7 +120,7 @@
 
 /* 로그인, 회원가입 */
 [class^="sign"] div form fieldset{
-    legend{font-size: 36px; line-height: 43px; font-weight: 700; text-align: center; margin-bottom: 60px;}
+    legend{font-weight: 700; text-align: center;}
     ul{
         & li:not(:last-child){margin-bottom: 30px;}
         li{
@@ -137,19 +137,16 @@
         }
     }
 }
+
 /* 로그인 */
 .signInPage div{
     form fieldset {
         & > div{margin-top: 15px;}
-        input[type="submit"]{margin-top: 30px;}
-        p{visibility: hidden; margin-top: 15px;
-            &.error{visibility: visible; font-size: 14px; font-weight: 400; line-height: 17px; text-align: center; color: var(--color-point);}
+        p{visibility: hidden; font-weight: 400; text-align: center; color: var(--color-point);
+            &.error{visibility: visible;}
         }
     }
-    strong{font-size: 15px; font-weight: 700; margin-bottom: 10px; display: block;
-        &:first-of-type{margin-top: 70px;}
-        &:not(:first-of-type){margin-top: 30px;}
-    }
+    strong{font-size: 15px; font-weight: 700; display: block;}
 }
 
 /* 회원가입 */
