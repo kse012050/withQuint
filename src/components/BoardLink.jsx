@@ -13,8 +13,8 @@ export default function BoardLink({ data, path, children }) {
     
     const id = data?.id;
     const isSecret = data?.secret === 'y';
-    const isAuthor = data?.author === user?.userId;
-
+    const isAuthor = data?.author === user?.userId
+    
     const onClick = (e) => {
         e.preventDefault();
         // postApi('boards/isIdentity', )

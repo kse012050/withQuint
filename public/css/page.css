@@ -19,8 +19,12 @@
                 li{
                     &:not(:last-child) a{border-bottom: 1px solid var(--color-gray);}
                     a{line-height: 47px; display: flex; justify-content: space-between;
-                        p{white-space: none;}
+                        p{white-space: none;
+                        }
                         time{font-weight: 400; color: var(--color-gray);}
+                        &.secret p{display: flex; align-items: center;
+                            &::before{content: ''; width: 24px; aspect-ratio: 1; background: url(../images/icon-lock.png) no-repeat center / cover; margin-right: 0.4em;}
+                        }
                     }
                 }
             }
