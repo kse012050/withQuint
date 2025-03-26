@@ -8,6 +8,8 @@
     span{
         + *{margin-left: auto;}
     }
+    
+    .btn-bg{width: 100px;}
 
     .selectBox{width: 160px;}
 

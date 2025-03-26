@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { postApi } from '../api/api';
 import { styleIdx } from '../js/style';
+import SubTitle from '../components/SubTitle';
 // import '../css/import.module.css';
 
 export default function Root() {
@@ -22,7 +23,7 @@ export default function Root() {
     useEffect(()=>{
         postApi('signIn/auth')
             .then((response)=>{
-                const {result, isLogin, message, user} = response || {};
+                const {result, isLogin, /* message, */ user} = response || {};
                 if(result){
                     setUser(user)
                     setIsLogin(isLogin);
@@ -70,6 +71,7 @@ export default function Root() {
                 </Helmet>
                 <Header />
                 <section className={`${pageName.map((name) => `${name}Page`).join(' ') || 'mainPage'}`}>
+                    <SubTitle />
                     <Outlet />
                 </section>
                 <Footer />

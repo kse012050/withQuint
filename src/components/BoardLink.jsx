@@ -7,14 +7,14 @@ import { ThemeContext } from '../context/ThemeContext';
 export default function BoardLink({ data, path, children }) {
     const { /* isLogin, */ user } = useContext(ThemeContext);
     const [popup, setPopup] = useState();
-    const pathName = useLocation().pathname + (useLocation().pathname === '/customer' ? '/vip' : '');
-    const postLink = path || pathName.split('/').filter((data) => !Number(data)).join('/')
+    const pathName = useLocation().pathname;
+    const postLink = pathName.split('/').filter((data) => !Number(data)).join('/') + (path || '')
     // console.log(postLink);
     
     const id = data?.id;
     const isSecret = data?.secret === 'y';
     const isAuthor = data?.author === user?.userId
-    
+
     const onClick = (e) => {
         e.preventDefault();
         // postApi('boards/isIdentity', )

@@ -1,11 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ThemeContext } from '../context/ThemeContext';
 import { postApi } from '../api/api';
 
 export default function Header() {
     const { isLogin, setIsLogin } = useContext(ThemeContext);
     const [ isMobileMenu, setIsMobileMenu ] = useState(false)
+    const isCustomerActive = useLocation().pathname.includes('customer')
+    
 
     const onLogout = () => {
         postApi('logout')
@@ -27,7 +29,7 @@ export default function Header() {
                         <li><NavLink to='/recommendation'>추천종목</NavLink></li>
                         <li><NavLink to='/revenue'>수익률</NavLink></li>
                         <li><NavLink to='/stock'>주식정보</NavLink></li>
-                        <li><NavLink to='/customer'>고객센터</NavLink></li>
+                        <li><NavLink to='/customer/vip' className={isCustomerActive && 'active'}>고객센터</NavLink></li>
                     </ul>
                     <div>
                         { !isLogin ? 

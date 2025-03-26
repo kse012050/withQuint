@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Board from '../components/Board';
-import SubTitle from '../components/SubTitle';
 import BoardLink from '../components/BoardLink';
 
 export default function Revenue() {
@@ -8,7 +7,6 @@ export default function Revenue() {
 
     return (
         <>
-            <SubTitle />
             <Board boardType='revenue' setList={setList}>
                 <div className='board-title'>
                     <b>번호</b>

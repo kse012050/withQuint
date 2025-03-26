@@ -11,6 +11,7 @@ import Customer from '../pages/Customer';
 import CustomerVip from '../pages/CustomerVip';
 import CustomerClinic from '../pages/CustomerClinic';
 import CustomerNotice from '../pages/CustomerNotice';
+import CustomerWrite from '../pages/CustomerWrite';
 import Detail from '../pages/Detail';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
@@ -39,10 +40,12 @@ export default function Routers() {
             </Route>
             <Route path="/customer" element={<Root />}>
                 <Route element={<Customer />}>
-                    <Route index={true} element={<CustomerVip />} />
+                    {/* <Route index={true} element={<CustomerVip />} /> */}
                     <Route path='vip' element={<CustomerVip />} />
                     <Route path='clinic' element={<CustomerClinic />} />
                     <Route path='notice' element={<CustomerNotice />} />
+                    <Route path=":boardType/:id" element={<Detail />} />
+                    <Route path=':boardType/create' element={<CustomerWrite />} /> 
                 </Route>
             </Route>
             <Route path="/signIn" element={<Root />}>
@@ -55,9 +58,6 @@ export default function Routers() {
                 <Route index={true} element={<Test />}/>
             </Route>
             <Route path="/:boardType/:id" element={<Root />}>
-                <Route index={true} element={<Detail />}/>
-            </Route>
-            <Route path="/customer/:boardType/:id" element={<Root />}>
                 <Route index={true} element={<Detail />}/>
             </Route>
         </Routes>

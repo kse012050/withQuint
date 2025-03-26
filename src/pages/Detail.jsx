@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import SubTitle from '../components/SubTitle';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getApi } from '../api/api';
 import BoardLink from '../components/BoardLink';
@@ -49,7 +48,6 @@ export default function Detail() {
     
     return (
         <>
-            <SubTitle />
             <div>
                 <BoardLink>목록</BoardLink>
                 <div className='detail-title'>
