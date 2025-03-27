@@ -30,16 +30,16 @@ const checkInputChange = (e, setInputs, setCheckInputs) =>{
 export default function SignUp() {
     const [inputs, setInputs] = useState();
     const [checkInputs, setCheckInputs] = useState();
-    const { isLogin } = useContext(ThemeContext)
+    const { user } = useContext(ThemeContext)
     const [popup, setPopup] = useState(false);
     const navigate = useNavigate()
     
     useEffect(()=>{
-        if(isLogin){
+        if(user){
             navigate('/')
         }
         inputsRequiredAdd(setInputs)
-    },[navigate, isLogin])
+    },[navigate, user])
 
     const onCheck = (type) =>{
         postApi('signUp/check', {
@@ -47,8 +47,6 @@ export default function SignUp() {
             value: checkInputs[type]
         }).then(( response )=>{
             const { result, /* message */ } = response || {};
-            console.log(response);
-            
             if(result){
                 setInputs((input)=>({...input, [type]: checkInputs[type]}))
                 setPopup({
@@ -84,7 +82,6 @@ export default function SignUp() {
 
     return (
         <>
-            <h2>회원가입</h2>
             <div>
                 <form>
                     <fieldset>

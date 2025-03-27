@@ -7,14 +7,20 @@ const titleName = {
     recommendation: '추천 종목',
     revenue: '수익률',
     stock: '웰스 주식정보',
-    customer: '고객센터'
+    customer: '고객센터',
+    signIn: '로그인',
+    signUp: '회원가입'
 }
 
 export default function SubTitle() {
     const pageName = useLocation().pathname.slice(1).split('/')[0] || 'main';
-    
+    if(!pageName){
+        return
+    }
     return (
-        <h2>{ titleName[pageName] }</h2>
+        <>
+            <h2>{ titleName[pageName] }</h2>
+        </>
     );
 }
 

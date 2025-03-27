@@ -6,7 +6,7 @@ import Popup from '../components/Popup';
 import { ThemeContext } from '../context/ThemeContext';
 
 export default function Detail() {
-    const { isLogin } = useContext(ThemeContext);
+    const { user } = useContext(ThemeContext);
     const [detail, setDetail] = useState();
     const [post, setPost] = useState();
     const [popup, setPopup] = useState();
@@ -26,7 +26,7 @@ export default function Detail() {
                     setPost(post)
                 }
             }) 
-    },[boardId, boardType, navigate, isLogin])
+    },[boardId, boardType, navigate, user])
 
     function postData(post){
         return (

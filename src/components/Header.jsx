@@ -4,7 +4,7 @@ import { ThemeContext } from '../context/ThemeContext';
 import { postApi } from '../api/api';
 
 export default function Header() {
-    const { isLogin, setIsLogin } = useContext(ThemeContext);
+    const { user, setUser } = useContext(ThemeContext);
     const [ isMobileMenu, setIsMobileMenu ] = useState(false)
     const isCustomerActive = useLocation().pathname.includes('customer')
     
@@ -14,7 +14,7 @@ export default function Header() {
             .then(( response )=>{
                 const { result } = response || {};
                 if(result){
-                    setIsLogin(false)
+                    setUser(false)
                 }
             })
     }
@@ -32,7 +32,7 @@ export default function Header() {
                         <li><NavLink to='/customer/vip' className={isCustomerActive && 'active'}>고객센터</NavLink></li>
                     </ul>
                     <div>
-                        { !isLogin ? 
+                        { !user ? 
                             <>
                                 <NavLink to='/signIn'>로그인</NavLink>
                                 <NavLink to='/signUp'>회원가입</NavLink>

@@ -6,14 +6,14 @@ import { ThemeContext } from '../context/ThemeContext';
 
 export default function SignIn() {
     const [inputs, setInputs] = useState()
-    const { isLogin, setIsLogin } = useContext(ThemeContext)
+    const { user, setUser } = useContext(ThemeContext)
     const navigate = useNavigate()
     useEffect(()=>{
-        if(isLogin){
+        if(user){
             navigate('/')
         }
         inputsRequiredAdd(setInputs)
-    },[navigate, isLogin])
+    },[navigate, user])
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -24,34 +24,15 @@ export default function SignIn() {
         }
         postApi('signIn', inputs)
             .then(( response )=>{
-                const { result/* , message */ } = response || {};
-                // console.log(result);
-                // console.log(message);
+                const { result/* , message */, user } = response || {};
                 if(result){
-                    setIsLogin(true)
-                    // console.log(result);
-                    // console.log(message);
+                    setUser(user)
                 }
             })
     }
 
-    
-
-    // const test = () =>{
-    //     postApi('test', inputs)
-    //         .then(({ result, message })=>{
-    //             console.log(result);
-    //             console.log(message);
-    //             if(result){
-    //                 console.log(result);
-    //                 console.log(message);
-    //             }
-    //         })
-    // }
-
     return (
         <>
-            <h2>로그인</h2>   
             <div>
                 <form>
                     <fieldset>

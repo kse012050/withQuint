@@ -5,7 +5,7 @@ import Popup from './Popup';
 import { ThemeContext } from '../context/ThemeContext';
 
 export default function BoardCustomerLink({ data, children }) {
-    const { /* isLogin, */ user } = useContext(ThemeContext);
+    const { user } = useContext(ThemeContext);
     const [popup, setPopup] = useState();
     const pathName = useLocation().pathname + (useLocation().pathname === '/customer' ? '/vip' : '');
     const postLink = pathName.split('/').filter((data) => !Number(data)).join('/')

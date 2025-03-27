@@ -10,35 +10,22 @@ import SubTitle from '../components/SubTitle';
 // import '../css/import.module.css';
 
 export default function Root() {
-    // const pageName = useLocation().pathname.slice(1).split('/').filter((name) => !Number(name)) || ['main'];
     const location = useLocation();
     const pageName = useMemo(() => {
         const pageArr = location.pathname.slice(1);
         return pageArr ? pageArr.split('/').map((name) => !Number(name) ? name : 'detail') : ['main'];
     }, [location.pathname]);
     
-    const [isLogin, setIsLogin] = useState(false)
     const [user, setUser] = useState()
     
     useEffect(()=>{
         postApi('signIn/auth')
             .then((response)=>{
-                const {result, isLogin, /* message, */ user} = response || {};
+                const {result, /* message, */ user} = response || {};
                 if(result){
                     setUser(user)
-                    setIsLogin(isLogin);
                 }
             })
-
-        // window.addEventListener('beforeunload', () => {
-        //     postApi('logout')
-        //         .then(( response )=>{
-        //             const { result } = response || {};
-        //             if(result){
-        //                 setIsLogin(false)
-        //             }
-        //         })
-        // });
     },[pageName])
 
     useLayoutEffect(() => {
@@ -47,24 +34,9 @@ export default function Root() {
         )
     },[pageName])
 
-    // useEffect(() => {
-    //     const observer = new MutationObserver(() => {
-    //         console.log('?');
-    //         if (document.querySelectorAll('[data-styleidx]').length) {
-    //             console.log('?');
-                
-    //             styleIdx();
-    //         }
-    //     });
-    
-    //     observer.observe(document.body, { childList: true, subtree: true });
-        
-    //     return () => observer.disconnect();
-    // }, [pageName]);
-
     return (
         <>
-            <ThemeContext.Provider value={{isLogin, setIsLogin, user}}>
+            <ThemeContext.Provider value={{ user, setUser }}>
                 <Helmet>
                     <base href="/" />
                     <link rel="stylesheet" href="/css/import.css" />
