@@ -1,5 +1,6 @@
 /* 버튼 */
-[class^="btn"]{font-size: 18px; line-height: 58px;}
+[class^="btn"][class$="big"]{font-size: 18px; line-height: 58px;}
+[class^="btn"][class$="small"]{width: 100px;}
 
 
 /* 게시물 */
@@ -9,8 +10,6 @@
         + *{margin-left: auto;}
     }
     
-    .btn-bg{width: 100px;}
-
     .selectBox{width: 160px;}
 
     .searchBox{

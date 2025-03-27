@@ -197,7 +197,7 @@ export default function SignUp() {
                             />
                             <label htmlFor="privacyPolicy"><span>[필수]</span> 개인정보처리방침 보기</label>
                         </div>
-                        <input type="submit" className='btn-bg' value="회원가입" onClick={onSubmit}/>
+                        <input type="submit" className='btn-bg-big' value="회원가입" onClick={onSubmit}/>
                     </fieldset>
                 </form>
                 {popup && <Popup popup={popup} setPopup={setPopup}/>}

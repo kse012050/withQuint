@@ -52,7 +52,7 @@ export default function Board({ children, boardType, setList }) {
                     <input type="search" placeholder='제목' name='search' value={search?.search || ''} onChange={(e)=> inputChange(e, setSearch)} onKeyDown={(e)=> e.key === 'Enter' && onSearch(e)}/>
                     <button onClick={onSearch}>검색</button>
                 </div>
-                { (isCreateBox.includes(boardType) && user) && <Link to='create' className='btn-bg'>글쓰기</Link> }
+                { (isCreateBox.includes(boardType) && user) && <Link to='create' className='btn-bg-small'>글쓰기</Link> }
             </div>
 
             <div className="board-scroll">

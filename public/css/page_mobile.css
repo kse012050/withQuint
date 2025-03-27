@@ -74,6 +74,11 @@
 }
 
 
+/* 상세페이지, 생성 페이지 */
+:is(.detailPage, .createPage) > div{
+    > a{width: 50px; font-size: 13px; line-height: 38px;}
+}
+
 /* 상세페이지 */
 .detailPage > div{
     > a{width: 50px; font-size: 13px; line-height: 38px;
@@ -90,6 +95,22 @@
             strong{margin-left: 40px;}
         }
     } 
+}
+
+
+/* 생성 페이지 */
+.createPage > div{
+    ol{font-size: 15px; line-height: 22px; margin-bottom: 40px;}
+    form{
+        ul li{
+            &:not(:last-child){margin-bottom: 30px;}
+            > label{display: block; margin-bottom: 15px;}
+            > div{
+                textarea{height: 200px}
+            }
+        }
+    }
+    .btn-bg-small{margin-top: 30px;}
 }
 
 

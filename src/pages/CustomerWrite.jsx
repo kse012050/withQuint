@@ -44,34 +44,34 @@ export default function CustomerWrite() {
                 }
                 <BoardLink>목록</BoardLink>
                 <form>
-                    <fieldset>
-                        <ul>
-                            <li>
-                                <label htmlFor=""></label>
-                                <div>
-                                    <input type="text" />
-                                </div>
-                            </li>
-                            <li>
-                                <label htmlFor=""></label>
-                                <div>
-                                    <input type="text" />
-                                </div>
-                            </li>
-                            <li>
-                                <label htmlFor=""></label>
-                                <div>
-                                    <textarea name="" id=""></textarea>
-                                </div>
-                            </li>
-                            <li>
-                                <label htmlFor=""></label>
-                                <div>
-                                    <input type="text" />
-                                </div>
-                            </li>
-                        </ul>
-                    </fieldset>
+                    <ul>
+                        <li>
+                            <label htmlFor="">제목</label>
+                            <div>
+                                <input type="text" placeholder='제목을 입력하세요.'/>
+                            </div>
+                        </li>
+                        <li>
+                            <label htmlFor="">작성자</label>
+                            <div>
+                                <input type="text" placeholder='작성자를 입력하세요.'/>
+                            </div>
+                        </li>
+                        <li>
+                            <label htmlFor="">내용</label>
+                            <div>
+                                <textarea name="" id="" placeholder='내용을 입력하세요.'></textarea>
+                            </div>
+                        </li>
+                        <li>
+                            <label htmlFor="">상태</label>
+                            <div>
+                                <input type="checkbox" />
+                                <label htmlFor="">비밀글</label>
+                            </div>
+                        </li>
+                    </ul>
+                    <input type="submit" value="등록" className='btn-bg-small'/>
                 </form>
             </div>
         </>

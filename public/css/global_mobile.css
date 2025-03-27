@@ -1,5 +1,5 @@
 /* 버튼 */
-[class^="btn"]{font-size: 15px; line-height: 48px;}
+[class^="btn"][class$="big"]{font-size: 15px; line-height: 48px;}
 
 
 /* 게시물 */
@@ -7,7 +7,7 @@
     :is(strong, span){font-size: 15px; line-height: 18px;}
     span{order: 1; width: 100%;}
 
-    .btn-bg{width: 125px;}
+    .btn-bg-small{width: 125px;}
 
     .selectBox{width: 125px;}
 

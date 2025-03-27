@@ -70,12 +70,12 @@ export default function SignIn() {
                             <input type="checkbox" name='authLogin' id='authLogin' onChange={(e)=>inputChange(e, setInputs)}/>
                             <label htmlFor="authLogin">자동 로그인</label>
                         </div>
-                        <input type="submit" className='btn-bg' value="로그인" onClick={onSubmit}/>
+                        <input type="submit" className='btn-bg-big' value="로그인" onClick={onSubmit}/>
                         <p>아이디 또는 비밀번호가 일치하지 않습니다</p>
                     </fieldset>
                 </form>
                 <strong>로그인 정보를 잊으셨나요?</strong>
-                <Link to='' className='btn-bg'>아이디/비밀번호 찾기</Link>
+                <Link to='' className='btn-bg-big'>아이디/비밀번호 찾기</Link>
                 <strong>회원이 아니신가요?</strong>
                 <Link to='' className='btn-border'>회원가입</Link>
             </div>
