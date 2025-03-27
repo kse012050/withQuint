@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getApi } from '../api/api';
 import BoardLink from '../components/BoardLink';
 import Popup from '../components/Popup';
@@ -10,18 +10,22 @@ export default function Detail() {
     const [detail, setDetail] = useState();
     const [post, setPost] = useState();
     const [popup, setPopup] = useState();
+    const [isUpdate, setIsUpdate] = useState(false)
     const navigate = useNavigate()
     const pathName = useLocation().pathname;
     const boardId = pathName.slice(1).split('/').at(-1);
     const boardType = pathName.slice(1).split('/').at(-2);
-    
+
     useEffect(() => {
         getApi('boards/detail', {boardId, boardType})
-            .then(({ result, data, post, isSecretUser } = {}) => {
+            .then(({ result, data, post, isSecretUser, isUpdateUser } = {}) => {
                 if(result){
+                    console.log(isSecretUser);
+                    
                     if(isSecretUser === false){
                         navigate('/customer/vip')
                     }
+                    setIsUpdate(isUpdateUser)
                     setDetail(data)
                     setPost(post)
                 }
@@ -33,7 +37,7 @@ export default function Detail() {
             <div className='detail-post'>
                 {Object.entries(post).map(([key, data]) => 
                     <React.Fragment key={data.id}>
-                        <BoardLink id={data.id}>
+                        <BoardLink data={data}>
                             {key === 'prev' && '이전 글'}
                             {key === 'next' && '다음 글'}
                             <strong>
@@ -44,7 +48,7 @@ export default function Detail() {
                 )}
             </div>
         )
-    }
+    }    
     
     return (
         <>
@@ -62,7 +66,13 @@ export default function Detail() {
                 <div className='detail-comments'>
                     댓글
                 </div>
-                <BoardLink>목록</BoardLink>
+                {isUpdate ?
+                    <div className='detail-update'>
+                        <Link to='update' className='btn-bg-small'>수정</Link>
+                        <button className='btn-border-small'>삭제</button>
+                    </div> :
+                    <BoardLink>목록</BoardLink>
+                }
                 {post && postData(post)}
                 { popup && <Popup popup={popup} setPopup={setPopup}/> }
             </div>

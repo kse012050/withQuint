@@ -77,7 +77,7 @@ export default function SignIn() {
                 <strong>로그인 정보를 잊으셨나요?</strong>
                 <Link to='' className='btn-bg-big'>아이디/비밀번호 찾기</Link>
                 <strong>회원이 아니신가요?</strong>
-                <Link to='' className='btn-border'>회원가입</Link>
+                <Link to='' className='btn-border-big'>회원가입</Link>
             </div>
         </>
     );

@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import BoardLink from '../components/BoardLink';
+import { inputChange, inputsRequiredAdd } from '../api/validation';
+import { ThemeContext } from '../context/ThemeContext';
+import { getApi, postApi } from '../api/api';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 // 주식상담소 신청 방법 안내
 // 계좌로 입금해주세요. 00은행 1234-000-000000, (주)위드퀀트
 // 아래 항목을 작성해주세요. 투자기간, 투자금액, 원하는 수익률
@@ -28,7 +32,44 @@ const text = {
     }
 }
 export default function CustomerWrite() {
-    const description = text['vip']
+    const { user } = useContext(ThemeContext);
+    const description = text['vip'];
+    const navigate = useNavigate();
+    const pathName = useLocation().pathname.split('/').slice(0, -1);
+    const link = pathName.join('/');
+    // const boardType = pathName[1];
+    // const apiType = pathName[2];
+    const { id, boardType } = useParams();
+    
+    const [inputs, setInputs] = useState({boardType})
+
+    useEffect(()=>{
+        inputsRequiredAdd(setInputs)
+        console.log(user);
+        if(!id) return;
+        getApi('boards/detail', {boardId: id, boardType: boardType})
+            .then(({ result, data, isSecretUser, isUpdateUser } = {}) => {
+                if(result){
+                    if(!isUpdateUser){
+                        navigate(link)
+                    }
+                    console.log(isSecretUser);
+                    console.log(data);
+                    
+                }
+            })
+    }, [user, navigate, link, id, boardType])
+    
+
+    const onSubmit = (e) => {
+        console.log(inputs);
+        postApi('boards/create', inputs)
+            .then((result)=>{
+                console.log(result);
+                
+            })
+        e.preventDefault();
+    }
     return (
         <>
             <div>
@@ -46,32 +87,59 @@ export default function CustomerWrite() {
                 <form>
                     <ul>
                         <li>
-                            <label htmlFor="">제목</label>
+                            <label htmlFor="title">제목</label>
                             <div>
-                                <input type="text" placeholder='제목을 입력하세요.'/>
+                                <input 
+                                    type="text"
+                                    placeholder='제목을 입력하세요.'
+                                    name='title'
+                                    id='title'
+                                    required
+                                    onChange={(e)=>inputChange(e, setInputs)}
+                                />
                             </div>
                         </li>
                         <li>
-                            <label htmlFor="">작성자</label>
+                            <label htmlFor="author">작성자</label>
                             <div>
-                                <input type="text" placeholder='작성자를 입력하세요.'/>
+                                <input 
+                                    type="text"
+                                    placeholder='작성자를 입력하세요.'
+                                    defaultValue={user?.userId}
+                                    name='author'
+                                    id='author'
+                                    readOnly={user}
+                                    onChange={(e)=>inputChange(e, setInputs)}
+                                />
                             </div>
                         </li>
                         <li>
-                            <label htmlFor="">내용</label>
+                            <label htmlFor="content">내용</label>
                             <div>
-                                <textarea name="" id="" placeholder='내용을 입력하세요.'></textarea>
+                                <textarea 
+                                    name="content"
+                                    id="content"
+                                    placeholder='내용을 입력하세요.'
+                                    required
+                                    onChange={(e)=>inputChange(e, setInputs)}
+                                >
+                                </textarea>
                             </div>
                         </li>
                         <li>
-                            <label htmlFor="">상태</label>
+                            <label htmlFor="secret">상태</label>
                             <div>
-                                <input type="checkbox" />
-                                <label htmlFor="">비밀글</label>
+                                <input 
+                                    type="checkbox" 
+                                    name='secret'
+                                    id='secret'
+                                    onChange={(e)=>inputChange(e, setInputs)}
+                                />
+                                <label htmlFor="secret">비밀글</label>
                             </div>
                         </li>
                     </ul>
-                    <input type="submit" value="등록" className='btn-bg-small'/>
+                    <input type="submit" value="등록" className='btn-bg-small' onClick={onSubmit}/>
                 </form>
             </div>
         </>

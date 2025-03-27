@@ -75,7 +75,7 @@
 
 
 /* 상세페이지, 생성 페이지 */
-:is(.detailPage, .createPage) > div{
+::is(.detailPage, .createPage, .updatePage) > div{
     > a{width: 50px; font-size: 13px; line-height: 38px;}
 }
 
@@ -94,12 +94,15 @@
         a{padding-block: 20px;
             strong{margin-left: 40px;}
         }
-    } 
+    }
+    .detail-update{margin-top: 20px;
+        > *{flex: 1;}
+    }
 }
 
 
 /* 생성 페이지 */
-.createPage > div{
+:is(.createPage, .updatePage) > div{
     ol{font-size: 15px; line-height: 22px; margin-bottom: 40px;}
     form{
         ul li{
