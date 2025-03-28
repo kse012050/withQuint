@@ -9,7 +9,6 @@ export default function BoardCustomerLink({ data, children }) {
     const [popup, setPopup] = useState();
     const pathName = useLocation().pathname + (useLocation().pathname === '/customer' ? '/vip' : '');
     const postLink = pathName.split('/').filter((data) => !Number(data)).join('/')
-    // console.log(postLink);
     
     const id = data.id;
     const isSecret = data.secret === 'y';

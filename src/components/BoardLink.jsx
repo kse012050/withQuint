@@ -9,7 +9,6 @@ export default function BoardLink({ data, path, children }) {
     const [popup, setPopup] = useState();
     const pathName = useLocation().pathname;
     const postLink = pathName.split('/').slice(0, 3).filter((data) => !Number(data)).join('/') + (path || '')
-    // console.log(postLink);
     
     const id = data?.id;
     const isSecret = data?.secret === 'y';

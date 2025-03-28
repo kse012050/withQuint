@@ -9,26 +9,21 @@ const messageType = {
 
 export default function Popup({ popup, setPopup }) {
     const popupRef = useRef();
-    // const func = Object.values(popup).filter((value) => typeof(value) === 'function')[0]
-    // console.log(popup);
-    console.log(popup.title);
     
-    const message = !!popup.type ? 
+    const message = !popup.title ? 
                     {...messageType[popup.type]} :
                     {
                         title : popup.title,
                         description: popup.description
                     }
-    console.log(message);
     
     useEffect(()=>{
         popupRef.current.showPopover();
         const popupEvent = () => {
-            if (popupRef.current.matches(':popover-open')) {
-                
-            }else{
-                popup.func && popup.func()
-                setPopup()
+            if(!popupRef.current.matches(':popover-open')){
+                (popup.func && popup.type !== 'check') ? 
+                    popup.func() :
+                    setPopup()
             }
         }
         popupRef.current.addEventListener('toggle', popupEvent)
@@ -39,7 +34,13 @@ export default function Popup({ popup, setPopup }) {
             <strong>{message.title}</strong>
             <p>{message.description}</p>
             <div>
-                <button popovertarget="my-popover" popovertargetaction="hidden">확인</button>
+                {popup.type === 'check' ?
+                <>
+                    <button onClick={()=> setPopup()}>취소</button>
+                    <button onClick={popup.func}>확인</button>
+                </> :
+                    <button popovertarget="my-popover" popovertargetaction="hidden">확인</button>
+                }
             </div>
         </div>
     );

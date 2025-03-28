@@ -64,8 +64,6 @@ export default function SignUp() {
     const onSubmit = (e) =>{
         e.preventDefault();
         console.log(inputs);
-        console.log(checkInputs);
-        console.log(popup);
         
         if(isSubmit(inputs)){
             return;

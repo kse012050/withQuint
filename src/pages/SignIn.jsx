@@ -18,7 +18,6 @@ export default function SignIn() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(inputs);
 
         if(isSubmit(inputs)){
             return;
