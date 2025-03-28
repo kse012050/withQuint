@@ -5,9 +5,10 @@ import { isSubmit, postApi } from '../api/api';
 import { ThemeContext } from '../context/ThemeContext';
 
 export default function SignIn() {
-    const [inputs, setInputs] = useState()
+    const [inputs, setInputs] = useState({userId: localStorage.getItem('userId'), authLogin: localStorage.getItem('userId') ? 'y': 'n'})
     const { user, setUser } = useContext(ThemeContext)
     const navigate = useNavigate()
+    
     useEffect(()=>{
         if(user){
             navigate('/')
@@ -27,6 +28,12 @@ export default function SignIn() {
                 const { result/* , message */, user } = response || {};
                 if(result){
                     setUser(user)
+                    sessionStorage.setItem("user", JSON.stringify(user));
+                    if(inputs.authLogin === 'y'){
+                        localStorage.setItem("userId", user.userId);
+                    }else{
+                        localStorage.removeItem("userId");
+                    }
                 }
             })
     }
@@ -40,13 +47,14 @@ export default function SignIn() {
                             <li>
                                 <div>
                                     <input
-                                        type="password"
+                                        type="text"
                                         placeholder='아이디 입력'
                                         name='userId'
                                         id='userId'
                                         data-formet='id'
                                         data-validation='id'
                                         onChange={(e)=>inputChange(e, setInputs)}
+                                        defaultValue={inputs?.userId}
                                         autoComplete="off" 
                                         required
                                     />
@@ -67,7 +75,7 @@ export default function SignIn() {
                             </li>
                         </ul>
                         <div>
-                            <input type="checkbox" name='authLogin' id='authLogin' onChange={(e)=>inputChange(e, setInputs)}/>
+                            <input type="checkbox" name='authLogin' id='authLogin' defaultChecked={inputs?.authLogin === 'y'} onChange={(e)=>inputChange(e, setInputs)}/>
                             <label htmlFor="authLogin">자동 로그인</label>
                         </div>
                         <input type="submit" className='btn-bg-big' value="로그인" onClick={onSubmit}/>

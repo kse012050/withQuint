@@ -16,9 +16,10 @@ export default function Root() {
         return pageArr ? pageArr.split('/').map((name) => !Number(name) ? name : 'detail') : ['main'];
     }, [location.pathname]);
     
-    const [user, setUser] = useState()
+    const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")))
     
     useEffect(()=>{
+        if(user) return;
         postApi('signIn/auth')
             .then((response)=>{
                 const {result, /* message, */ user} = response || {};
@@ -26,7 +27,7 @@ export default function Root() {
                     setUser(user)
                 }
             })
-    },[pageName])
+    },[pageName, user])
 
     useLayoutEffect(() => {
         return (

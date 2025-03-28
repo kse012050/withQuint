@@ -11,15 +11,23 @@ export default function Popup({ popup, setPopup }) {
     const popupRef = useRef();
     // const func = Object.values(popup).filter((value) => typeof(value) === 'function')[0]
     // console.log(popup);
+    console.log(popup.title);
     
-    const message = {...messageType[popup.type]}
-
+    const message = !!popup.type ? 
+                    {...messageType[popup.type]} :
+                    {
+                        title : popup.title,
+                        description: popup.description
+                    }
+    console.log(message);
+    
     useEffect(()=>{
         popupRef.current.showPopover();
         const popupEvent = () => {
             if (popupRef.current.matches(':popover-open')) {
-
+                
             }else{
+                popup.func && popup.func()
                 setPopup()
             }
         }

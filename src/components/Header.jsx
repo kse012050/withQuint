@@ -15,6 +15,7 @@ export default function Header() {
                 const { result } = response || {};
                 if(result){
                     setUser(false)
+                    sessionStorage.removeItem("user")
                 }
             })
     }
