@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getApi } from '../api/api';
-import SubTitle from '../components/SubTitle';
 
 export default function Vip() {
     const [ vipProducts, setVipProducts ] = useState()
@@ -18,7 +17,6 @@ export default function Vip() {
 
     return (
         <>
-            <SubTitle />
             <div>
                 <h3>VIP 상품</h3>
                 {vipProducts && 

@@ -1,0 +1,15 @@
+/* 관리자 */
+/* 로그인 페이지 */
+.signInPage{height: 100vh; display: flex; justify-content: center; align-items: center; background-color: var(--color-gray);
+    form{width: 300px; padding: 50px; border: 1px solid var(--color-border); border-radius: var(--box-radius); background-color: white;
+        h2{font-size: 36px; line-height: 43px; margin-bottom: 30px; font-weight: 700; text-align: center;}
+        ul{margin-bottom: 30px;
+            li{
+                &:not(:last-child){margin-bottom: 20px;}
+                div input{width: 100%;}
+            }
+        }
+        input[type="submit"]{height: 50px;}
+        
+    }
+}

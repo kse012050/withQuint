@@ -16,7 +16,6 @@ export default function Detail() {
     const boardId = pathName.slice(1).split('/').at(-1);
     const boardType = pathName.slice(1).split('/').at(-2);
     const link = pathName.split('/').slice(0, -1).join('/');
-    console.log(link);
     
     useEffect(() => {
         getApi('boards/detail', {boardId, boardType})

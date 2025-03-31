@@ -16,6 +16,14 @@ import Detail from '../pages/Detail';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Test from '../pages/Test';
+// 관리자
+import AdminRoot from '../pages/admin/Root';
+import AdminSignIn from '../pages/admin/SignIn';
+import AdminVip from '../pages/admin/Vip';
+import AdminRecommendation from '../pages/admin/Recommendation';
+import AdminRevenue from '../pages/admin/Revenue';
+import AdminStock from '../pages/admin/Stock';
+// import AdminRecommendation from '../pages/admin/Recommendation';
 
 export default function Routers() {
     return (
@@ -60,6 +68,16 @@ export default function Routers() {
             </Route>
             <Route path="/:boardType/:id" element={<Root />}>
                 <Route index={true} element={<Detail />}/>
+            </Route>
+            {/* 관리자 */}
+            <Route path="/admin">
+                <Route index={true} element={<AdminSignIn />}/>
+                <Route element={<AdminRoot />}>
+                    <Route path="vip" element={<AdminVip />}></Route>
+                    <Route path="recommendation" element={<AdminRecommendation />}></Route>
+                    <Route path="revenue" element={<AdminRevenue />}></Route>
+                    <Route path="stock" element={<AdminStock />}></Route>
+                </Route>
             </Route>
         </Routes>
     );
