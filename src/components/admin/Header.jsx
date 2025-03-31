@@ -13,29 +13,29 @@ export default function Header() {
                     <li>
                         <strong>회원 관리</strong>
                         <ul>
-                            <li><NavLink to=''>회원목록</NavLink></li>
+                            <li><NavLink to='member'>회원목록</NavLink></li>
                         </ul>
                     </li>
                     <li>
                         <strong>정보게시판</strong>
                         <ul>
-                            <li><NavLink to=''>추천종목</NavLink></li>
-                            <li><NavLink to=''>수익률</NavLink></li>
-                            <li><NavLink to=''>주식정보</NavLink></li>
+                            <li><NavLink to='recommendation'>추천종목</NavLink></li>
+                            <li><NavLink to='revenue'>수익률</NavLink></li>
+                            <li><NavLink to='stock'>주식정보</NavLink></li>
                         </ul>
                     </li>
                     <li>
                         <strong>고객센터</strong>
                         <ul>
-                            <li><NavLink to=''>VIP상품신청</NavLink></li>
-                            <li><NavLink to=''>주식상담소</NavLink></li>
+                            <li><NavLink to='customerVip'>VIP상품신청</NavLink></li>
+                            <li><NavLink to='customerClinic'>주식상담소</NavLink></li>
                         </ul>
                     </li>
                     <li>
                         <strong>사이트 관리</strong>
                         <ul>
-                            <li><NavLink to=''>VIP 상품</NavLink></li>
-                            <li><NavLink to=''>공지사항</NavLink></li>
+                            <li><NavLink to='vip'>VIP 상품</NavLink></li>
+                            <li><NavLink to='customerNotice'>공지사항</NavLink></li>
                         </ul>
                     </li>
                 </ul>
