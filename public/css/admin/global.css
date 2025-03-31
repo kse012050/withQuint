@@ -1,0 +1,27 @@
+:root{
+    --navWidth: 200px;
+    --headerHeight: 100px;
+}
+
+/* 해더 */
+header{position: fixed; left: 0; top: 0; right: 0; box-shadow: 0px 5px 21px -5px #cdd1e1;
+    div{min-width: var(--content-size); max-width: 1920px; width: calc(100% - (var(--content-size-mobile) * 2)); height: var(--headerHeight); margin-inline: auto; display: flex; justify-content: space-between; align-items: center;
+        h1 a{display: block; width: 142px; aspect-ratio: 142 / 48; background: url(../../images/logo.png) no-repeat left bottom / 100%; text-indent: -9999px;}
+        button{width: 100px;}
+    }
+    nav{position: fixed; left: 0; top: var(--headerHeight); bottom: 0; width: var(--navWidth); padding: 50px 20px; box-sizing: border-box; box-shadow: 0px 5px 21px -5px #cdd1e1;
+        > ul > li{
+            &:not(:last-child){margin-bottom: 35px;}
+            strong{display: block; font-size: 20px; line-height: 24px; font-weight: 700; margin-bottom: 15px;}
+            ul li{
+                &:not(:last-child){margin-bottom: 20px;}
+                a{font-size: 18px; line-height: 22px; font-weight: 500; display: block; padding-inline: 10px; opacity: 0.5;}
+            }
+        }
+    }
+}
+
+
+.adminPage{padding-left: var(--navWidth); padding-top: var(--headerHeight);
+    > [class$="Page"]{}
+}

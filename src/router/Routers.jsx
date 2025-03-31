@@ -19,6 +19,7 @@ import Test from '../pages/Test';
 // 관리자
 import AdminRoot from '../pages/admin/Root';
 import AdminSignIn from '../pages/admin/SignIn';
+import AdminDashboard from '../pages/admin/Dashboard';
 import AdminVip from '../pages/admin/Vip';
 import AdminRecommendation from '../pages/admin/Recommendation';
 import AdminRevenue from '../pages/admin/Revenue';
@@ -73,6 +74,7 @@ export default function Routers() {
             <Route path="/admin">
                 <Route index={true} element={<AdminSignIn />}/>
                 <Route element={<AdminRoot />}>
+                    <Route path="dashboard" element={<AdminDashboard />}></Route>
                     <Route path="vip" element={<AdminVip />}></Route>
                     <Route path="recommendation" element={<AdminRecommendation />}></Route>
                     <Route path="revenue" element={<AdminRevenue />}></Route>

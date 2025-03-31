@@ -4,15 +4,15 @@ import { Outlet, useLocation } from 'react-router-dom';
 
 export default function Root() {
     const location = useLocation();
-    const pathName = location.pathname;
+    const pathName = location.pathname.split('/').slice(2);
     console.log(pathName);
     
     return (
         <div className='adminPage'>
             <link rel="stylesheet" href="/css/admin/import.css" />
-            <Outlet />
             <Header />
-            <section>
+            <section className={pathName.map((name) => `${name}Page`).join(' ')}>
+                <Outlet />
 
             </section>
         </div>
