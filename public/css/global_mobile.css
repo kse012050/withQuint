@@ -11,7 +11,9 @@
 
     .selectBox{width: 125px;}
 
-    .searchBox{flex: 1;}
+    .searchBox{flex: 1;
+        input{width: 100%;}
+    }
 }
 
 .board-scroll{overflow: auto;

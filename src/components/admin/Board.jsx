@@ -11,10 +11,10 @@ export default function Board({ children }) {
                     <input type="date" />
                     ~
                     <input type="date" />
-                    <button>전체</button>
-                    <button>오늘</button>
-                    <button>7일</button>
-                    <button>10일</button>
+                    <button className='btn-gray'>전체</button>
+                    <button className='btn-gray'>오늘</button>
+                    <button className='btn-gray'>7일</button>
+                    <button className='btn-gray'>10일</button>
                 </div>
             </div>
             <div className='board-search'>

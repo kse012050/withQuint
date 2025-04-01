@@ -28,6 +28,7 @@ import AdminCustomerVip from '../pages/admin/CustomerVip';
 import AdminCustomerClinic from '../pages/admin/CustomerClinic';
 import AdminVip from '../pages/admin/Vip';
 import AdminCustomerNotice from '../pages/admin/CustomerNotice';
+import AdminDetail from '../pages/admin/Detail';
 
 export default function Routers() {
     return (
@@ -77,15 +78,16 @@ export default function Routers() {
             <Route path="/admin">
                 <Route index={true} element={<AdminSignIn />}/>
                 <Route element={<AdminRoot />}>
-                    <Route path="dashboard" element={<AdminDashboard />}></Route>
-                    <Route path="member" element={<AdminMember />}></Route>
-                    <Route path="recommendation" element={<AdminRecommendation />}></Route>
-                    <Route path="revenue" element={<AdminRevenue />}></Route>
-                    <Route path="stock" element={<AdminStock />}></Route>
-                    <Route path="customerVip" element={<AdminCustomerVip />}></Route>
-                    <Route path="customerClinic" element={<AdminCustomerClinic />}></Route>
-                    <Route path="vip" element={<AdminVip />}></Route>
-                    <Route path="customerNotice" element={<AdminCustomerNotice />}></Route>
+                    <Route path="dashboard" element={<AdminDashboard />} />
+                    <Route path="member" element={<AdminMember />} />
+                    <Route path="recommendation" element={<AdminRecommendation />} />
+                    <Route path="revenue" element={<AdminRevenue />} />
+                    <Route path="stock" element={<AdminStock />} />
+                    <Route path="customerVip" element={<AdminCustomerVip />} />
+                    <Route path="customerClinic" element={<AdminCustomerClinic />} />
+                    <Route path="vip" element={<AdminVip />} />
+                    <Route path="customerNotice" element={<AdminCustomerNotice />} />
+                    <Route path="detail" element={<AdminDetail />} />
                 </Route>
             </Route>
         </Routes>
