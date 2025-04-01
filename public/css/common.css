@@ -10,15 +10,49 @@
 [class^="btn"][class$="small"]{display: block; font-size: 15px; line-height: 48px;}
 
 /* 인풋 */
-input:not([type="submit"], [type="checkbox"], [type="radio"], [type="search"]), textarea{padding: 16px 15px; border: 1px solid rgba(220, 220, 220, 1); border-radius: 4px; box-sizing: border-box;}
-input[type="text"], input[type="password"]{height: 50px;}
-input[type="search"]{border: none;}
+input:not([type="submit"], [type="checkbox"], [type="radio"]), textarea{padding: 16px 15px; border: 1px solid rgba(220, 220, 220, 1); border-radius: 4px; box-sizing: border-box;}
+/* input[type="text"], input[type="password"], input[type="search"]{height: 50px;} */
+input:not([type="submit"], [type="checkbox"], [type="radio"]){height: 50px;}
 :is(input, textarea)::placeholder{color: var(--color-placeholder);}
 :is(input, textarea).error{border-color: var(--color-point); outline: var(--color-point);}
 label:has(+ div :is(input, textarea)){font-size: 15px; line-height: 18px; font-weight: 700;}
 input[readOnly]{background-color: #ededed;}
 div:has(input.error){position: relative;}
 div:has(input.error)::after{content: attr(data-err-essage); position: absolute; left: 0; top: 100%; font-size: 14px; font-weight: 400; color: var(--color-point);}
+
+/* 검색, 셀렉트 */
+.selectBox, .searchBox{--borderRadius: 4px; --height: 48px; --paddingInline: 15px; --iconSize: 18px; position: relative; border-radius: var(--borderRadius);}
+.selectBox > button::after, .searchBox button{aspect-ratio: 1; position: absolute; right: var(--paddingInline); top: 50%; translate: 0 -50%; width: var(--iconSize);}
+.selectBox{border: 1px solid var(--color-border);
+    button{height: var(--height); text-align: left;}
+    > button{width: 100%; color: var(--color-basic); height: var(--height); padding-inline: var(--paddingInline) calc(var(--paddingInline) * 2 + var(--iconSize)); box-sizing: border-box;
+        &:empty::before{content: '분류 전체'; color: var(--color-placeholder);}
+        &:after{content: ''; background: url('../images/icon-arrow.png') var(--BGImg-basic); pointer-events: none;}
+        &:has(+ div)::after{rotate: 180deg;}
+    }
+    div{position: absolute; left: 0; top: calc(100% + 10px); border: 1px solid black; border-radius: var(--borderRadius); width: 100%; background-color: white;
+        button{padding-inline: var(--paddingInline); width: 100%;}
+    }
+}
+
+.searchBox{
+    button{text-indent: -9999px; background: url('../images/icon-search.png') var(--BGImg-basic);}
+}
+
+
+/* 게시물 */
+.board-title, .board-list li a{display: flex; align-items: center;}
+.board-title{height: 56px; font-weight: 700; border-top: 2px solid #000; background-color: #F7F7F7;}
+.board-title, .board-list li a *:not(p){text-align: center;}
+:is(.board-title p, .board-list li a p){flex: 1;}
+
+.board-list{
+    &:empty{border-bottom: 1px solid var(--color-border);}
+    li{
+        a{height: 80px; border-bottom: 1px solid var(--color-border);}
+    }
+}
+
 
 /* 체크박스 */
 input[type="checkbox"]{
@@ -56,90 +90,6 @@ body:has(.popup){overflow: hidden;}
         }
     }
 }
-
-/* 탭 */
-[class $= 'Page']> ul{display: flex; justify-content: center; gap: 60px; border-bottom: 1px solid var(--color-border);
-    :is(:not(:has(.active)) li:first-child a, li a.active){color: var(--color-basic);
-        &::after{content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background-color: var(--color-point);}
-    }
-    li{
-        a{font-size: 16px; font-weight: 700; color: var(--color-gray); line-height: 60px; position: relative;}
-    }
-}
-
-/* 게시물 */
-[class^="board"]{font-size: 15px;}
-.board-menu{display: flex; align-items: center; column-gap: 10px;
-    :is(strong, span){font-size: 20px; line-height: 24px; font-weight: 500;}
-    span{color: #999;
-        strong{color: var(--color-basic);}
-    }
-
-    .selectBox, .searchBox{--borderRadius: 4px; --height: 50px; --paddingInline: 15px; --iconSize: 18px; border: 1px solid var(--color-border); position: relative; border-radius: var(--borderRadius);}
-    .selectBox > button, .searchBox input{height: var(--height); padding-inline: var(--paddingInline) calc(var(--paddingInline) * 2 + var(--iconSize)); box-sizing: border-box;}
-    .selectBox > button::after, .searchBox button{aspect-ratio: 1; position: absolute; right: var(--paddingInline); top: 50%; translate: 0 -50%; width: var(--iconSize);}
-    .selectBox{
-        button{height: var(--height); text-align: left;}
-        > button{width: 100%; color: var(--color-basic);
-            &:empty::before{content: '분류 전체'; color: var(--color-placeholder);}
-            &:after{content: ''; background: url('../images/icon-arrow.png') var(--BGImg-basic); pointer-events: none;}
-            &:has(+ div)::after{rotate: 180deg;}
-        }
-        div{position: absolute; left: 0; top: calc(100% + 10px); border: 1px solid black; border-radius: var(--borderRadius); width: 100%; background-color: white;
-            button{padding-inline: var(--paddingInline); width: 100%;}
-        }
-    }
-
-    .searchBox{
-        button{text-indent: -9999px; background: url('../images/icon-search.png') var(--BGImg-basic);}
-    }
-}
-
-.board-scroll{
-    .board-title, .board-list li a{display: flex; align-items: center;}
-    .board-title{height: 56px; font-weight: 700; border-top: 2px solid #000; background-color: #F7F7F7;}
-    .board-title, .board-list li a *:not(p){text-align: center;}
-    :is(.board-title b, .board-list li a span):not(:last-child){width: 60px;}
-    :is(.board-title p, .board-list li a p){flex: 1;}
-    :is(.board-title b, .board-list li a *):last-child{width: 75px;}
-
-    [class ^= 'board-list']{
-        &:empty{text-align: center;
-            &::before{content: '게시물이 없습니다.';}
-        }
-    }
-
-    .board-list{
-        &:empty{border-bottom: 1px solid var(--color-border);
-            &::before{line-height: 100px;}
-        }
-        li{
-            &[data-new="y"] {
-                p{font-weight: 700;}
-                time{position: relative;
-                    &::before{content: ''; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); width: 20px; aspect-ratio: 1; background: url('../images/icon-new.png') no-repeat center / cover;}
-                }
-            }
-            a{height: 80px; border-bottom: 1px solid var(--color-border);
-                &.secret p{ display: flex; align-items: center;
-                    &::before{content: ''; width: 24px; aspect-ratio: 1; background: url('../images/icon-lock.png') no-repeat center / cover; margin-right: 0.4em;}
-                }
-            }
-        }
-    }
-
-    .board-list-img{
-        &:empty&::before{line-height: 300px;}
-        li{
-            a{
-                img{width: 100%; object-fit: cover; object-position: center; border-radius: var(--box-radius);}
-                p{font-weight: 400;}
-                time{font-weight: 400; color: #999;}
-            }
-        }
-    }
-}
-
 
 .board-paging{display: flex; justify-content: center; align-items: center; --gap: 10px; gap: var(--gap);}
 .board-paging > a{--iconSize: 24px; width: var(--iconSize); aspect-ratio: 1; text-indent: -9999px; background: url('../images/icon-pagination.png') left top calc(100% / var(--styleTotal) * var(--styleIdx)) / 100%;}

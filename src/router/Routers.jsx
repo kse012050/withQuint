@@ -21,13 +21,13 @@ import AdminRoot from '../pages/admin/Root';
 import AdminSignIn from '../pages/admin/SignIn';
 import AdminDashboard from '../pages/admin/Dashboard';
 import AdminMember from '../pages/admin/Member';
-import AdminVip from '../pages/admin/Vip';
 import AdminRecommendation from '../pages/admin/Recommendation';
 import AdminRevenue from '../pages/admin/Revenue';
 import AdminStock from '../pages/admin/Stock';
-import AdminCustomerClinic from '../pages/admin/CustomerClinic';
-import AdminCustomerNotice from '../pages/admin/CustomerNotice';
 import AdminCustomerVip from '../pages/admin/CustomerVip';
+import AdminCustomerClinic from '../pages/admin/CustomerClinic';
+import AdminVip from '../pages/admin/Vip';
+import AdminCustomerNotice from '../pages/admin/CustomerNotice';
 
 export default function Routers() {
     return (
@@ -79,13 +79,13 @@ export default function Routers() {
                 <Route element={<AdminRoot />}>
                     <Route path="dashboard" element={<AdminDashboard />}></Route>
                     <Route path="member" element={<AdminMember />}></Route>
-                    <Route path="vip" element={<AdminVip />}></Route>
                     <Route path="recommendation" element={<AdminRecommendation />}></Route>
                     <Route path="revenue" element={<AdminRevenue />}></Route>
                     <Route path="stock" element={<AdminStock />}></Route>
-                    <Route path="customerClinic" element={<AdminCustomerClinic />}></Route>
-                    <Route path="customerNotice" element={<AdminCustomerNotice />}></Route>
                     <Route path="customerVip" element={<AdminCustomerVip />}></Route>
+                    <Route path="customerClinic" element={<AdminCustomerClinic />}></Route>
+                    <Route path="vip" element={<AdminVip />}></Route>
+                    <Route path="customerNotice" element={<AdminCustomerNotice />}></Route>
                 </Route>
             </Route>
         </Routes>

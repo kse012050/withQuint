@@ -1,38 +1,6 @@
 /* 테스트페이지 - 나중에 삭제 */
 input[type='radio']:checked + label{color: red;}
 
-/* 텍스트 숨기기 */
-.textHide{text-indent: -9999px; background: var(--BGImg-basic);}
-
-/* 버튼 */
-[class^="btn"]{font-weight: 700; text-align: center; border: 1px solid var(--color-point); border-radius: 4px; box-sizing: border-box;}
-[class^="btn-bg"]{background-color: var(--color-point); color: white;}
-[class^="btn-border"]{background-color: white; color: var(--color-point);}
-[class^="btn"][class$="big"]{width: 100%;}
-[class^="btn"][class$="small"]{display: block; font-size: 15px; line-height: 48px;}
-
-/* 인풋 */
-input:not([type="submit"], [type="checkbox"], [type="radio"], [type="search"]), textarea{padding: 16px 15px; border: 1px solid rgba(220, 220, 220, 1); border-radius: 4px; box-sizing: border-box;}
-input[type="text"], input[type="password"]{height: 50px;}
-input[type="search"]{border: none;}
-:is(input, textarea)::placeholder{color: var(--color-placeholder);}
-:is(input, textarea).error{border-color: var(--color-point); outline: var(--color-point);}
-label:has(+ div :is(input, textarea)){font-size: 15px; line-height: 18px; font-weight: 700;}
-input[readOnly]{background-color: #ededed;}
-div:has(input.error){position: relative;}
-div:has(input.error)::after{content: attr(data-err-essage); position: absolute; left: 0; top: 100%; font-size: 14px; font-weight: 400; color: var(--color-point);}
-
-/* 체크박스 */
-input[type="checkbox"]{
-    & + label{font-size: 15px; font-weight: 400; display: flex; align-items: center; gap: 8px; cursor: pointer;
-        &::before{--idx: 0; content: ''; width: 20px; aspect-ratio: 1; background: url(../images/icon-checkbox.png) no-repeat left top calc(100% * var(--idx)) / 100%;}
-        &:not(:last-of-type){margin-bottom: 20px;}
-    }
-    &:checked + label::before{--idx: 1;}
-    &.error + label span{color: var(--color-point);}
-} 
-
-[data-styleIdx] > *::before{background-position: left top calc(100% * var(--styleIdx)); background-size: 100%;}
 
 /* 팝업 */
 body:has([popover]){pointer-events: none; overflow: hidden;}
@@ -70,39 +38,15 @@ body:has(.popup){overflow: hidden;}
 }
 
 /* 게시물 */
-[class^="board"]{font-size: 15px;}
 .board-menu{display: flex; align-items: center; column-gap: 10px;
     :is(strong, span){font-size: 20px; line-height: 24px; font-weight: 500;}
     span{color: #999;
         strong{color: var(--color-basic);}
     }
-
-    .selectBox, .searchBox{--borderRadius: 4px; --height: 50px; --paddingInline: 15px; --iconSize: 18px; border: 1px solid var(--color-border); position: relative; border-radius: var(--borderRadius);}
-    .selectBox > button, .searchBox input{height: var(--height); padding-inline: var(--paddingInline) calc(var(--paddingInline) * 2 + var(--iconSize)); box-sizing: border-box;}
-    .selectBox > button::after, .searchBox button{aspect-ratio: 1; position: absolute; right: var(--paddingInline); top: 50%; translate: 0 -50%; width: var(--iconSize);}
-    .selectBox{
-        button{height: var(--height); text-align: left;}
-        > button{width: 100%; color: var(--color-basic);
-            &:empty::before{content: '분류 전체'; color: var(--color-placeholder);}
-            &:after{content: ''; background: url('../images/icon-arrow.png') var(--BGImg-basic); pointer-events: none;}
-            &:has(+ div)::after{rotate: 180deg;}
-        }
-        div{position: absolute; left: 0; top: calc(100% + 10px); border: 1px solid black; border-radius: var(--borderRadius); width: 100%; background-color: white;
-            button{padding-inline: var(--paddingInline); width: 100%;}
-        }
-    }
-
-    .searchBox{
-        button{text-indent: -9999px; background: url('../images/icon-search.png') var(--BGImg-basic);}
-    }
 }
 
 .board-scroll{
-    .board-title, .board-list li a{display: flex; align-items: center;}
-    .board-title{height: 56px; font-weight: 700; border-top: 2px solid #000; background-color: #F7F7F7;}
-    .board-title, .board-list li a *:not(p){text-align: center;}
     :is(.board-title b, .board-list li a span):not(:last-child){width: 60px;}
-    :is(.board-title p, .board-list li a p){flex: 1;}
     :is(.board-title b, .board-list li a *):last-child{width: 75px;}
 
     [class ^= 'board-list']{
@@ -142,13 +86,6 @@ body:has(.popup){overflow: hidden;}
     }
 }
 
-
-.board-paging{display: flex; justify-content: center; align-items: center; --gap: 10px; gap: var(--gap);}
-.board-paging > a{--iconSize: 24px; width: var(--iconSize); aspect-ratio: 1; text-indent: -9999px; background: url('../images/icon-pagination.png') left top calc(100% / var(--styleTotal) * var(--styleIdx)) / 100%;}
-.board-paging ol{display: flex; justify-content: center; align-items: center; gap: var(--gap);}
-.board-paging ol li a{width: 24px; line-height: 24px; font-weight: 700; text-align: center;
-    &.active{color: var(--color-point); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 2px;}
-}
 
 
 /* 해더 */

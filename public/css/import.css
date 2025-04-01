@@ -1,5 +1,6 @@
 @import url('reset.css');
 @import url('root.css');
+@import url('common.css');
 @import url('global.css');
 @import url('global_pc.css') screen and (width >= 1280px);
 @import url('global_mobile.css') screen and (width < 1280px);
