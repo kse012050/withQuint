@@ -81,9 +81,6 @@ export function isValidation(type, value, checkValue){
 export const inputChange = (e, setInputs, checkValue) => {
     const { value, name, checked, type, dataset: { formet, validation }, files } = e.target;
     
-    if(name === 'userId'){
-        e.target.type = 'text';
-    }
     if(formet && !!value && !isFormet(formet, value)['is']){
         const cur = e.target.selectionStart - 1;
         e.target.value = isFormet(formet, value)['value'];

@@ -1,16 +1,38 @@
-import React, { useState } from 'react';
-import { inputChange } from '../../api/validation';
-import { postApi } from '../../api/api';
+import React, { useEffect, useState } from 'react';
+import { inputChange, inputsRequiredAdd } from '../../api/validation';
+import { isSubmit, postApi } from '../../api/api';
+import Popup from '../../components/Popup';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
     const [inputs, setInputs] = useState();
+    const [popup, setPopup] = useState();
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        inputsRequiredAdd(setInputs)
+    },[])
 
     const onSubmit = (e) => {
         e.preventDefault();
+        
+        if(isSubmit(inputs)){
+            return;
+        }
         postApi('signIn', inputs)
-            .then((result) => {
-                console.log(result);
+            .then(({ result, state } = {}) => {
+                const messageType = {type: ''}
                 
+                if(result){
+                    if(state){
+                        navigate('dashboard')
+                    }else{
+                        messageType.type = 'failSignIn'
+                    }
+                }else{
+                    messageType.type = 'failServer'
+                }
+                setPopup(messageType)
             })
     }
     return (
@@ -27,6 +49,7 @@ export default function SignIn() {
                                     placeholder='id'
                                     name="adminId"
                                     onChange={(e)=>inputChange(e, setInputs)}
+                                    required
                                 />
                             </div>
                         </li>
@@ -37,6 +60,7 @@ export default function SignIn() {
                                     placeholder='password'
                                     name="password"
                                     onChange={(e)=>inputChange(e, setInputs)}
+                                    required
                                 />
                             </div>
                         </li>
@@ -44,6 +68,7 @@ export default function SignIn() {
                     <input type="submit" className='btn-bg-big' value="로그인" onClick={onSubmit}/>
                 </form>
             </div>
+            { popup && <Popup popup={popup} setPopup={setPopup}/> }
         </>
     );
 }

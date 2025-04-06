@@ -18,16 +18,16 @@ export default function Root() {
     
     const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")))
     
-    useEffect(()=>{
-        if(user) return;
-        postApi('signIn/auth')
-            .then((response)=>{
-                const {result, /* message, */ user} = response || {};
-                if(result){
-                    setUser(user)
-                }
-            })
-    },[pageName, user])
+    // useEffect(()=>{
+    //     if(user) return;
+    //     postApi('signIn/auth')
+    //         .then((response)=>{
+    //             const {result, /* message, */ user} = response || {};
+    //             if(result){
+    //                 setUser(user)
+    //             }
+    //         })
+    // },[user])
 
     useLayoutEffect(() => {
         return (
