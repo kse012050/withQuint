@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { inputsRequiredAdd, inputChange, inputErrCheck } from '../api/validation.js';
+import { inputsRequiredAdd, inputChange, checkInputChange, inputErrCheck } from '../api/validation.js';
 import { postApi, isSubmit } from '../api/api.js';
 import Popup from '../components/Popup.jsx';
 import { ThemeContext } from '../context/ThemeContext.jsx';
@@ -12,20 +12,6 @@ import { useNavigate } from 'react-router-dom';
 //     mobile: ''
 // }
 
-const checkInputChange = (e, setInputs, setCheckInputs) =>{
-    const { name, dataset: { resetName } } = e.target;
-    setInputs(prev => {
-        const obj = {...prev};
-        if(obj[resetName]){
-            document.querySelector(`[name="${resetName}"]`).classList.add('error');
-        }
-        if(obj[resetName || name]){
-            obj[resetName || name] = '';
-        }
-        return obj;
-    });
-    inputChange(e, setCheckInputs)
-}
 
 export default function SignUp() {
     const [inputs, setInputs] = useState();
@@ -64,6 +50,7 @@ export default function SignUp() {
     const onSubmit = (e) =>{
         e.preventDefault();
         console.log(inputs);
+        console.log(checkInputs);
         
         if(isSubmit(inputs)){
             return;
@@ -87,9 +74,15 @@ export default function SignUp() {
                         <ul>
                             <li>
                                 <label htmlFor="userId">아이디</label>
-                                <div data-err-essage="영문 또는 영문/숫자 조합하여 4~20자리만 가능합니다.">
+                                <div 
+                                    data-err-message={
+                                        checkInputs?.userId ?
+                                            `아이디 중복 확인을 해주세요.` :
+                                            `영문 또는 영문/숫자 조합하여 4~20자리만 가능합니다.`
+                                    }
+                                >
                                     <input 
-                                        type="password"
+                                        type="text"
                                         placeholder='영문 또는 영문/숫자 조합하여 4~20자리'
                                         name='userId'
                                         id='userId'
@@ -105,30 +98,31 @@ export default function SignUp() {
                             </li>
                             <li>
                                 <label htmlFor="checkPW">비밀번호</label>
-                                <div data-err-essage="영문/숫자/특수문자 조합하여 8~20자리만 가능합니다.">
-                                    <input type="password"
-                                    placeholder='영문/숫자/특수문자 조합하여 8~20자리'
-                                    name='checkPW'
-                                    id='checkPW'
-                                    data-formet='password'
-                                    data-validation='password'
-                                    data-reset-name="password"
-                                    onChange={(e)=>checkInputChange(e, setInputs, setCheckInputs)}
-                                    onBlur={(e)=>inputErrCheck(e)}
-                                    autoComplete="off" 
-                                    required
-                                />
+                                <div data-err-message="영문/숫자/특수문자 조합하여 8~20자리만 가능합니다.">
+                                    <input 
+                                        type="password"
+                                        placeholder='영문/숫자/특수문자 조합하여 8~20자리'
+                                        name='checkPW'
+                                        id='checkPW'
+                                        data-formet='password'
+                                        data-validation='password'
+                                        data-reset-name="password"
+                                        onChange={(e)=>inputChange(e, setInputs)}
+                                        onBlur={(e)=>inputErrCheck(e)}
+                                        autoComplete="off" 
+                                        required
+                                    />
                                 </div>
                             </li>
                             <li>
                                 <label htmlFor="password">비밀번호 확인</label>
-                                <div data-err-essage="비밀번호가 다릅니다.">
+                                <div data-err-message="비밀번호가 다릅니다.">
                                     <input
                                         type="password"
                                         name='password'
                                         id='password'
                                         data-validation='checkPW'
-                                        onChange={(e)=>inputChange(e, setInputs, checkInputs?.checkPW)}
+                                        onChange={(e)=>inputChange(e, setInputs, inputs?.checkPW)}
                                         onBlur={(e)=>inputErrCheck(e)}
                                         autoComplete="off" 
                                         required
@@ -137,7 +131,13 @@ export default function SignUp() {
                             </li>
                             <li>
                                 <label htmlFor="nickname">닉네임 (특수문자 제외)</label>
-                                <div data-err-essage="특수문자는 사용할 수 없습니다.">
+                                <div
+                                    data-err-message={
+                                        checkInputs?.userId ?
+                                            `닉네임 중복 확인을 해주세요.` :
+                                            `특수문자는 사용할 수 없습니다.`
+                                    } 
+                                >
                                     <input
                                         type="text"
                                         name='nickname'
@@ -153,7 +153,7 @@ export default function SignUp() {
                             </li>
                             <li>
                                 <label htmlFor="mobile">휴대폰 번호</label>
-                                <div data-err-essage="휴대폰 번호를 확인해주세요.">
+                                <div data-err-message="휴대폰 번호를 확인해주세요.">
                                     <input 
                                         type="text"
                                         name='mobile'

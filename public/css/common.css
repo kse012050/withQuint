@@ -16,11 +16,16 @@ input:not([type="submit"], [type="checkbox"], [type="radio"]), textarea{padding:
 /* input[type="text"], input[type="password"], input[type="search"]{height: 50px;} */
 input:not([type="submit"], [type="checkbox"], [type="radio"]){height: 50px;}
 :is(input, textarea)::placeholder{color: var(--color-placeholder);}
-:is(input, textarea).error{border-color: var(--color-point); outline: var(--color-point);}
 label:has(+ div :is(input, textarea)){font-size: 15px; line-height: 18px; font-weight: 700;}
 input[readOnly]{background-color: #ededed;}
-div:has(input.error){position: relative;}
-div:has(input.error)::after{content: attr(data-err-essage); position: absolute; left: 0; top: 100%; font-size: 14px; font-weight: 400; color: var(--color-point);}
+form div[data-err-message]{
+    &:has(input.error) {position: relative;
+        &::after{content: attr(data-err-message); position: absolute; left: 0; top: 100%; font-size: 14px; font-weight: 400; color: var(--color-point);}
+        > :is(input, textarea).error{border-color: var(--color-point); outline: var(--color-point);}
+    }
+}
+/* div:has(input.error){position: relative;}
+div:has(input.error)::after{content: attr(data-err-message); position: absolute; left: 0; top: 100%; font-size: 14px; font-weight: 400; color: var(--color-point);} */
 
 /* 검색, 셀렉트 */
 .selectBox, .searchBox{--borderRadius: 4px; --height: 48px; --paddingInline: 15px; --iconSize: 18px; position: relative; border-radius: var(--borderRadius);}

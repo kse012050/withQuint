@@ -1,9 +1,9 @@
 // 필수 입력 학목 추가
 export const inputsRequiredAdd = (setInputs) =>{
     document.querySelectorAll('[required]').forEach(({ name, type, value, checked })=>{
-        if(name.includes('check')){
+/*         if(name.includes('check')){
             return;
-        }
+        } */
         if(type === 'checkbox' || type === 'radio'){
             setInputs((input)=>({...input, [name]: checked ? 'y' : 'n'}))
         }else{
@@ -18,28 +18,24 @@ const formetMap = {
         const regex = /^[a-zA-Z0-9]*$/;
         return {
             is: regex.test(value),
-            value: value.replace(/[^a-zA-Z0-9\s]/g, '')
         };
     },
     password(value) {
         const regex = /^[a-zA-Z0-9!@#$%^&*()_+-=,.<>?/;:'"]*$/;
         return {
             is: regex.test(value),
-            value: value.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '')
         };
     },
     nickname(value) {
         const regex = /^[a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*$/;
         return {
             is: regex.test(value),
-            value: value.replace(/[!@#$%^&*()_+\-=,.<>?/;:'"]/g, '')
         };
     },
     numb(value) {
         const regex = /^[0-9]+$/;
         return {
             is: regex.test(value),
-            value: value.replace(/\D/g, '')
         };
     },
 }
@@ -79,12 +75,10 @@ export function isValidation(type, value, checkValue){
 }
 
 export const inputChange = (e, setInputs, checkValue) => {
-    const { value, name, checked, type, dataset: { formet, validation }, files } = e.target;
+    const { value, name, checked, type, dataset: { formet, validation, resetName }, files } = e.target;
+    
     
     if(formet && !!value && !isFormet(formet, value)['is']){
-        const cur = e.target.selectionStart - 1;
-        e.target.value = isFormet(formet, value)['value'];
-        e.target.setSelectionRange(cur, cur);
         e.target.classList.add('error')
         return
     }else if(validation && !isValidation(validation, value, checkValue)){
@@ -95,6 +89,21 @@ export const inputChange = (e, setInputs, checkValue) => {
         e.target.classList.remove('error')
     }
 
+    
+    if(resetName){
+        const target = document.querySelector(`[name="${resetName}"]`);
+        const resetValue = target?.value;
+    
+        if (resetValue) {
+            const isMismatch = value !== resetValue;
+            target.classList.toggle('error', isMismatch);
+            setInputs(input => ({
+                ...input,
+                [resetName]: isMismatch ? '' : value
+            }));
+        }
+    }
+    
     if(type === 'checkbox'){
         setInputs((input)=> ({...input, [name]: checked ? 'y': 'n'}))
     }else if(type === 'radio'){
@@ -104,6 +113,18 @@ export const inputChange = (e, setInputs, checkValue) => {
     }else{
         setInputs((input)=> ({...input, [name]: e.target.value}))
     }
+}
+
+export const checkInputChange = (e, setInputs, setCheckInputs) =>{
+    const { name, dataset: { resetName } } = e.target;
+    setInputs(prev => {
+        const obj = {...prev};
+        if(obj[resetName || name]){
+            obj[resetName || name] = '';
+        }
+        return obj;
+    });
+    inputChange(e, setCheckInputs)
 }
 
 export const inputErrCheck = (e) => {
