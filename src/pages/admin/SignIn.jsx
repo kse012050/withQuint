@@ -11,6 +11,12 @@ export default function SignIn() {
 
     useEffect(()=>{
         inputsRequiredAdd(setInputs)
+
+        postApi('admin/logout')
+            .then(( response ) => {
+                console.log(response);
+                
+            })
     },[])
 
     const onSubmit = (e) => {

@@ -57,14 +57,9 @@ export default function SignUp() {
         const data = {...inputs};
         delete data.checkPW;
 
-        console.log(data);
-        
-        
         postApi('signUp', data)
             .then(( response )=>{
                 const { result, /* message */ } = response || {};
-                console.log(result);
-                
                 if(result){
                     navigate('/signIn')
                 }

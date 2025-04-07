@@ -1,12 +1,24 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { postApi } from '../../api/api';
 
 export default function Header() {
+    const navigate = useNavigate()
+
+    const onLogout = () => {
+        postApi('logout')
+            .then(({ result })=>{
+                if(result){
+                    navigate('/admin')
+                }
+            })
+    }
+
     return (
         <header>
             <div>
                 <h1><Link to='/admin/dashboard'>위드퀸트 관리자 로고</Link></h1>
-                <button className='btn-bg-small'>로그아웃</button>
+                <button className='btn-bg-small' onClick={onLogout}>로그아웃</button>
             </div>
             <nav>
                 <ul>
