@@ -31,13 +31,12 @@ export default function SignUp() {
         postApi('signUp/check', {
             type: type,
             value: checkInputs[type]
-        }).then(( response )=>{
-            const { result, /* message */ } = response || {};
+        }).then(({ result, state, message } = {})=>{
             if(result){
-                setInputs((input)=>({...input, [type]: checkInputs[type]}))
+                state && setInputs((input)=>({...input, [type]: checkInputs[type]}))
                 setPopup({
                     title: '안내',
-                    description: `사용할 수 있는 ${type === 'userId' ? '아이디' : '닉네임'} 입니다`
+                    description: message
                 })
             }
         })
@@ -50,11 +49,15 @@ export default function SignUp() {
     const onSubmit = (e) =>{
         e.preventDefault();
         console.log(inputs);
-        console.log(checkInputs);
+        
         
         if(isSubmit(inputs)){
             return;
         }
+
+        
+        const data = {...inputs};
+        delete data.checkPw;
         
         postApi('signUp', inputs)
             .then(( response )=>{

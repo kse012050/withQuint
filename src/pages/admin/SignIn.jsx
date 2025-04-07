@@ -19,6 +19,7 @@ export default function SignIn() {
         if(isSubmit(inputs)){
             return;
         }
+
         postApi('signIn', inputs)
             .then(({ result, state } = {}) => {
                 const messageType = {type: ''}
