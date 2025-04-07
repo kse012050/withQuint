@@ -48,8 +48,6 @@ export default function SignUp() {
 
     const onSubmit = (e) =>{
         e.preventDefault();
-        console.log(inputs);
-        
         
         if(isSubmit(inputs)){
             return;
@@ -57,11 +55,16 @@ export default function SignUp() {
 
         
         const data = {...inputs};
-        delete data.checkPw;
+        delete data.checkPW;
+
+        console.log(data);
         
-        postApi('signUp', inputs)
+        
+        postApi('signUp', data)
             .then(( response )=>{
                 const { result, /* message */ } = response || {};
+                console.log(result);
+                
                 if(result){
                     navigate('/signIn')
                 }
