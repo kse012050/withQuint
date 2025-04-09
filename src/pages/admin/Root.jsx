@@ -12,7 +12,7 @@ export default function Root() {
         getApi('admin/auth')
             .then(({result, state} = {})=>{
                 if(!result || !state){
-                    navigate('/admin')
+                    // navigate('/admin')
                 }
             })
     },[navigate])

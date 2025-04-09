@@ -12,7 +12,7 @@ export default function Recommendation() {
                     <b>번호</b>
                     <b>분류</b>
                     <p>제목</p>
-                    <b>등록일자</b>
+                    <b className='time'>등록일자</b>
                 </div>
                 <ol className="board-list">
                     {list && list.map((data, idx)=>
