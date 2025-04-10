@@ -12,14 +12,14 @@ export default function Revenue() {
                     <b>번호</b>
                     <b>분류</b>
                     <p>제목</p>
-                    <b>등록일자</b>
+                    <b className='time'>등록일자</b>
                 </div>
                 <ol className="board-list">
                     {list && list.map((data)=>
                         <li key={data.id} data-new={data.new}>
                             <BoardLink data={data}>
                                 <span>{data.numb}</span>
-                                <span>{{ 'free': '무료', 'vip': 'VIP' }[data.type]}</span>
+                                <span>{data.type}</span>
                                 <p>{data.title}</p>
                                 <time>{data.created}</time>
                             </BoardLink>

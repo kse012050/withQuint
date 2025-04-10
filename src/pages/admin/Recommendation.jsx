@@ -34,10 +34,10 @@ export default function Recommendation() {
                         <li key={data.id}>
                             <Link to=''>
                                 <span>{ data.numb }</span>
-                                <span>{{ 'free': '무료', 'vip': 'VIP' }[data.type]}</span>
+                                <span>{data.type}</span>
                                 <p>{ data.title }</p>
                                 <time>{ data.created }</time>
-                                <span>{ data.visible ? '노출' : '숨김' }</span>
+                                <span>{ data.visible }</span>
                             </Link>
                         </li>
                     )}

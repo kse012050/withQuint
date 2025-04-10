@@ -19,7 +19,7 @@ export default function Recommendation() {
                         <li key={data.id} data-new={data.new}>
                             <BoardLink data={data}>
                                 <span>{data.numb}</span>
-                                <span>{{ 'free': '무료', 'vip': 'VIP' }[data.type]}</span>
+                                <span>{data.type}</span>
                                 <p>{data.title}</p>
                                 <time>{data.created}</time>
                             </BoardLink>

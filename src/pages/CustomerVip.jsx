@@ -11,7 +11,7 @@ export default function CustomerVip() {
                 <b>번호</b>
                 <p>제목</p>
                 <b>작성자</b>
-                <b>등록일자</b>
+                <b className='time'>등록일자</b>
             </div>
             <ol className="board-list">
                 {list && list.map((data)=>
