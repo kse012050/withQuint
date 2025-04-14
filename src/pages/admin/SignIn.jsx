@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { inputChange, inputsRequiredAdd } from '../../api/validation';
-import { isSubmit, postApi } from '../../api/api';
+import { getApi, isSubmit, postApi } from '../../api/api';
 import Popup from '../../components/Popup';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,12 +12,13 @@ export default function SignIn() {
     useEffect(()=>{
         inputsRequiredAdd(setInputs)
 
-        postApi('admin/logout')
-            .then(( response ) => {
-                console.log(response);
-                
+        getApi('admin/auth')
+            .then(({ result, state })=>{
+                if(result && state){
+                    navigate('dashboard')
+                }
             })
-    },[])
+    },[navigate])
 
     const onSubmit = (e) => {
         e.preventDefault();

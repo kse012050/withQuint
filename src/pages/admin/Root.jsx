@@ -10,9 +10,9 @@ export default function Root() {
 
     useEffect(()=>{
         getApi('admin/auth')
-            .then(({result, state} = {})=>{
-                if(!result || !state){
-                    // navigate('/admin')
+            .then(({ result, state })=>{
+                if(result && !state){
+                    navigate('/admin')
                 }
             })
     },[navigate])

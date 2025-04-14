@@ -6,9 +6,9 @@ export default function Header() {
     const navigate = useNavigate()
 
     const onLogout = () => {
-        postApi('logout')
-            .then(({ result })=>{
-                if(result){
+        postApi('admin/logout')
+            .then(({ result, state })=>{
+                if(result && state){
                     navigate('/admin')
                 }
             })
