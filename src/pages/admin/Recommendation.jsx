@@ -1,27 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Board from '../../components/admin/Board';
 import { Link } from 'react-router-dom';
-import { getApi } from '../../api/api';
 
 export default function Recommendation() {
     const [list, setList] = useState()
-
-    useEffect(()=>{
-        getApi('admin/boards', {boardType: 'recommendation'})
-            .then((response)=>{
-                const {result, list} = response || {};
-                console.log(response);
-                if(result){
-                    // setList(result);
-                    setList(list)
-                }
-            })
-    }, [])
+    
     return (
         <>
             <h2>추천 종복</h2>
             <button className='btn-bg-small'>생성</button>
-            <Board>
+            <Board boardType='recommendation' setList={setList}>
                 <div className='board-title'>
                     <b>번호</b>
                     <b>분류</b>
