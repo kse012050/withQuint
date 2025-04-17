@@ -21,7 +21,7 @@ export default function Stock() {
                         <li key={data.id}>
                             <Link to=''>
                                 <span>{ data.numb }</span>
-                                <img src={data.image} alt="" />
+                                <img src={data.image} alt={`${data.title} 이미지`} />
                                 <p>{ data.title }</p>
                                 <time>{ data.created }</time>
                                 <span>{ data.visible }</span>
