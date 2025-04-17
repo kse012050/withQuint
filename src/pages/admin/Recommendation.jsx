@@ -7,7 +7,6 @@ export default function Recommendation() {
     
     return (
         <>
-            <h2>추천 종복</h2>
             <button className='btn-bg-small'>생성</button>
             <Board boardType='recommendation' setList={setList}>
                 <div className='board-title'>

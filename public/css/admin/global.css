@@ -8,14 +8,6 @@
 .btn-gray{color: var(--color-placeholder); font-weight: 500; height: 50px; border-color: var(--color-border); padding-inline: 15px; box-sizing: border-box;}
 
 
-/* 게시물 */
-:is(.board-title b, .board-list li a span):not(:is(.time, time)){width: 60px;}
-:is(.board-title b.time, .board-list li a time){width: 75px;}
-.board-title, .board-list li a{padding-inline: 30px;}
-:is(.board-title b, .board-list li a :is(span, time)){padding-inline: 40px;}
-:is(.board-title p, .board-list li a p){padding-inline: 60px;}
-
-
 /* 해더 */
 header{position: fixed; left: 0; top: 0; right: 0; box-shadow: 0px 5px 21px -5px #cdd1e1; background-color: white; z-index: 100;
     div{min-width: var(--content-size); width: calc(100% - (var(--content-size-mobile) * 2)); height: var(--headerHeight); margin-inline: auto; display: flex; justify-content: space-between; align-items: center;
@@ -36,6 +28,7 @@ header{position: fixed; left: 0; top: 0; right: 0; box-shadow: 0px 5px 21px -5px
 }
 
 
+/* 게시물 */
 .adminPage{padding-left: var(--navWidth); padding-top: var(--headerHeight);
     > [class$="Page"]:not(.detailPage){display: grid; grid-template-columns: repeat(2, 1fr);
         > *:not(span, .board-select){grid-column: 1 / 3;}
@@ -54,6 +47,14 @@ header{position: fixed; left: 0; top: 0; right: 0; box-shadow: 0px 5px 21px -5px
             }
         }
         > span{font-size: 20px; line-height: 24px; font-weight: 500; align-self: center;}
+        .board-list:empty::before{line-height: 100px;}
         .board-paging{margin-top: 50px;}
     }
 }
+
+:is(.board-title b, .board-list li a span):not(:is(.time, time, .img)){width: 60px;}
+:is(.board-title b:is(.time, .img), .board-list li a :is(time, img)){width: 75px;}
+.board-title, .board-list li a{padding-inline: 30px;}
+:is(.board-title b, .board-list li a :is(span, time, img)){padding-inline: 40px;}
+:is(.board-title p, .board-list li a p){padding-inline: 60px;}
+.board-list li a img{height: 60px; object-fit: cover;}

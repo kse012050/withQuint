@@ -1,22 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Board from '../../components/admin/Board';
 import { Link } from 'react-router-dom';
 
 export default function Vip() {
+    const [list, setList] = useState()
+
     return (
         <>
-            <h2>VIP 상품</h2>
             <button className='btn-bg-small'>테스트</button>
-            <Board>
+            <Board boardType='vip' setList={setList}>
                 <div className='board-title'>
-                    <b>1</b>
+                    <b>번호</b>
+                    <b>분류</b>
+                    <p>제목</p>
+                    <b className='time'>등록일자</b>
+                    <b>상태</b>
                 </div>
                 <ol className='board-list'>
-                    <li>
-                        <Link to=''>
-                            <span>1</span>
-                        </Link>
-                    </li>
+                    {list && list.map((data) => 
+                        <li key={data.id}>
+                            <Link to=''>
+                                <span>{ data.numb }</span>
+                                <span>{data.type}</span>
+                                <p>{ data.title }</p>
+                                <time>{ data.created }</time>
+                                <span>{ data.visible }</span>
+                            </Link>
+                        </li>
+                    )}
                 </ol>
             </Board>
         </>

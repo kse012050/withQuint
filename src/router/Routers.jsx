@@ -83,10 +83,12 @@ export default function Routers() {
                     <Route path="recommendation" element={<AdminRecommendation />} />
                     <Route path="revenue" element={<AdminRevenue />} />
                     <Route path="stock" element={<AdminStock />} />
-                    <Route path="customerVip" element={<AdminCustomerVip />} />
-                    <Route path="customerClinic" element={<AdminCustomerClinic />} />
+                    <Route path="customer">
+                        <Route path="vip" element={<AdminCustomerVip />} />
+                        <Route path="clinic" element={<AdminCustomerClinic />} />
+                        <Route path="notice" element={<AdminCustomerNotice />} />
+                    </Route>
                     <Route path="vip" element={<AdminVip />} />
-                    <Route path="customerNotice" element={<AdminCustomerNotice />} />
                     <Route path="detail" element={<AdminDetail />} />
                 </Route>
             </Route>

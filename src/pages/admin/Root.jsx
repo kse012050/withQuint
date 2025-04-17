@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Header from '../../components/admin/Header';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { getApi } from '../../api/api';
+import SubTitle from '../../components/SubTitle';
 
 export default function Root() {
     const location = useLocation();
@@ -22,6 +23,7 @@ export default function Root() {
             <link rel="stylesheet" href="/css/admin/import.css" />
             <Header />
             <section className={pathName.map((name) => `${name}Page`).join(' ')}>
+                <SubTitle />
                 <Outlet />
             </section>
         </div>

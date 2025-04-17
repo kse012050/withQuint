@@ -13,7 +13,9 @@ const titleName = {
 }
 
 export default function SubTitle() {
-    const pageName = useLocation().pathname.slice(1).split('/')[0] || 'main';
+    const isAdmin = useLocation().pathname.includes('admin');
+    const pageName = useLocation().pathname.slice(1).split('/')[+isAdmin] || 'main';
+    
     if(!pageName){
         return
     }

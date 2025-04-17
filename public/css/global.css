@@ -49,12 +49,6 @@ body:has(.popup){overflow: hidden;}
     :is(.board-title b, .board-list li a span):not(:is(.time, time)){width: 60px;}
     :is(.board-title b.time, .board-list li a time){width: 75px;}
 
-    [class ^= 'board-list']{
-        &:empty{text-align: center;
-            &::before{content: '게시물이 없습니다.';}
-        }
-    }
-
     .board-list{
         &:empty{border-bottom: 1px solid var(--color-border);
             &::before{line-height: 100px;}
