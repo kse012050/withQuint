@@ -39,15 +39,15 @@ export default function Header() {
                     <li>
                         <strong>고객센터</strong>
                         <ul>
-                            <li><NavLink to='customer/vip'>VIP상품신청</NavLink></li>
-                            <li><NavLink to='customer/clinic'>주식상담소</NavLink></li>
+                            <li><NavLink to='vip'>VIP상품신청</NavLink></li>
+                            <li><NavLink to='clinic'>주식상담소</NavLink></li>
                         </ul>
                     </li>
                     <li>
                         <strong>사이트 관리</strong>
                         <ul>
-                            <li><NavLink to='vip'>VIP 상품</NavLink></li>
-                            <li><NavLink to='customer/notice'>공지사항</NavLink></li>
+                            <li><NavLink to='vipProduct'>VIP 상품</NavLink></li>
+                            <li><NavLink to='notice'>공지사항</NavLink></li>
                         </ul>
                     </li>
                 </ul>

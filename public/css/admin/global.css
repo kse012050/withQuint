@@ -5,7 +5,7 @@
 
 /* 버튼 */
 .btn-bg-small{padding-inline: 20px;}
-.btn-gray{color: var(--color-placeholder); font-weight: 500; height: 50px; border-color: var(--color-border); padding-inline: 15px; box-sizing: border-box;}
+.btn-gray{color: var(--color-placeholder); font-weight: 500; height: 50px; align-content: center; border-color: var(--color-border); padding-inline: 15px; box-sizing: border-box;}
 
 
 /* 해더 */
@@ -58,3 +58,16 @@ header{position: fixed; left: 0; top: 0; right: 0; box-shadow: 0px 5px 21px -5px
 :is(.board-title b, .board-list li a :is(span, time, img)){padding-inline: 40px;}
 :is(.board-title p, .board-list li a p){padding-inline: 60px;}
 .board-list li a img{height: 60px; object-fit: cover;}
+
+
+/* 상세 페이지 */
+.detail-list{border-top: 2px solid #000;
+    li{display: flex; border-bottom: 1px solid var(--color-border);
+        > *{padding-block: 16px;}
+        > label{min-width: 150px; background-color: #F7F7F7; align-content: center; text-align: center;}
+        > div{padding-inline: 15px; flex: 1; display: flex; gap: 10px;
+            :is(input, textarea){width: 100%;}
+            textarea{height: 150px;}
+        }
+    }
+}

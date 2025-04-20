@@ -65,14 +65,14 @@ div:has(input.error)::after{content: attr(data-err-message); position: absolute;
 
 
 /* 체크박스 */
-input[type="checkbox"]{
+input:is([type="checkbox"], [type="radio"]){
     & + label{font-size: 15px; font-weight: 400; display: flex; align-items: center; gap: 8px; cursor: pointer;
         &::before{--idx: 0; content: ''; width: 20px; aspect-ratio: 1; background: url(../images/icon-checkbox.png) no-repeat left top calc(100% * var(--idx)) / 100%;}
-        &:not(:last-of-type){margin-bottom: 20px;}
     }
     &:checked + label::before{--idx: 1;}
     &.error + label span{color: var(--color-point);}
 } 
+input[type="checkbox"] + label:not(:last-of-type){margin-bottom: 20px;}
 
 [data-styleIdx] > *::before{background-position: left top calc(100% * var(--styleIdx)); background-size: 100%;}
 

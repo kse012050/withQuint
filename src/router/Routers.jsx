@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Root from '../pages/Root';
 import Main from '../pages/Main';
 import Introduction from '../pages/Introduction';
-import Vip from '../pages/Vip';
+import VipProduct from '../pages/VipProduct';
 import Recommendation from '../pages/Recommendation';
 import Revenue from '../pages/Revenue';
 import Stock from '../pages/Stock';
@@ -26,9 +26,9 @@ import AdminRevenue from '../pages/admin/Revenue';
 import AdminStock from '../pages/admin/Stock';
 import AdminCustomerVip from '../pages/admin/CustomerVip';
 import AdminCustomerClinic from '../pages/admin/CustomerClinic';
-import AdminVip from '../pages/admin/Vip';
+import AdminVipProduct from '../pages/admin/VipProduct';
 import AdminCustomerNotice from '../pages/admin/CustomerNotice';
-import AdminDetail from '../pages/admin/Detail';
+import AdminWrite from '../pages/admin/Write';
 
 export default function Routers() {
     return (
@@ -39,8 +39,8 @@ export default function Routers() {
             <Route path="/introduction" element={<Root />}>
                 <Route index={true} element={<Introduction />}/>
             </Route>
-            <Route path="/vip" element={<Root />}>
-                <Route index={true} element={<Vip />}/>
+            <Route path="/vipProduct" element={<Root />}>
+                <Route index={true} element={<VipProduct />}/>
             </Route>
             <Route path="/recommendation" element={<Root />}>
                 <Route index={true} element={<Recommendation />}/>
@@ -77,19 +77,18 @@ export default function Routers() {
             {/* 관리자 */}
             <Route path="/admin">
                 <Route index={true} element={<AdminSignIn />}/>
-                <Route element={<AdminRoot />}>
-                    <Route path="dashboard" element={<AdminDashboard />} />
-                    <Route path="member" element={<AdminMember />} />
-                    <Route path="recommendation" element={<AdminRecommendation />} />
-                    <Route path="revenue" element={<AdminRevenue />} />
-                    <Route path="stock" element={<AdminStock />} />
-                    <Route path="customer">
+                    <Route element={<AdminRoot />}>
+                        <Route path="dashboard" element={<AdminDashboard />} />
+                        <Route path="member" element={<AdminMember />} />
+                        <Route path="recommendation" element={<AdminRecommendation />} />
+                        <Route path="revenue" element={<AdminRevenue />} />
+                        <Route path="stock" element={<AdminStock />} />
                         <Route path="vip" element={<AdminCustomerVip />} />
                         <Route path="clinic" element={<AdminCustomerClinic />} />
                         <Route path="notice" element={<AdminCustomerNotice />} />
+                        <Route path="vipProduct" element={<AdminVipProduct />} />
+                        <Route path=":boardType/:id" element={<AdminWrite />}>
                     </Route>
-                    <Route path="vip" element={<AdminVip />} />
-                    <Route path="detail" element={<AdminDetail />} />
                 </Route>
             </Route>
         </Routes>

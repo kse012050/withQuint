@@ -85,7 +85,7 @@
 
 
 /* vip */
-.vipPage:not([class*=' ']) div{
+.vipProductPage:not([class*=' ']) div{
     ul li{
         div{font-weight: 400; color: rgba(255, 255, 255, 0.5); background-position: center; background-size: cover; background-repeat: no-repeat; border-radius: var(--box-radius); display: flex; flex-direction: column; justify-content: flex-end; box-sizing: border-box;
             mark{font-weight: 600; color: white;}

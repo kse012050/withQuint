@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getApi } from '../api/api';
 
-export default function Vip() {
+export default function VipProduct() {
     const [ vipProducts, setVipProducts ] = useState()
 
     useEffect(()=>{

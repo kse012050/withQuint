@@ -126,7 +126,7 @@ header{position: fixed; inset: 0 0 auto 0; z-index: 10; animation-name: headerBG
     &[class^="sign"] > div:first-of-type{max-width: min(400px, var(--content-margin));}
 }
 .introductionPage h2{background-image: url(../images/topBG-introduction.png);}
-.vipPage h2{background-image: url(../images/topBG-VIP.png);}
+.vipProductPage h2{background-image: url(../images/topBG-VIP.png);}
 .recommendationPage h2{background-image: url(../images/topBG-introduction.png);}
 .revenuePage h2{background-image: url(../images/topBG-revenue.png);}
 .stockPage h2{background-image: url(../images/topBG-stock.png);}

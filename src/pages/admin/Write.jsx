@@ -1,39 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Detail() {
+export default function Write() {
     return (
         <>
-            <h2>상세보기</h2>
-            <ul>
+            <ul className='detail-list'>
                 <li>
-                    <label htmlFor="">테스트</label>
+                    <label htmlFor="">No.</label>
+                    <div>
+                        test
+                    </div>
+                </li>
+                <li>
+                    <label htmlFor="">제목</label>
                     <div>
                         <input type="text" />
                     </div>
                 </li>
                 <li>
-                    <label htmlFor="">테스트</label>
+                    <label htmlFor="">내용</label>
+                    <div>
+                        <textarea name="" id=""></textarea>
+                    </div>
+                </li>
+                <li>
+                    <label htmlFor="">이미지</label>
                     <div>
                         <input type="text" />
                     </div>
                 </li>
                 <li>
-                    <label htmlFor="">테스트</label>
+                    <label htmlFor="">등록일</label>
                     <div>
-                        <input type="text" />
+                        <p>등록일</p>
                     </div>
                 </li>
                 <li>
-                    <label htmlFor="">테스트</label>
+                    <label htmlFor="">상태</label>
                     <div>
-                        <input type="text" />
-                    </div>
-                </li>
-                <li>
-                    <label htmlFor="">테스트</label>
-                    <div>
-                        <input type="text" />
+                        <input type="radio" />
+                        <label htmlFor="">노출</label>
+                        <input type="radio" />
+                        <label htmlFor="">숨김</label>
                     </div>
                 </li>
             </ul>

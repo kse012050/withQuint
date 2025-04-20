@@ -19,7 +19,7 @@ export default function Recommendation() {
                 <ol className='board-list'>
                     {list && list.map((data) => 
                         <li key={data.id}>
-                            <Link to=''>
+                            <Link to={`${data.id}`}>
                                 <span>{ data.numb }</span>
                                 <span>{data.type}</span>
                                 <p>{ data.title }</p>

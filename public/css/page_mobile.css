@@ -60,7 +60,7 @@
 
 
 /* vip */
-.vipPage:not([class*=' ']) div{
+.vipProductPage:not([class*=' ']) div{
     ul li{
         &:not(:last-child){margin-bottom: 60px;}
         div{height: 260px; padding: 20px; font-size: 15px; line-height: 18px;
