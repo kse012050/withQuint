@@ -1,16 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { getApi } from '../../api/api';
 
 export default function Write() {
+    const { id, boardType } = useParams();
+    const [inputs, setInputs] = useState()
+
+    useEffect(()=>{
+        console.log(id);
+        console.log(boardType);
+        if(!id) return;
+        getApi('boards/detail', {boardId: id, boardType})
+            .then(({ result, data } = {} )=>{
+                if(result){
+                    console.log(data);
+                    
+                }
+            })
+    }, [])
+
     return (
         <>
             <ul className='detail-list'>
-                <li>
-                    <label htmlFor="">No.</label>
-                    <div>
-                        test
-                    </div>
-                </li>
+                { id &&
+                    <li>
+                        <label htmlFor="">No.</label>
+                        <div>
+                            <input type="text" defaultValue={id} readOnly/>
+                        </div>
+                    </li>
+                }
                 <li>
                     <label htmlFor="">제목</label>
                     <div>
@@ -38,12 +57,14 @@ export default function Write() {
                         <label htmlFor="">VIP</label>
                     </div>
                 </li>
-                <li>
-                    <label htmlFor="">등록일</label>
-                    <div>
-                        <p>등록일</p>
-                    </div>
-                </li>
+                { id &&
+                    <li>
+                        <label htmlFor="">등록일</label>
+                        <div>
+                            <input type="text" defaultValue={id} readOnly/>
+                        </div>
+                    </li>
+                }
                 <li>
                     <label htmlFor="">상태</label>
                     <div>
@@ -55,8 +76,14 @@ export default function Write() {
                 </li>
             </ul>
             <div className='detail-update'>
-                <Link to='' className='btn-gray'>목록</Link>
-                <button className='btn-bg-small'>수정</button>
+                { id ? 
+                    <>
+                        <Link to='' className='btn-gray'>목록</Link>
+                        <button className='btn-bg-small'>수정</button>
+                    </>
+                    :
+                    <button className='btn-bg-small'>생성</button>
+                }
             </div>
         </>
     );
