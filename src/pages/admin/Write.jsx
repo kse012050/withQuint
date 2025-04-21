@@ -30,6 +30,15 @@ export default function Write() {
                     </div>
                 </li>
                 <li>
+                    <label htmlFor="">타입</label>
+                    <div>
+                        <input type="radio" />
+                        <label htmlFor="">무료</label>
+                        <input type="radio" />
+                        <label htmlFor="">VIP</label>
+                    </div>
+                </li>
+                <li>
                     <label htmlFor="">등록일</label>
                     <div>
                         <p>등록일</p>
@@ -45,7 +54,7 @@ export default function Write() {
                     </div>
                 </li>
             </ul>
-            <div>
+            <div className='detail-update'>
                 <Link to='' className='btn-gray'>목록</Link>
                 <button className='btn-bg-small'>수정</button>
             </div>

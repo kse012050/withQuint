@@ -77,18 +77,18 @@ export default function Routers() {
             {/* 관리자 */}
             <Route path="/admin">
                 <Route index={true} element={<AdminSignIn />}/>
-                    <Route element={<AdminRoot />}>
-                        <Route path="dashboard" element={<AdminDashboard />} />
-                        <Route path="member" element={<AdminMember />} />
-                        <Route path="recommendation" element={<AdminRecommendation />} />
-                        <Route path="revenue" element={<AdminRevenue />} />
-                        <Route path="stock" element={<AdminStock />} />
-                        <Route path="vip" element={<AdminCustomerVip />} />
-                        <Route path="clinic" element={<AdminCustomerClinic />} />
-                        <Route path="notice" element={<AdminCustomerNotice />} />
-                        <Route path="vipProduct" element={<AdminVipProduct />} />
-                        <Route path=":boardType/:id" element={<AdminWrite />}>
-                    </Route>
+                <Route element={<AdminRoot />}>
+                    <Route path="dashboard" element={<AdminDashboard />} />
+                    <Route path="member" element={<AdminMember />} />
+                    <Route path="recommendation" element={<AdminRecommendation />} />
+                    <Route path="revenue" element={<AdminRevenue />} />
+                    <Route path="stock" element={<AdminStock />} />
+                    <Route path="vip" element={<AdminCustomerVip />} />
+                    <Route path="clinic" element={<AdminCustomerClinic />} />
+                    <Route path="notice" element={<AdminCustomerNotice />} />
+                    <Route path="vipProduct" element={<AdminVipProduct />} />
+                    <Route path=":boardType/create" element={<AdminWrite />} />
+                    <Route path=":boardType/:id" element={<AdminWrite />} />
                 </Route>
             </Route>
         </Routes>
