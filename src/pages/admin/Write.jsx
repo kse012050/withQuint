@@ -1,90 +1,185 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { getApi } from '../../api/api';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { getApi, postApi } from '../../api/api';
+import { inputChange, inputsRequiredAdd } from '../../api/validation';
+import Popup from '../../components/Popup';
 
 export default function Write() {
     const { id, boardType } = useParams();
-    const [inputs, setInputs] = useState()
+    const [inputs, setInputs] = useState({boardType});
+    const createdRef = useRef(null)
+    const [popup, setPopup] = useState()
+    const isType = useMemo(() => ['recommendation', 'revenue'], []);
+    const isImage = useMemo(() => ['stock', 'vipProduct'], []);
+    const navigate = useNavigate()
+    const prevLink = useLocation().pathname.split('/').slice(0, -1).join('/');
 
     useEffect(()=>{
-        console.log(id);
-        console.log(boardType);
-        if(!id) return;
-        getApi('boards/detail', {boardId: id, boardType})
-            .then(({ result, data } = {} )=>{
-                if(result){
-                    console.log(data);
-                    
+        if(id){
+            getApi('boards/detail', {boardId: id, boardType})
+                .then(({ result, state, data } = {} )=>{
+                    if(result && state){
+                        const obj = {title: data.title, content: data.content, visible: data.visible}
+                        isType.includes(boardType) && (obj.type = data.type)
+                        isImage.includes(boardType) && (obj.image = data.image)
+                        setInputs((input)=> ({...input, ...obj}))
+                        createdRef.current = data.created
+                    }else{
+                        navigate(prevLink)
+                    }
+                })
+        }else{
+            inputsRequiredAdd(setInputs)
+        }
+    }, [id, boardType, isType, isImage, navigate, prevLink])
+
+    const onUpdate = () => {
+        postApi('boards/update', {boardId: id, boardType, ...inputs})
+            .then(({ result, state } = {})=>{
+                if(result && state){
+                    setPopup({
+                        title: '안내',
+                        description: `성공적으로 ${id ? '수정' : '등록'}되었습니다.`,
+                        func: () => navigate(prevLink)
+                    })
                 }
             })
-    }, [])
+    }
 
+    const onCreate = () => {
+        console.log(inputs);
+        // postApi('boards/create', {boardType, ...inputs})
+        //     .then(({ result })=> {
+        //         if(result){
+        //             navigate(link)
+        //         }
+        //     })
+    }
     return (
         <>
             <ul className='detail-list'>
                 { id &&
                     <li>
-                        <label htmlFor="">No.</label>
+                        <label htmlFor="id">No.</label>
                         <div>
-                            <input type="text" defaultValue={id} readOnly/>
+                            <input 
+                                type="text"
+                                id='id'
+                                name='id'
+                                defaultValue={id}
+                                readOnly
+                            />
                         </div>
                     </li>
                 }
                 <li>
-                    <label htmlFor="">제목</label>
+                    <label htmlFor="title">제목</label>
                     <div>
-                        <input type="text" />
+                        <input 
+                            type="text"
+                            name='title'
+                            id='title'
+                            defaultValue={inputs?.title}
+                            onChange={(e)=>inputChange(e, setInputs)}
+                            required
+                        />
                     </div>
                 </li>
                 <li>
-                    <label htmlFor="">내용</label>
+                    <label htmlFor="content">내용</label>
                     <div>
-                        <textarea name="" id=""></textarea>
+                        <textarea 
+                            name="content"
+                            id="content"
+                            defaultValue={inputs?.content}
+                            onChange={(e)=>inputChange(e, setInputs)}
+                            required
+                        >
+                        </textarea>
                     </div>
                 </li>
-                <li>
-                    <label htmlFor="">이미지</label>
-                    <div>
-                        <input type="text" />
-                    </div>
-                </li>
-                <li>
-                    <label htmlFor="">타입</label>
-                    <div>
-                        <input type="radio" />
-                        <label htmlFor="">무료</label>
-                        <input type="radio" />
-                        <label htmlFor="">VIP</label>
-                    </div>
-                </li>
+                { isImage.includes(boardType) &&
+                    <li>
+                        <label htmlFor="">이미지</label>
+                        <div>
+                            <input type="text" />
+                        </div>
+                    </li>
+                }
+                { isType.includes(boardType) &&
+                    <li>
+                        <label htmlFor="type_y">타입</label>
+                        <div>
+                            <input 
+                                type="radio" 
+                                name="type"
+                                id="type_free"
+                                value="free"
+                                checked={inputs?.type === 'free'}
+                                onChange={(e)=>inputChange(e, setInputs)}
+                                required
+                            />
+                            <label htmlFor="type_free">무료</label>
+                            <input 
+                                type="radio" 
+                                name="type"
+                                id="type_vip"
+                                value="vip"
+                                checked={inputs?.type === 'vip'}
+                                onChange={(e)=>inputChange(e, setInputs)}
+                                required
+                            />
+                            <label htmlFor="type_vip">VIP</label>
+                        </div>
+                    </li>
+                }
                 { id &&
                     <li>
                         <label htmlFor="">등록일</label>
                         <div>
-                            <input type="text" defaultValue={id} readOnly/>
+                            <input type="text" defaultValue={createdRef.current} readOnly/>
                         </div>
                     </li>
                 }
                 <li>
-                    <label htmlFor="">상태</label>
+                    <label htmlFor="visible_y">상태</label>
                     <div>
-                        <input type="radio" />
-                        <label htmlFor="">노출</label>
-                        <input type="radio" />
-                        <label htmlFor="">숨김</label>
+                        <input 
+                            type="radio"
+                            name="visible"
+                            id='visible_y'
+                            value="y"
+                            checked={inputs?.visible === 'y'}
+                            onChange={(e)=>inputChange(e, setInputs)}
+                            required
+                        />
+                        <label htmlFor="visible_y">노출</label>
+                        <input 
+                            type="radio"
+                            name="visible"
+                            id='visible_n'
+                            value="n"
+                            checked={inputs?.visible === 'n'} 
+                            onChange={(e)=>inputChange(e, setInputs)}
+                            required
+                        />
+                        <label htmlFor="visible_n">숨김</label>
                     </div>
                 </li>
             </ul>
             <div className='detail-update'>
                 { id ? 
                     <>
-                        <Link to='' className='btn-gray'>목록</Link>
-                        <button className='btn-bg-small'>수정</button>
+                        <Link to={prevLink} className='btn-gray'>목록</Link>
+                        <button className='btn-bg-small' onClick={onUpdate}>수정</button>
                     </>
                     :
-                    <button className='btn-bg-small'>생성</button>
+                    <button className='btn-bg-small' onClick={onCreate}>생성</button>
                 }
             </div>
+            {popup &&
+                <Popup popup={popup} setPopup={setPopup} />
+            }
         </>
     );
 }

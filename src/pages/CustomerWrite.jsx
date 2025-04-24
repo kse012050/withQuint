@@ -33,19 +33,18 @@ export default function CustomerWrite() {
     const link = pathName.join('/');
     const { id, boardType } = useParams();
     
-    const [inputs, setInputs] = useState({boardType, author: user.id})
+    const [inputs, setInputs] = useState({boardType})
 
     useEffect(()=>{
         if(!user) navigate(link);
         inputsRequiredAdd(setInputs)
         if(!id) return;
         getApi('boards/detail', {boardId: id, boardType: boardType})
-            .then(({ result, data, isSecretUser, isUpdateUser } = {}) => {
-                if(result){
-                    if(!isUpdateUser){
-                        navigate(link)
-                    }
+            .then(({ result, state, data, isSecretUser } = {}) => {
+                if(result && state && isSecretUser){
                     setInputs((input)=> ({...input, title: data.title, content: data.content, secret: data.secret, boardId: id}))
+                }else{
+                    navigate(link)
                 }
             })
     }, [user, navigate, link, id, boardType])
@@ -53,14 +52,15 @@ export default function CustomerWrite() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-
+        console.log(inputs);
+        
          if(isSubmit(inputs)){
             return;
         }
 
         postApi(`boards/${id ? 'update' : 'create'}`, inputs)
-            .then(({ result } = {})=>{
-                if(result){
+            .then(({ result, state } = {})=>{
+                if(result && state){
                     setPopup({
                         title: '안내',
                         description: `성공적으로 ${id ? '수정' : '등록'}되었습니다.`,

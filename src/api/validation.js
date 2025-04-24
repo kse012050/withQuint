@@ -4,11 +4,14 @@ export const inputsRequiredAdd = (setInputs) =>{
 /*         if(name.includes('check')){
             return;
         } */
-        if(type === 'checkbox' || type === 'radio'){
-            setInputs((input)=>({...input, [name]: checked ? 'y' : 'n'}))
-        }else{
-            setInputs((input)=>({...input, [name]: value || ''}))
-        }
+        setInputs((input = {})=>{
+            if(type === 'checkbox'){
+                input[name] = checked ? 'y' : 'n';
+            }else if(!input[name]){
+                input[name] = value;
+            }
+            return input;
+        })
     })
 }
 

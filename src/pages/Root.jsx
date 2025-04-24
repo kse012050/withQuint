@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useMemo, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Outlet, useLocation } from 'react-router-dom';
 import { ThemeContext } from '../context/ThemeContext';
@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { styleIdx } from '../js/style';
 import SubTitle from '../components/SubTitle';
+import { postApi } from '../api/api';
 // import '../css/import.module.css';
 
 export default function Root() {
@@ -17,16 +18,15 @@ export default function Root() {
     
     const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")))
     
-    // useEffect(()=>{
-    //     if(user) return;
-    //     postApi('signIn/auth')
-    //         .then((response)=>{
-    //             const {result, /* message, */ user} = response || {};
-    //             if(result){
-    //                 setUser(user)
-    //             }
-    //         })
-    // },[user])
+    useEffect(()=>{
+        postApi('signIn/auth')
+            .then(({ result, user } = {})=>{
+                if(result){
+                    setUser(user)
+                }
+            })
+    },[])
+
 
     useLayoutEffect(() => {
         return (

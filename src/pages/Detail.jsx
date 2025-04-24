@@ -19,11 +19,11 @@ export default function Detail() {
     
     useEffect(() => {
         getApi('boards/detail', {boardId, boardType})
-            .then(({ result, data, post, isSecretUser, isUpdateUser } = {}) => {
-                if(result && isSecretUser !== false){
-                    setIsUpdate(isUpdateUser)
+            .then(({ result, state, data, post, isSecretUser } = {}) => {
+                if(result && state && isSecretUser !== false){
+                    setIsUpdate(isSecretUser)
                     setDetail(data)
-                    setPost(post)
+                    post && setPost(post)
                 }else{
                     navigate(link)
                 }
