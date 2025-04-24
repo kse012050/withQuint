@@ -7,7 +7,7 @@ export default function Recommendation() {
     
     return (
         <>
-            <Link to='create' className='btn-bg-small'>생성</Link>
+            {/* <Link to='create' className='btn-bg-small'>생성</Link> */}
             <Board boardType='recommendation' setList={setList}>
                 <div className='board-title'>
                     <b>번호</b>

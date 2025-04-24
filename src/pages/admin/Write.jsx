@@ -42,23 +42,40 @@ export default function Write() {
         }
 
         postApi(`boards/${id ? 'update' : 'create'}`, inputs)
-            .then(({ result, state, error, message} = {})=>{
-                console.log(result);
-                console.log(state);
-                console.log(error);
-                console.log(message);
+            .then(({ result, state, message } = {})=>{
                 if(result && state){
                     setPopup({
                         title: '안내',
-                        description: `성공적으로 ${id ? '수정' : '등록'}되었습니다.`,
+                        description: message,
                         func: () => navigate(prevLink)
                     })
                 }
             })
     }
 
+    const onDelete = () => {
+        setPopup({
+            type: 'check',
+            title: '안내',
+            description: '삭제하시겠습니까?',
+            func: () => {
+                postApi('boards/remove', {id})
+                    .then(({ result, state, message } = {})=>{
+                        if(result && state){
+                            setPopup({
+                                title: '안내',
+                                description: message,
+                                func: () => navigate(prevLink)
+                            })
+                        }
+                    })
+            }
+        })
+    }
+
     return (
         <>
+            { id && <button className='btn-bg-small' onClick={onDelete}>삭제</button> }
             <form>
                 <ul className='detail-list'>
                     { id &&

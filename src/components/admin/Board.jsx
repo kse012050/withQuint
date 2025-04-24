@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import SelectBox from '../SelectBox';
 import Pagination from '../Pagination';
 import { getApi } from '../../api/api';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { inputChange } from '../../api/validation';
 
 const dateSelects = [
@@ -25,6 +25,8 @@ export default function Board({ children, boardType, setList }) {
     const location = useLocation()
     const [searchParams] = useSearchParams();
     const queryObject = useMemo(() => ({ dateEnd: dateEnd, ...Object.fromEntries(searchParams.entries()) }), [searchParams, dateEnd]);
+    const passName = useLocation().pathname.split('/').at(-1);
+    const isCreate = ['recommendation', 'revenue', 'stock', 'notice']
     
     useEffect(()=>{
         setSearch({...queryObject})
@@ -59,6 +61,7 @@ export default function Board({ children, boardType, setList }) {
     }
     return (
         <>
+            { isCreate.includes(passName) && <Link to='create' className='btn-bg-small'>생성</Link> }
             <div className='board-registration'>
                 <label htmlFor="">등록일</label>
                 <div>

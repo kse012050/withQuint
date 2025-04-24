@@ -52,21 +52,17 @@ export default function CustomerWrite() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(inputs);
         
         if(isSubmit(inputs)){
             return;
         }
 
         postApi(`boards/${id ? 'update' : 'create'}`, inputs)
-            .then(({ result, state, error, message} = {})=>{
-                console.log(error);
-                console.log(message);
-                
+            .then(({ result, state, message} = {})=>{
                 if(result && state){
                     setPopup({
                         title: '안내',
-                        description: `성공적으로 ${id ? '수정' : '등록'}되었습니다.`,
+                        description: message,
                         func: () => navigate(link)
                     })
                 }
