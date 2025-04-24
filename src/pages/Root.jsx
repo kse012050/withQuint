@@ -20,9 +20,12 @@ export default function Root() {
     
     useEffect(()=>{
         postApi('signIn/auth')
-            .then(({ result, user } = {})=>{
-                if(result){
+            .then(({ result, state, user } = {})=>{
+                if(result && state){
                     setUser(user)
+                }else{
+                    setUser('')
+                    sessionStorage.removeItem("user")
                 }
             })
     },[])

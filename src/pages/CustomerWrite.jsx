@@ -54,12 +54,15 @@ export default function CustomerWrite() {
         e.preventDefault();
         console.log(inputs);
         
-         if(isSubmit(inputs)){
+        if(isSubmit(inputs)){
             return;
         }
 
         postApi(`boards/${id ? 'update' : 'create'}`, inputs)
-            .then(({ result, state } = {})=>{
+            .then(({ result, state, error, message} = {})=>{
+                console.log(error);
+                console.log(message);
+                
                 if(result && state){
                     setPopup({
                         title: '안내',

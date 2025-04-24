@@ -10,7 +10,7 @@ export const inputsRequiredAdd = (setInputs) =>{
             }else if(!input[name]){
                 input[name] = value;
             }
-            return input;
+            return {...input};
         })
     })
 }
