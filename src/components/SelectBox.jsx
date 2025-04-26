@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function SelectBox({ type, setSearch }) {
     const list = {'free':'무료', 'vip':'VIP'};
     const [active, setActive] = useState(false);
+    const navigate = useNavigate();
 
     const onSelect = (type) => {
         setActive(false);
         setSearch((search)=>{
-           return {...search, type}
+            navigate('?' + new URLSearchParams({...search, type}))
+            return {...search, type}
         })
     }
 
