@@ -7,7 +7,6 @@ export default function Revenue() {
     
     return (
         <>
-            <button className='btn-bg-small'>생성</button>
             <Board boardType='revenue' setList={setList}>
                 <div className='board-title'>
                     <b>번호</b>
@@ -19,7 +18,7 @@ export default function Revenue() {
                 <ol className='board-list'>
                     {list && list.map((data) => 
                         <li key={data.id}>
-                            <Link to=''>
+                            <Link to={`${data.id}`}>
                                 <span>{ data.numb }</span>
                                 <span>{data.type}</span>
                                 <p>{ data.title }</p>

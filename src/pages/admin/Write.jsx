@@ -11,6 +11,7 @@ export default function Write() {
     const [popup, setPopup] = useState()
     const isType = useMemo(() => ['recommendation', 'revenue'], []);
     const isImage = useMemo(() => ['stock', 'vipProduct'], []);
+    const isUnUpdate = ['vip', 'clinic'].includes(boardType);
     const navigate = useNavigate()
     const prevLink = useLocation().pathname.split('/').slice(0, -1).join('/');
 
@@ -101,6 +102,7 @@ export default function Write() {
                                 id='title'
                                 defaultValue={inputs?.title}
                                 onChange={(e)=>inputChange(e, setInputs)}
+                                readOnly={isUnUpdate}
                                 required
                             />
                         </div>
@@ -113,6 +115,7 @@ export default function Write() {
                                 id="content"
                                 defaultValue={inputs?.content}
                                 onChange={(e)=>inputChange(e, setInputs)}
+                                readOnly={isUnUpdate}
                                 required
                             >
                             </textarea>
@@ -137,6 +140,7 @@ export default function Write() {
                                     value="free"
                                     checked={inputs?.type === 'free'}
                                     onChange={(e)=>inputChange(e, setInputs)}
+                                    readOnly={isUnUpdate}
                                     required
                                 />
                                 <label htmlFor="type_free">무료</label>
@@ -147,6 +151,7 @@ export default function Write() {
                                     value="vip"
                                     checked={inputs?.type === 'vip'}
                                     onChange={(e)=>inputChange(e, setInputs)}
+                                    readOnly={isUnUpdate}
                                     required
                                 />
                                 <label htmlFor="type_vip">VIP</label>
@@ -171,6 +176,7 @@ export default function Write() {
                                 value="y"
                                 checked={inputs?.visible === 'y'}
                                 onChange={(e)=>inputChange(e, setInputs)}
+                                disabled={isUnUpdate}
                                 required
                             />
                             <label htmlFor="visible_y">노출</label>
@@ -181,6 +187,7 @@ export default function Write() {
                                 value="n"
                                 checked={inputs?.visible === 'n'} 
                                 onChange={(e)=>inputChange(e, setInputs)}
+                                disabled={isUnUpdate}
                                 required
                             />
                             <label htmlFor="visible_n">숨김</label>
@@ -189,7 +196,9 @@ export default function Write() {
                 </ul>
                 <div className='detail-update'>
                     <Link to={prevLink} className='btn-gray'>목록</Link>
-                    <button className='btn-bg-small' onClick={onSubmit}>{ id ? '수정' : '생성' }</button>
+                    { !isUnUpdate &&
+                        <button className='btn-bg-small' onClick={onSubmit}>{ id ? '수정' : '생성' }</button>
+                    }
                 </div>
             </form>
             {popup &&

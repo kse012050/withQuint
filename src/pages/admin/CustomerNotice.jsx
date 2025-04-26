@@ -7,8 +7,7 @@ export default function CustomerNotice() {
 
     return (
         <>
-            <button className='btn-bg-small'>생성</button>
-            <Board boardType='vip' setList={setList}>
+            <Board boardType='notice' setList={setList}>
                 <div className='board-title'>
                     <b>번호</b>
                     <p>제목</p>
@@ -19,7 +18,7 @@ export default function CustomerNotice() {
                 <ol className='board-list'>
                     {list && list.map((data) => 
                         <li key={data.id}>
-                            <Link to=''>
+                            <Link to={`${data.id}`}>
                                 <span>{ data.numb }</span>
                                 <p>{ data.title }</p>
                                 <span>{ data.author }</span>

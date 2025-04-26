@@ -17,7 +17,7 @@ export default function CustomerClinic() {
                 <ol className='board-list'>
                     {list && list.map((data) => 
                         <li key={data.id}>
-                            <Link to=''>
+                            <Link to={`${data.id}`}>
                                 <span>{ data.numb }</span>
                                 <p>{ data.title }</p>
                                 <span>{ data.author }</span>
