@@ -19,7 +19,7 @@ export default function Stock() {
                 <ol className='board-list'>
                     {list && list.map((data) => 
                         <li key={data.id}>
-                            <Link to=''>
+                            <Link to={`${data.id}`}>
                                 <span>{ data.numb }</span>
                                 <img src={data.image} alt={`${data.title} 이미지`} />
                                 <p>{ data.title }</p>

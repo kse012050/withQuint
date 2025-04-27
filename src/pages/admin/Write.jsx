@@ -8,6 +8,7 @@ export default function Write() {
     const { id, boardType } = useParams();
     const [inputs, setInputs] = useState({boardType});
     const createdRef = useRef(null)
+    const [image, setImage] = useState()
     const [popup, setPopup] = useState()
     const isType = useMemo(() => ['recommendation', 'revenue'], []);
     const isImage = useMemo(() => ['stock', 'vipProduct'], []);
@@ -22,7 +23,10 @@ export default function Write() {
                     if(result && state){
                         const obj = {title: data.title, content: data.content, visible: data.visible}
                         isType.includes(boardType) && (obj.type = data.type)
-                        isImage.includes(boardType) && (obj.image = data.image)
+                        if(isImage.includes(boardType)){
+                            // obj.image = data.image
+                            setImage(data.image)
+                        }
                         setInputs((input)=> ({...input, ...obj, boardId: id}))
                         createdRef.current = data.created
                     }else{
@@ -34,16 +38,31 @@ export default function Write() {
         }
     }, [id, boardType, isType, isImage, navigate, prevLink])
 
+    const onImage = (e) => {
+        const { files } = e.target;
+        let fileReader = new FileReader();
+        fileReader.onload = () => {
+            let fileURL = fileReader.result;
+            setImage(fileURL);
+        }
+        console.log(files[0]);
+        
+        fileReader.readAsDataURL(files[0]);
+        inputChange(e, setInputs)
+    }
+
     const onSubmit = (e) => {
         e.preventDefault();
         console.log(inputs);
         
-        if(isSubmit(inputs)){
-            return;
-        }
+        // if(isSubmit(inputs)){
+        //     return;
+        // }
 
         postApi(`boards/${id ? 'update' : 'create'}`, inputs)
             .then(({ result, state, message } = {})=>{
+                console.log(message);
+                
                 if(result && state){
                     setPopup({
                         title: '안내',
@@ -125,7 +144,10 @@ export default function Write() {
                         <li>
                             <label htmlFor="">이미지</label>
                             <div>
-                                <input type="text" />
+                                <input type="file" name="image" id="boardImage" onChange={(e)=>onImage(e)}/>
+                                <label htmlFor="boardImage">
+                                    <img src={image} alt="" />
+                                </label>
                             </div>
                         </li>
                     }

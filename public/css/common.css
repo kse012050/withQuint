@@ -19,6 +19,9 @@ input:not([type="submit"], [type="checkbox"], [type="radio"]){height: 50px;}
 label:has(+ div :is(input, textarea)){font-size: 15px; line-height: 18px; font-weight: 700;}
 :is(input, textarea)[readOnly]{background-color: #ededed;}
 input:is([type="checkbox"], [type="radio"]):disabled + label::before{filter: grayscale(1);}
+input[type="file"] + label{width: 100px; aspect-ratio: 1; border: 1px solid var(--color-border); border-radius: 4px; line-height: 0; overflow: hidden;
+    img[src]{width: 100%; height: 100%; object-fit: cover;}
+}
 form div[data-err-message]{
     &:has(input.error) {position: relative;
         &::after{content: attr(data-err-message); position: absolute; left: 0; top: 100%; font-size: 14px; font-weight: 400; color: var(--color-point);}
