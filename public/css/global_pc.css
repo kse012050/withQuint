@@ -30,9 +30,9 @@
     &:has(.board-list) ~ .board-paging{margin-top: 40px;}
 
     .board-list-img{display: flex; flex-wrap: wrap; --gap: 50px; gap: var(--gap);
-        li{max-width: calc((100% - (var(--gap) * 2)) / 3);
-            a{
-                img{margin-bottom: 30px;}
+        li{width: calc((100% - (var(--gap) * 2)) / 3);
+            a{width: 100%;
+                img{margin-bottom: 30px; aspect-ratio: 380 / 250; object-fit: cover;}
                 p{font-size: 20px; line-height: 30px; margin-bottom: 20px;}
                 time{font-size: 16px; line-height: 19px;}
             }

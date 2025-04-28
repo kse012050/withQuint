@@ -59,6 +59,7 @@
 .vipProductPage:not([class*=' ']) div{
     ul li{height: 460px; display: flex; flex-direction: column; justify-content: center; align-content: space-between; flex-wrap: wrap;
         &:nth-child(2n + 1) div{order: 1;}
+        &:nth-child(2n) > *:not(div){order: 1;}
         &:not(:last-child){margin-bottom: 120px;}
         div{min-height: 100%; width: 68%; padding: 40px; font-size: 20px; line-height: 24px;
             mark{font-size: 40px; line-height: 48px; margin-top: 10px;}

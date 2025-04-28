@@ -2,6 +2,8 @@
 /* 텍스트 숨기기 */
 .textHide{text-indent: -9999px; background: var(--BGImg-basic);}
 
+img:not([src]), img[src=""]{content: url("https://placehold.co/600x400"); display: block;}
+
 /* 버튼 */
 [class^="btn"]{text-align: center; border-radius: 4px; box-sizing: border-box; border-width: 1px; border-style: solid;
     &:not(.btn-gray){font-weight: 700; border-color: var(--color-point);}
