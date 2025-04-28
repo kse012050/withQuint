@@ -29,8 +29,6 @@ export default function Board({ children, boardType, setList }) {
                 if(result){
                     setInfo(info);
                     setList(list);
-                    console.log(list);
-                    
                 }
             })
     },[boardType, queryObject, setList])

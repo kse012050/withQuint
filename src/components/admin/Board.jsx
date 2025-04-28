@@ -37,8 +37,6 @@ export default function Board({ children, boardType, setList }) {
         getApi('admin/boards', {boardType: boardType, ...queryObject, page: queryObject?.page || 1})
             .then(({ result, info, list } = {}) => {
                 if(result){
-                    console.log(list);
-                    
                     setInfo(info);
                     setList(list)
                 }

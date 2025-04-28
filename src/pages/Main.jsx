@@ -11,6 +11,7 @@ export default function Main() {
             .then(({ result, data } = {}) => {
                 if(result){
                     console.log(data);
+                    
                     setData(data);
                 }
             })
@@ -26,7 +27,7 @@ export default function Main() {
                 <section>
                     <h2>공지사항</h2>
                     <ul>
-                        {data && data.notice.map((data) => 
+                        {data?.notice && data.notice.map((data) => 
                             <li key={data.id}>
                                 <BoardLink data={data} path='customer/notice'>
                                     <p>{ data.title }</p>
@@ -57,7 +58,7 @@ export default function Main() {
                     <h2>무료 추천종목</h2>
                     <Link to='/recommendation' className='textHide'>게시판 바로가기</Link>
                     <ul>
-                        {data && data.recommendation.map((data) => 
+                        {data?.recommendation && data.recommendation.map((data) => 
                             <li key={data.id}>
                                 <BoardLink data={data} path='recommendation'>
                                     <p>{ data.title }</p>
@@ -71,7 +72,7 @@ export default function Main() {
                     <h2>VIP 상품 신청</h2>
                     <Link to='/recommendation' className='textHide'>게시판 바로가기</Link>
                     <ul>
-                        {data && data.vip.map((data) => 
+                        {data?.vip && data.vip.map((data) => 
                             <li key={data.id}>
                                 <BoardLink data={data} path='customer/vip'>
                                     <p>{ data.title }</p>
@@ -85,7 +86,7 @@ export default function Main() {
                     <h2>위드퀀트 주식정보</h2>
                     <Link to='/stock' className='textHide'>게시판 바로가기</Link>
                     <ul>
-                        {data && data.stock.map((data) => 
+                        {data?.stock && data.stock.map((data) => 
                             <li key={data.id} style={{backgroundImage: `url(${data.image})`}}>
                                 <BoardLink data={data} path='stock'>
                                     <p>{ data.title }</p>
@@ -99,7 +100,7 @@ export default function Main() {
                     <h2>수익률</h2>
                     <Link to='/revenue' className='textHide'>게시판 바로가기</Link>
                     <ul>
-                        {data && data.revenue.map((data) => 
+                        {data?.revenue && data.revenue.map((data) => 
                             <li key={data.id}>
                                 <BoardLink data={data} path='revenue'>
                                     <p>{ data.title }</p>

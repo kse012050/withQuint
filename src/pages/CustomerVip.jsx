@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Board from '../components/Board';
-import BoardCustomerLink from '../components/BoardCustomerLink';
+import BoardLink from '../components/BoardLink';
 
 export default function CustomerVip() {
     const [list, setList] = useState()
@@ -16,12 +16,12 @@ export default function CustomerVip() {
             <ol className="board-list">
                 {list && list.map((data)=>
                     <li key={data.id} data-new={data.new}>
-                        <BoardCustomerLink data={data}>
+                        <BoardLink data={data}>
                             <span>{data.numb}</span>
                             <p>{data.title}</p>
                             <span>{data.author}</span>
                             <time>{data.created}</time>
-                        </BoardCustomerLink>
+                        </BoardLink>
                     </li>
                 )}
             </ol>
