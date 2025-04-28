@@ -6,7 +6,7 @@ export default function VipProduct() {
     const [ vipProducts, setVipProducts ] = useState()
 
     useEffect(()=>{
-        getApi('admin/vipProducts/read')
+        getApi('vipProducts')
             .then(({ result, state, list } = {})=>{
                 if(result && state){
                     setVipProducts(list);

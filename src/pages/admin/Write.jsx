@@ -74,7 +74,7 @@ export default function Write() {
             title: '안내',
             description: '삭제하시겠습니까?',
             func: () => {
-                postApi('boards/remove', {id})
+                postApi('boards/remove', {boardId: id})
                     .then(({ result, state, message } = {})=>{
                         if(result && state){
                             setPopup({

@@ -6,10 +6,11 @@ export default function VipProduct() {
     const [ vipProducts, setVipProducts ] = useState()
 
     useEffect(()=>{
-        getApi('vipProducts/read')
-            .then((response)=>{
-                const { result, list } = response || {};
-                if(result){
+        getApi('vipProducts')
+            .then(({ result, state, list } = {})=>{
+                if(result && state){
+                    console.log(list);
+                    
                     setVipProducts(list);
                 }
             })

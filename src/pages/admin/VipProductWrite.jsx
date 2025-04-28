@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getApi, isSubmit, postApi } from '../../api/api';
 import { inputChange, inputsRequiredAdd } from '../../api/validation';
+import Popup from '../../components/Popup';
 
 export default function VipProductWrite() {
     const { id } = useParams();
@@ -14,11 +15,12 @@ export default function VipProductWrite() {
 
     useEffect(()=>{
         if(id){
-            getApi('vipProducts/detail', {boardId: id})
+            getApi('vipProducts/detail', {vipProductId: id})
                 .then(({ result, state, data } = {} )=>{
                     console.log(data);
                     setImage(data.image)
-                    setInputs(data);
+                    delete data.image
+                    setInputs({...data, boardId: id});
                     createdRef.current = data.created
                 })
         }else{
@@ -46,6 +48,8 @@ export default function VipProductWrite() {
 
         postApi(`vipProducts/${id ? 'update' : 'create'}`, inputs)
             .then(({ result, state, message } = {})=>{
+                console.log(message);
+                
                 if(result && state){
                     setPopup({
                         title: '안내',
@@ -57,23 +61,23 @@ export default function VipProductWrite() {
     }
 
     const onDelete = () => {
-        // setPopup({
-        //     type: 'check',
-        //     title: '안내',
-        //     description: '삭제하시겠습니까?',
-        //     func: () => {
-        //         postApi('boards/remove', {id})
-        //             .then(({ result, state, message } = {})=>{
-        //                 if(result && state){
-        //                     setPopup({
-        //                         title: '안내',
-        //                         description: message,
-        //                         func: () => navigate(prevLink)
-        //                     })
-        //                 }
-        //             })
-        //     }
-        // })
+        setPopup({
+            type: 'check',
+            title: '안내',
+            description: '삭제하시겠습니까?',
+            func: () => {
+                postApi('vipProducts/remove', {vipProductId: id})
+                    .then(({ result, state, message } = {})=>{
+                        if(result && state){
+                            setPopup({
+                                title: '안내',
+                                description: message,
+                                func: () => navigate(prevLink)
+                            })
+                        }
+                    })
+            }
+        })
     }
 
     return (
@@ -156,12 +160,14 @@ export default function VipProductWrite() {
                             </label>
                         </div>
                     </li>
-                    <li>
-                        <label htmlFor="">등록일</label>
-                        <div>
-                            <input type="text" defaultValue={createdRef.current} readOnly/>
-                        </div>
-                    </li>
+                    { id && 
+                        <li>
+                            <label htmlFor="">등록일</label>
+                            <div>
+                                <input type="text" defaultValue={createdRef.current} readOnly/>
+                            </div>
+                        </li>
+                    }
                     <li>
                         <label htmlFor="visible_y">상태</label>
                         <div>
@@ -193,6 +199,9 @@ export default function VipProductWrite() {
                     <button className='btn-bg-small' onClick={onSubmit}>{ id ? '수정' : '생성' }</button>
                 </div>
             </form>
+            {popup &&
+                <Popup popup={popup} setPopup={setPopup} />
+            }
         </>
     );
 }
