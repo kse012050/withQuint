@@ -7,6 +7,12 @@
 .btn-bg-small{padding-inline: 20px;}
 .btn-gray{color: var(--color-placeholder); font-weight: 500; height: 50px; align-content: center; border-color: var(--color-border); padding-inline: 15px; box-sizing: border-box;}
 
+form div{
+    &:has(input.error) {
+        > :is(input, textarea).error{border-color: var(--color-point); outline: var(--color-point);}
+    }
+}
+
 
 /* 해더 */
 header{position: fixed; left: 0; top: 0; right: 0; box-shadow: 0px 5px 21px -5px #cdd1e1; background-color: white; z-index: 100;

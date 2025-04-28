@@ -56,6 +56,10 @@ const validationMap = {
         const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=,.<>?/;:'"]).{8,20}$/;
         return regex.test(value);
     },
+    numb(value) {
+        const regex = /^[0-9]+$/;
+        return regex.test(value);
+    },
     checkPW(value, checkValue){
         return value === checkValue
     },
@@ -79,7 +83,6 @@ export function isValidation(type, value, checkValue){
 
 export const inputChange = (e, setInputs, checkValue) => {
     const { value, name, checked, type, dataset: { formet, validation, resetName }, files } = e.target;
-    
     
     if(formet && !!value && !isFormet(formet, value)['is']){
         e.target.classList.add('error')

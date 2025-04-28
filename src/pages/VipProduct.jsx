@@ -9,8 +9,6 @@ export default function VipProduct() {
         getApi('vipProducts')
             .then(({ result, state, list } = {})=>{
                 if(result && state){
-                    console.log(list);
-                    
                     setVipProducts(list);
                 }
             })

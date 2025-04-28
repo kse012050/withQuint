@@ -17,11 +17,12 @@ export default function VipProductWrite() {
         if(id){
             getApi('vipProducts/detail', {vipProductId: id})
                 .then(({ result, state, data } = {} )=>{
-                    console.log(data);
-                    setImage(data.image)
-                    delete data.image
-                    setInputs({...data, boardId: id});
-                    createdRef.current = data.created
+                    if(result && state){
+                        setImage(data.image)
+                        delete data.image
+                        setInputs({...data, boardId: id});
+                        createdRef.current = data.created
+                    }
                 })
         }else{
             inputsRequiredAdd(setInputs)
@@ -48,8 +49,6 @@ export default function VipProductWrite() {
 
         postApi(`vipProducts/${id ? 'update' : 'create'}`, inputs)
             .then(({ result, state, message } = {})=>{
-                console.log(message);
-                
                 if(result && state){
                     setPopup({
                         title: '안내',
@@ -132,6 +131,7 @@ export default function VipProductWrite() {
                                 type="text"
                                 name='price'
                                 id='price'
+                                data-validation='numb'
                                 defaultValue={inputs?.price}
                                 onChange={(e)=>inputChange(e, setInputs)}
                                 required
@@ -147,7 +147,6 @@ export default function VipProductWrite() {
                                 id='description'
                                 defaultValue={inputs?.description}
                                 onChange={(e)=>inputChange(e, setInputs)}
-                                required
                             />
                         </div>
                     </li>
