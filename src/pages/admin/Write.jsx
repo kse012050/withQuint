@@ -45,24 +45,19 @@ export default function Write() {
             let fileURL = fileReader.result;
             setImage(fileURL);
         }
-        console.log(files[0]);
-        
         fileReader.readAsDataURL(files[0]);
         inputChange(e, setInputs)
     }
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(inputs);
         
-        // if(isSubmit(inputs)){
-        //     return;
-        // }
+        if(isSubmit(inputs)){
+            return;
+        }
 
         postApi(`boards/${id ? 'update' : 'create'}`, inputs)
             .then(({ result, state, message } = {})=>{
-                console.log(message);
-                
                 if(result && state){
                     setPopup({
                         title: '안내',

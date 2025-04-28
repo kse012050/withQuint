@@ -7,11 +7,8 @@ export default function VipProduct() {
 
     useEffect(()=>{
         getApi('admin/vipProducts/read')
-            .then((response)=>{
-                const { result, list } = response || {};
-                if(result){
-                    console.log(list);
-                    
+            .then(({ result, state, list } = {})=>{
+                if(result && state){
                     setVipProducts(list);
                 }
             })
@@ -19,7 +16,7 @@ export default function VipProduct() {
 
     return (
         <>
-            <button className='btn-bg-small'>테스트</button>
+            <Link to='create' className='btn-bg-small'>생성</Link>
             <div className='board-title'>
                 <b>번호</b>
                 <b className='img'>대표이미지</b>
@@ -31,7 +28,7 @@ export default function VipProduct() {
             <ol className='board-list'>
                 {vipProducts && vipProducts.map((data) => 
                     <li key={data.id}>
-                        <Link to=''>
+                        <Link to={`${data.id}`}>
                             <span>{ data.numb }</span>
                             <img src={data.image} alt={`${data.name} 이미지`} />
                             <span>{ data.name }</span>

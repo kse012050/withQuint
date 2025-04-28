@@ -16,6 +16,7 @@ import Detail from '../pages/Detail';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Test from '../pages/Test';
+import NotFound from '../pages/NotFound';
 // 관리자
 import AdminRoot from '../pages/admin/Root';
 import AdminSignIn from '../pages/admin/SignIn';
@@ -27,6 +28,7 @@ import AdminStock from '../pages/admin/Stock';
 import AdminCustomerVip from '../pages/admin/CustomerVip';
 import AdminCustomerClinic from '../pages/admin/CustomerClinic';
 import AdminVipProduct from '../pages/admin/VipProduct';
+import AdminVipProductWrite from '../pages/admin/VipProductWrite';
 import AdminCustomerNotice from '../pages/admin/CustomerNotice';
 import AdminWrite from '../pages/admin/Write';
 
@@ -89,8 +91,11 @@ export default function Routers() {
                     <Route path="vipProduct" element={<AdminVipProduct />} />
                     <Route path=":boardType/create" element={<AdminWrite />} />
                     <Route path=":boardType/:id" element={<AdminWrite />} />
+                    <Route path="vipProduct/create" element={<AdminVipProductWrite />} />
+                    <Route path="vipProduct/:id" element={<AdminVipProductWrite />} />
                 </Route>
             </Route>
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 }
