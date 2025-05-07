@@ -58,7 +58,7 @@ header{position: fixed; left: 0; top: 0; right: 0; box-shadow: 0px 5px 21px -5px
     }
 }
 
-:is(.board-title b, .board-list li a span):not(:is(.time, time, .img)){width: 60px;}
+:is(.board-title b, .board-list li a span):not(:is(.time, time, .img)){width: 65px;}
 :is(.board-title b:is(.time, .img), .board-list li a :is(time, img)){width: 75px;}
 .board-title, .board-list li a{padding-inline: 30px;}
 :is(.board-title b, .board-list li a :is(span, time, img)){padding-inline: 40px;}

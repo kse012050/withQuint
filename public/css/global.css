@@ -46,7 +46,7 @@ body:has(.popup){overflow: hidden;}
 }
 
 .board-scroll{
-    :is(.board-title b, .board-list li a span):not(:is(.time, time)){width: 60px;}
+    :is(.board-title b, .board-list li a span):not(:is(.time, time)){width: 65px;}
     :is(.board-title b.time, .board-list li a time){width: 75px;}
 
     .board-list{
