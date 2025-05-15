@@ -53,19 +53,24 @@ header{position: fixed; left: 0; top: 0; right: 0; box-shadow: 0px 5px 21px -5px
             }
         }
         > span{font-size: 20px; line-height: 24px; font-weight: 500; align-self: center;}
+        
+        :is(.board-title b, .board-list li a span):not(:is(.time, time, .img)){width: 65px;}
+        :is(.board-title b:is(.time, .img), .board-list li a :is(time, img)){width: 75px;}
+        .board-title, .board-list li a{padding-inline: 30px;}
+        :is(.board-title b, .board-list li a :is(span, time, img)){padding-inline: 40px;}
+        :is(.board-title p, .board-list li a p){padding-inline: 60px;}
+        .board-list li{
+            &.secret a p{display: flex; align-items: center; gap: 0.4em;
+                &::before{content: ''; width: 24px; aspect-ratio: 1; background: url(../../images/icon-lock.png) no-repeat center / cover;}
+            }
+            a img{height: 60px; object-fit: cover;}
+        }
+        :is(.board-title, .board-list li a):not(:has(p)) *{flex: 1;}
+
         .board-list:empty::before{line-height: 100px;}
         .board-paging{margin-top: 50px;}
     }
 }
-
-:is(.board-title b, .board-list li a span):not(:is(.time, time, .img)){width: 65px;}
-:is(.board-title b:is(.time, .img), .board-list li a :is(time, img)){width: 75px;}
-.board-title, .board-list li a{padding-inline: 30px;}
-:is(.board-title b, .board-list li a :is(span, time, img)){padding-inline: 40px;}
-:is(.board-title p, .board-list li a p){padding-inline: 60px;}
-.board-list li a img{height: 60px; object-fit: cover;}
-
-:is(.board-title, .board-list li a):not(:has(p)) *{flex: 1;}
 
 
 /* 상세 페이지 */

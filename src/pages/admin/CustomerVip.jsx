@@ -16,7 +16,7 @@ export default function CustomerVip() {
                 </div>
                 <ol className='board-list'>
                     {list && list.map((data) => 
-                        <li key={data.id}>
+                        <li key={data.id} className={data.secret === 'y' ? 'secret' : ''}>
                             <Link to={`${data.id}`}>
                                 <span>{ data.numb }</span>
                                 <p>{ data.title }</p>

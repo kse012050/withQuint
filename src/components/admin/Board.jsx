@@ -15,6 +15,7 @@ export default function Board({ children, boardType, setList }) {
     const queryObject = useMemo(() => ({ dateEnd: dateEnd, ...Object.fromEntries(searchParams.entries()) }), [searchParams, dateEnd]);
     const passName = useLocation().pathname.split('/').at(-1);
     const isCreate = ['recommendation', 'revenue', 'stock', 'notice']
+    const isType = ['recommendation', 'revenue']
     
     useEffect(()=>{
         setSearch({...queryObject})
@@ -27,6 +28,8 @@ export default function Board({ children, boardType, setList }) {
                 if(result){
                     setInfo(info);
                     setList(list)
+                    console.log(list);
+                    
                 }
             })
     }, [boardType, setList, queryObject])
@@ -36,11 +39,11 @@ export default function Board({ children, boardType, setList }) {
             { isCreate.includes(passName) && <Link to='create' className='btn-bg-small'>생성</Link> }
             <SearchBox search={search} setSearch={setSearch}/>
             <span className='board-cases'>총 {info?.totalCount}건</span>
-            <ul className='board-select'>
-                <li>
+            { isType.includes(passName) &&
+                <div className='board-select'>
                     <SelectBox type={search?.type} setSearch={setSearch}/>
-                </li>
-            </ul>
+                </div>
+            }
             { children }
             {!!info?.totalPage && info && <Pagination info={info}/>}
         </>
