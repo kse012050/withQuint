@@ -16,7 +16,7 @@ export default function Root() {
         return pageArr ? pageArr.split('/').map((name) => !Number(name) ? name : 'detail') : ['main'];
     }, [location.pathname]);
     
-    const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")))
+    const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
     
     useEffect(()=>{
         postApi('signIn/auth')

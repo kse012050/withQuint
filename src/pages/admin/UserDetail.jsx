@@ -35,6 +35,26 @@ export default function UserDetail() {
             })
     }
 
+    const resetPasswrod = () => {
+        setPopup({
+            type: 'check',
+            title: '안내',
+            description: '비밀번호를 재발급 하시겠습니까?',
+            func: () => {
+                postApi('users/resetPassword', {id})
+                    .then(({ result, state, message }) => {
+                        if(result && state){
+                            setPopup({
+                                title: '안내',
+                                description: message,
+                            })
+                        }
+                    })
+            }
+        })
+
+    }
+
     return (
         <>
             <ul className='detail-list'>
@@ -157,7 +177,7 @@ export default function UserDetail() {
                 <li>
                     <label htmlFor="">비밀번호 재발급</label>
                     <div>
-                        <button className='btn-bg-small'>비밀번호 재발급</button>
+                        <button className='btn-bg-small' onClick={resetPasswrod}>비밀번호 재발급</button>
                         <small>* 초기화 비밀번호는 회원의 아이디와 동일하게 설정됩니다.</small>
                     </div>
                 </li>

@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { inputChange, inputsRequiredAdd } from '../api/validation';
 import { isSubmit, postApi } from '../api/api';
 import { ThemeContext } from '../context/ThemeContext';
+import Popup from '../components/Popup';
 
 export default function SignIn() {
     const [inputs, setInputs] = useState({userId: localStorage.getItem('userId'), authLogin: localStorage.getItem('userId') ? 'y': 'n'})
     const { user, setUser } = useContext(ThemeContext)
+    const [popup, setPopup] = useState()
     const navigate = useNavigate()
     
     useEffect(()=>{
@@ -22,16 +24,23 @@ export default function SignIn() {
         if(isSubmit(inputs)){
             return;
         }
+
         postApi('signIn', inputs)
-            .then(( response )=>{
-                const { result/* , message */, user } = response || {};
+            .then(({ result, state, message, user } = {})=>{
                 if(result){
-                    setUser(user)
-                    sessionStorage.setItem("user", JSON.stringify(user));
-                    if(inputs.authLogin === 'y'){
-                        localStorage.setItem("userId", user.userId);
+                    if(state){
+                        setUser(user)
+                        sessionStorage.setItem("user", JSON.stringify(user));
+                        if(inputs.authLogin === 'y'){
+                            localStorage.setItem("userId", user.userId);
+                        }else{
+                            localStorage.removeItem("userId");
+                        }
                     }else{
-                        localStorage.removeItem("userId");
+                        setPopup({
+                            title: '안내',
+                            description: message,
+                        })
                     }
                 }
             })
@@ -66,7 +75,7 @@ export default function SignIn() {
                                         id='password'
                                         data-formet='password'
                                         data-validation='password'
-                                        onChange={(e)=>inputChange(e, setInputs)}
+                                        onChange={(e)=>setInputs((input) => ({...input, password: e.target.value}))}
                                         autoComplete="off" 
                                         required
                                     />
@@ -85,6 +94,9 @@ export default function SignIn() {
                 <Link to='' className='btn-bg-big'>아이디/비밀번호 찾기</Link>
                 <strong>회원이 아니신가요?</strong>
                 <Link to='' className='btn-border-big'>회원가입</Link>
+                {popup &&
+                    <Popup popup={popup} setPopup={setPopup} />
+                }
             </div>
         </>
     );

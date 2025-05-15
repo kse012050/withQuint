@@ -170,7 +170,7 @@
             &.error{visibility: visible;}
         }
     }
-    strong{font-size: 15px; font-weight: 700; display: block;}
+    > strong{font-size: 15px; font-weight: 700; display: block;}
 }
 
 /* 회원가입 */

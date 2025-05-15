@@ -130,7 +130,7 @@
             &.error{visibility: visible;}
         }
     }
-    strong{margin-bottom: 15px;
+    > strong{margin-bottom: 15px;
         &:first-of-type{margin-top: 60px;}
         &:not(:first-of-type){margin-top: 25px;}
     }
