@@ -74,8 +74,11 @@ header{position: fixed; left: 0; top: 0; right: 0; box-shadow: 0px 5px 21px -5px
         > *{padding-block: 16px;}
         > label{min-width: 150px; background-color: #F7F7F7; align-content: center; text-align: center;}
         > div{padding-inline: 15px; flex: 1; display: flex; gap: 10px;
-            :is(input, textarea){width: 100%;}
-            textarea{height: 150px;}
+            :is(input, textarea:not(:has( + button))){width: 100%;}
+            textarea:not(:has( + button)){height: 150px;}
+            &:has(small){flex-wrap: wrap;
+                small{width: 100%; font-size: 13px;}
+            }
         }
     }
 }

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Board from '../../components/admin/Board';
 import SearchBox from '../../components/admin/SearchBox';
 import { day } from '../../js/utils';
 import { getApi } from '../../api/api';
+import Pagination from '../../components/Pagination';
 
 export default function User() {
     const [list, setList] = useState()
@@ -23,6 +23,7 @@ export default function User() {
     return (
         <>
             <SearchBox search={search} setSearch={setSearch}/>
+            <span className='board-cases'>총 {info?.totalCount}건</span>
             <div className='board-title'>
                 <b>번호</b>
                 <b>아이디</b>
@@ -40,13 +41,14 @@ export default function User() {
                             <span>{ data.userId }</span>
                             <span>{ data.author }</span>
                             <span>{ data.mobile }</span>
-                            <time>{ data.listLogin }</time>
+                            <time>{ data.lastLogin }</time>
                             <span>{ data.type }</span>
                             <time>{ data.created }</time>
                         </Link>
                     </li>
                 )}
             </ol>
+            {!!info?.totalPage && info && <Pagination info={info}/>}
         </>
     );
 }

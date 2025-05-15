@@ -22,6 +22,7 @@ import AdminRoot from '../pages/admin/Root';
 import AdminSignIn from '../pages/admin/SignIn';
 import AdminDashboard from '../pages/admin/Dashboard';
 import AdminUser from '../pages/admin/User';
+import AdminUserDetail from '../pages/admin/UserDetail';
 import AdminRecommendation from '../pages/admin/Recommendation';
 import AdminRevenue from '../pages/admin/Revenue';
 import AdminStock from '../pages/admin/Stock';
@@ -30,7 +31,7 @@ import AdminCustomerClinic from '../pages/admin/CustomerClinic';
 import AdminVipProduct from '../pages/admin/VipProduct';
 import AdminVipProductWrite from '../pages/admin/VipProductWrite';
 import AdminCustomerNotice from '../pages/admin/CustomerNotice';
-import AdminWrite from '../pages/admin/Write';
+import AdminBoardWrite from '../pages/admin/BoardWrite';
 
 export default function Routers() {
     return (
@@ -82,6 +83,7 @@ export default function Routers() {
                 <Route element={<AdminRoot />}>
                     <Route path="dashboard" element={<AdminDashboard />} />
                     <Route path="user" element={<AdminUser />} />
+                    <Route path="user/:id" element={<AdminUserDetail />} />
                     <Route path="recommendation" element={<AdminRecommendation />} />
                     <Route path="revenue" element={<AdminRevenue />} />
                     <Route path="stock" element={<AdminStock />} />
@@ -89,8 +91,8 @@ export default function Routers() {
                     <Route path="clinic" element={<AdminCustomerClinic />} />
                     <Route path="notice" element={<AdminCustomerNotice />} />
                     <Route path="vipProduct" element={<AdminVipProduct />} />
-                    <Route path=":boardType/create" element={<AdminWrite />} />
-                    <Route path=":boardType/:id" element={<AdminWrite />} />
+                    <Route path=":boardType/create" element={<AdminBoardWrite />} />
+                    <Route path=":boardType/:id" element={<AdminBoardWrite />} />
                     <Route path="vipProduct/create" element={<AdminVipProductWrite />} />
                     <Route path="vipProduct/:id" element={<AdminVipProductWrite />} />
                 </Route>

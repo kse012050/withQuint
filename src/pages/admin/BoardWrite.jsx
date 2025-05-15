@@ -4,7 +4,7 @@ import { getApi, isSubmit, postApi } from '../../api/api';
 import { inputChange, inputsRequiredAdd } from '../../api/validation';
 import Popup from '../../components/Popup';
 
-export default function Write() {
+export default function BoardWrite() {
     const { id, boardType } = useParams();
     const [inputs, setInputs] = useState({boardType});
     const createdRef = useRef(null)
