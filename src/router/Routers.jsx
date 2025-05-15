@@ -21,7 +21,7 @@ import NotFound from '../pages/NotFound';
 import AdminRoot from '../pages/admin/Root';
 import AdminSignIn from '../pages/admin/SignIn';
 import AdminDashboard from '../pages/admin/Dashboard';
-import AdminMember from '../pages/admin/Member';
+import AdminUser from '../pages/admin/User';
 import AdminRecommendation from '../pages/admin/Recommendation';
 import AdminRevenue from '../pages/admin/Revenue';
 import AdminStock from '../pages/admin/Stock';
@@ -81,7 +81,7 @@ export default function Routers() {
                 <Route index={true} element={<AdminSignIn />}/>
                 <Route element={<AdminRoot />}>
                     <Route path="dashboard" element={<AdminDashboard />} />
-                    <Route path="member" element={<AdminMember />} />
+                    <Route path="user" element={<AdminUser />} />
                     <Route path="recommendation" element={<AdminRecommendation />} />
                     <Route path="revenue" element={<AdminRevenue />} />
                     <Route path="stock" element={<AdminStock />} />

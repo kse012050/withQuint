@@ -25,7 +25,7 @@ export default function Header() {
                     <li>
                         <strong>회원 관리</strong>
                         <ul>
-                            <li><NavLink to='member'>회원목록</NavLink></li>
+                            <li><NavLink to='user'>회원목록</NavLink></li>
                         </ul>
                     </li>
                     <li>

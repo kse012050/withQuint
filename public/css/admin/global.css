@@ -65,6 +65,8 @@ header{position: fixed; left: 0; top: 0; right: 0; box-shadow: 0px 5px 21px -5px
 :is(.board-title p, .board-list li a p){padding-inline: 60px;}
 .board-list li a img{height: 60px; object-fit: cover;}
 
+:is(.board-title, .board-list li a):not(:has(p)) *{flex: 1;}
+
 
 /* 상세 페이지 */
 .detail-list{border-top: 2px solid #000;
