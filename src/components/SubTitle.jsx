@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 const titleName = {
+    member: '회원목록',
     introduction: '위드퀀트 소개',
     vipProduct: 'VIP상품 안내',
     recommendation: '추천 종목',

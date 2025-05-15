@@ -11,6 +11,14 @@
         }
         input[type="submit"]{height: 50px;}
     }
+    .info{position: fixed; left: calc(50% - 450px); top: 50%; transform: translateY(-50%); background-color: white; padding: 30px; border-radius: var(--box-radius); border: 1px solid var(--color-point);
+        dl{display: flex; font-size: 18px;
+            &:not(:last-child){margin-bottom: 10px;}
+            dt{display: flex;
+                &::after{content: ':'; margin-inline: 0.4em;}
+            }
+        }
+    }
 }
 
 

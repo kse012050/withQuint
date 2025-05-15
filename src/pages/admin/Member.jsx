@@ -5,8 +5,8 @@ import Board from '../../components/admin/Board';
 export default function Member() {
     return (
         <>
-            <h2>회원목록</h2>
-            <Board>
+            {/* <h2>회원목록</h2> */}
+            {/* <Board>
                 <div className='board-title'>
                     <b>1</b>
                 </div>
@@ -17,7 +17,7 @@ export default function Member() {
                         </Link>
                     </li>
                 </ol>
-            </Board>
+            </Board> */}
         </>
     );
 }

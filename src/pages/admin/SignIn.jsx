@@ -75,6 +75,16 @@ export default function SignIn() {
                     </ul>
                     <input type="submit" className='btn-bg-big' value="로그인" onClick={onSubmit}/>
                 </form>
+                <div className='info'>
+                    <dl>
+                        <dt>ID</dt>
+                        <dd>KimSungEun</dd>
+                    </dl>
+                    <dl>
+                        <dt>PW</dt>
+                        <dd>01092931656</dd>
+                    </dl>
+                </div>
             </div>
             { popup && <Popup popup={popup} setPopup={setPopup}/> }
         </>
