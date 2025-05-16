@@ -17,6 +17,10 @@ export default function Root() {
     }, [location.pathname]);
     
     const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pageName]);
     
     useEffect(()=>{
         postApi('signIn/auth')

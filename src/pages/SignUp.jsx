@@ -4,6 +4,7 @@ import { postApi, isSubmit } from '../api/api.js';
 import Popup from '../components/Popup.jsx';
 import { ThemeContext } from '../context/ThemeContext.jsx';
 import { useNavigate } from 'react-router-dom';
+import MobileAuthentication from '../components/MobileAuthentication.jsx';
 
 // const errorMessage = {
 //     id: '영문 또는 영문/숫자 조합하여 4~20자리',
@@ -48,6 +49,7 @@ export default function SignUp() {
 
     const onSubmit = (e) =>{
         e.preventDefault();
+        console.log(inputs);
         
         if(isSubmit(inputs)){
             return;
@@ -66,8 +68,16 @@ export default function SignUp() {
             })
     }
 
+    const test = () => {
+        postApi('signUp/mobile')
+            .then(()=>{
+
+            })
+    }
+
     return (
         <>
+            {/* <button onClick={test}>테스트</button> */}
             <div>
                 <form>
                     <fieldset>
@@ -167,6 +177,7 @@ export default function SignUp() {
                                         required
                                     />
                                 </div>
+                                {/* <MobileAuthentication setInputs={setInputs} /> */}
                             </li>
                         </ul>
                         <div>

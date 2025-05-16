@@ -121,6 +121,10 @@ export const inputChange = (e, setInputs, checkValue) => {
     }
 }
 
+export const inputValidation = (e) => {
+
+}
+
 export const checkInputChange = (e, setInputs, setCheckInputs) =>{
     const { name, dataset: { resetName } } = e.target;
     setInputs(prev => {
