@@ -151,7 +151,7 @@
             label{display: block; margin-bottom: 15px;
                 &:has( + div :required)::after{content: '*'; color: var(--color-point);}
             }
-            div{position: relative;
+            > div:not([popover]){position: relative;
                 &:not(:last-of-type){margin-bottom: 10px;}
                 input{width: 100%;
                     &::placeholder{color: #bbb;}

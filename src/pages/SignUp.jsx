@@ -18,7 +18,7 @@ export default function SignUp() {
     const [inputs, setInputs] = useState();
     const [checkInputs, setCheckInputs] = useState();
     const { user } = useContext(ThemeContext)
-    const [popup, setPopup] = useState(false);
+    const [popup, setPopup] = useState();
     const navigate = useNavigate()
     
     useEffect(()=>{
@@ -49,12 +49,10 @@ export default function SignUp() {
 
     const onSubmit = (e) =>{
         e.preventDefault();
-        console.log(inputs);
         
         if(isSubmit(inputs)){
             return;
         }
-
         
         const data = {...inputs};
         delete data.checkPW;
@@ -68,16 +66,8 @@ export default function SignUp() {
             })
     }
 
-    const test = () => {
-        postApi('signUp/mobile')
-            .then(()=>{
-
-            })
-    }
-
     return (
         <>
-            {/* <button onClick={test}>테스트</button> */}
             <div>
                 <form>
                     <fieldset>
@@ -164,20 +154,7 @@ export default function SignUp() {
                             </li>
                             <li>
                                 <label htmlFor="mobile">휴대폰 번호</label>
-                                <div data-err-message="휴대폰 번호를 확인해주세요.">
-                                    <input 
-                                        type="text"
-                                        name='mobile'
-                                        id='mobile'
-                                        data-formet='numb'
-                                        data-validation='mobile'
-                                        maxLength='11'
-                                        onChange={(e)=>inputChange(e, setInputs)}
-                                        onBlur={(e)=>inputErrCheck(e)}
-                                        required
-                                    />
-                                </div>
-                                {/* <MobileAuthentication setInputs={setInputs} /> */}
+                                <MobileAuthentication inputs={inputs} setInputs={setInputs} />
                             </li>
                         </ul>
                         <div>

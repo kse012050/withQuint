@@ -15,7 +15,7 @@ export default function SignIn() {
         getApi('admin/auth')
             .then(({ result, state })=>{
                 if(result && state){
-                    navigate('dashboard')
+                    navigate('user')
                 }
             })
     },[navigate])
@@ -33,7 +33,7 @@ export default function SignIn() {
                 
                 if(result){
                     if(state){
-                        navigate('dashboard')
+                        navigate('user')
                     }else{
                         messageType.type = 'failSignIn'
                     }

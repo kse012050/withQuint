@@ -34,9 +34,8 @@ export default function Popup({ popup, setPopup }) {
         popupRef.current.showPopover();
         const popupEvent = () => {
             if(!popupRef.current.matches(':popover-open')){
-                (popup.func && popup.type !== 'check') ? 
-                    popup.func() :
-                    setPopup()
+                (popup.func && popup.type !== 'check') && popup.func()
+                setPopup()
             }
         }
         popupRef.current.addEventListener('toggle', popupEvent)
@@ -49,10 +48,20 @@ export default function Popup({ popup, setPopup }) {
             <div>
                 {popup.type === 'check' ?
                 <>
-                    <button onClick={()=> setPopup()}>취소</button>
-                    <button onClick={popup.func}>확인</button>
+                    <button 
+                        type="button"
+                        onClick={()=> setPopup()}
+                    >
+                        취소
+                    </button>
+                    <button 
+                        type="button"
+                        onClick={popup.func}
+                    >
+                        확인
+                    </button>
                 </> :
-                    <button popovertarget="my-popover" popovertargetaction="hidden">확인</button>
+                    <button popovertarget="my-popover" popovertargetaction="hidden" type='button'>확인</button>
                 }
             </div>
         </div>

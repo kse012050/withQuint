@@ -17,7 +17,7 @@ export default function Header() {
     return (
         <header>
             <div>
-                <h1><Link to='/admin/dashboard'>위드퀸트 관리자 로고</Link></h1>
+                <h1><Link to='/admin/user'>위드퀸트 관리자 로고</Link></h1>
                 <button className='btn-bg-small' onClick={onLogout}>로그아웃</button>
             </div>
             <nav>
