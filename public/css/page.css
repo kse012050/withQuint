@@ -156,7 +156,8 @@
                 input{width: 100%;
                     &::placeholder{color: #bbb;}
                 }
-                button{position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 14px; font-weight: 700; text-decoration: underline; color: var(--color-point);}
+                > :is(button, div){position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 14px; font-weight: 700; text-decoration: underline; color: var(--color-point);}
+                > div{display: flex; gap: 10px;}
             }
         }
     }
