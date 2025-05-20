@@ -10,6 +10,7 @@ const titleName = {
     stock: '웰스 주식정보',
     customer: '고객센터',
     signIn: '로그인',
+    find: '로그인 계정 찾기',
     signUp: '회원가입',
     vip: 'VIP상품 신청',
     clinic: '주식상담소',

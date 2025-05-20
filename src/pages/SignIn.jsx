@@ -91,9 +91,9 @@ export default function SignIn() {
                     </fieldset>
                 </form>
                 <strong>로그인 정보를 잊으셨나요?</strong>
-                <Link to='' className='btn-bg-big'>아이디/비밀번호 찾기</Link>
+                <Link to='/find/id' className='btn-bg-big'>아이디/비밀번호 찾기</Link>
                 <strong>회원이 아니신가요?</strong>
-                <Link to='' className='btn-border-big'>회원가입</Link>
+                <Link to='/signUp' className='btn-border-big'>회원가입</Link>
                 {popup &&
                     <Popup popup={popup} setPopup={setPopup} />
                 }

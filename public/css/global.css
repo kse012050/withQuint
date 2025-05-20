@@ -105,7 +105,7 @@ header{position: fixed; inset: 0 0 auto 0; z-index: 10; animation-name: headerBG
 .revenuePage h2{background-image: url(../images/topBG-revenue.png);}
 .stockPage h2{background-image: url(../images/topBG-stock.png);}
 .customerPage h2{background-image: url(../images/topBG-customer.png);}
-[class^="sign"] h2{background-image: url(../images/topBG-sign.png);}
+:is([class^="sign"], [class^="find"]) h2{background-image: url(../images/topBG-sign.png);}
 
 
 /* 푸터 */

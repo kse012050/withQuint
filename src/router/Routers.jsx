@@ -32,31 +32,21 @@ import AdminVipProduct from '../pages/admin/VipProduct';
 import AdminVipProductWrite from '../pages/admin/VipProductWrite';
 import AdminCustomerNotice from '../pages/admin/CustomerNotice';
 import AdminBoardWrite from '../pages/admin/BoardWrite';
+import Find from '../pages/Find';
+import FindId from '../pages/FindId';
+import FindPW from '../pages/FindPW';
 
 export default function Routers() {
     return (
         <Routes>
-            <Route path="/" element={<Root />}>
-                <Route index={true} element={<Main/>} />
-            </Route>
-            <Route path="/introduction" element={<Root />}>
-                <Route index={true} element={<Introduction />}/>
-            </Route>
-            <Route path="/vipProduct" element={<Root />}>
-                <Route index={true} element={<VipProduct />}/>
-            </Route>
-            <Route path="/recommendation" element={<Root />}>
-                <Route index={true} element={<Recommendation />}/>
-            </Route>
-            <Route path="/revenue" element={<Root />}>
-                <Route index={true} element={<Revenue />}/>
-            </Route>
-            <Route path="/stock" element={<Root />}>
-                <Route index={true} element={<Stock />}/>
-            </Route>
-            <Route path="/customer" element={<Root />}>
-                <Route element={<Customer />}>
-                    {/* <Route index={true} element={<CustomerVip />} /> */}
+            <Route element={<Root />}>
+                <Route path="/" element={<Main />} />
+                <Route path="/introduction" element={<Introduction />} />
+                <Route path="/vipProduct" element={<VipProduct />} />
+                <Route path="/recommendation" element={<Recommendation />} />
+                <Route path="/revenue" element={<Revenue />} />
+                <Route path="/stock" element={<Stock />} />
+                <Route path="/customer" element={<Customer />}>
                     <Route path='vip' element={<CustomerVip />} />
                     <Route path='clinic' element={<CustomerClinic />} />
                     <Route path='notice' element={<CustomerNotice />} />
@@ -64,18 +54,16 @@ export default function Routers() {
                     <Route path=':boardType/create' element={<CustomerWrite />} /> 
                     <Route path=":boardType/:id/update" element={<CustomerWrite />} />
                 </Route>
-            </Route>
-            <Route path="/signIn" element={<Root />}>
-                <Route index={true} element={<SignIn />}/>
-            </Route>
-            <Route path="/signUp" element={<Root />}>
-                <Route index={true} element={<SignUp />}/>
+                <Route path="/signIn" element={<SignIn />} />
+                <Route path="/find" element={<Find />}>
+                    <Route path='id' element={<FindId />} />
+                    <Route path='pw' element={<FindPW />} />
+                </Route>
+                <Route path="/signUp" element={<SignUp />} />
+                <Route path="/:boardType/:id" element={<Detail />} />
             </Route>
             <Route path="/test" element={<Root />}>
                 <Route index={true} element={<Test />}/>
-            </Route>
-            <Route path="/:boardType/:id" element={<Root />}>
-                <Route index={true} element={<Detail />}/>
             </Route>
             {/* 관리자 */}
             <Route path="/admin">
