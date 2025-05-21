@@ -118,9 +118,12 @@
 }
 
 
-/* 로그인, 회원가입 */
-[class^="sign"] div form fieldset{
-    legend{font-size: 36px; line-height: 43px; margin-bottom: 60px;}
+/* 로그인, 회원가입, 찾기 */
+:is([class^="sign"], [class^="find"]) div form fieldset{
+    legend{font-size: 36px; line-height: 43px;}
+    legend:not( + p){margin-bottom: 60px;}
+    legend:has( + p){margin-bottom: 20px;}
+    legend + p{font-size: 18px; line-height: 21px; margin-bottom: 60px;}
 }
 
 /* 로그인 */
@@ -142,3 +145,6 @@
     & > div{margin-top: 60px;}
     input[type="submit"]{margin-top: 65px;}
 }
+
+/* 찾기 */
+[class^="find"] > div > p{font-size: 36px; line-height: 50px; margin-bottom: 60px;}

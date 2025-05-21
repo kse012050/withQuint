@@ -1,24 +1,23 @@
+import { isFormet, isValidation } from "./validation";
+
 const userApiUrl =  process.env.REACT_APP_API_URL;
 // const adminApiUrl =  `${process.env.REACT_APP_API_URL}admin/`;
 
 export function isSubmit(inputs){
     if(inputs){
-        Object.entries(inputs).forEach(([key, value]) =>{
-            document.querySelector(`[name="${key}"]`) && 
-                document.querySelectorAll(`[name="${key}"]`).forEach((prev)=>{
-                    if ((prev.type === 'checkbox' && value === 'n') || value === '') {
-                        prev.classList.add('error');
-                    }
-                })
+        const inputsSelectors = Array.from(document.querySelectorAll(`input[name][required]`));
+        inputsSelectors.forEach(({ type, value, name }) => {
+            if ((type === 'checkbox' && value === 'n') || !inputs[name]) {
+                document.querySelector(`[name="${name}"]`).classList.add('error');
+            }
         })
-
-        return Object.entries(inputs).some(([key, value]) => {
-            if (!value && document.querySelector(`[name="${key}"][required]`)) {
-                document.querySelector(`[name="${key}"]`).focus()
+        return inputsSelectors.some(({ value, name, dataset: { formet, validation } }) => {
+            if(!value || (formet && !isFormet(formet, value)['is']) || (validation && !isValidation(validation, value))){
+                document.querySelector(`[name="${name}"]`).focus()
                 return true; 
             }
             return false;
-        });
+        })
     }
 }
 

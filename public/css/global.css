@@ -97,7 +97,7 @@ header{position: fixed; inset: 0 0 auto 0; z-index: 10; animation-name: headerBG
     &:not([class^="sign"]) > div:first-of-type{
         h3{font-weight: 700;}
     }
-    &[class^="sign"] > div:first-of-type{max-width: min(400px, var(--content-margin));}
+    &:is([class^="sign"], [class^="find"]) > div:first-of-type{max-width: min(400px, var(--content-margin));}
 }
 .introductionPage h2{background-image: url(../images/topBG-introduction.png);}
 .vipProductPage h2{background-image: url(../images/topBG-VIP.png);}

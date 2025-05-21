@@ -117,9 +117,13 @@
 }
 
 
-/* 로그인, 회원가입 */
-[class^="sign"] div form fieldset{
+/* 로그인, 회원가입, 찾기 */
+:is([class^="sign"], [class^="find"]) div form fieldset{
     legend{font-size: 26px; line-height: 36px; margin-bottom: 40px;}
+    legend:not( + p){margin-bottom: 40px;}
+    legend:has( + p){margin-bottom: 15px;}
+    legend + p{font-size: 17px; line-height: 1; margin-bottom: 40px;}
+    
 }
 
 /* 로그인 */
@@ -141,3 +145,6 @@
     & > div{margin-top: 30px;}
     input[type="submit"]{margin-top: 40px;}
 }
+
+/* 찾기 */
+[class^="find"] > div > p{font-size: 26px; line-height: 36px; margin-bottom: 40px;}

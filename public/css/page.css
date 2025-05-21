@@ -142,9 +142,10 @@
 }
 
 
-/* 로그인, 회원가입 */
-[class^="sign"] div form fieldset{
+/* 로그인, 회원가입, 찾기 */
+:is([class^="sign"], [class^="find"]) div form fieldset{
     legend{font-weight: 700; text-align: center;}
+    legend + p{font-weight: 400; text-align: center;}
     ul{
         & li:not(:last-child){margin-bottom: 30px;}
         li{
@@ -177,4 +178,12 @@
 /* 회원가입 */
 .signUpPage div form fieldset{
     & > div{padding-block: 30px; border-block-width: 2px 1px; border-block-color: #000 #DCDCDC; border-block-style: solid;}
+}
+
+/* 찾기 */
+[class^="find"] > div{
+     form fieldset input[type="submit"]{margin-top: 65px;}
+     > p{font-weight: 400; text-align: center;
+        mark{color: var(--color-point); font-weight: 700;}
+    }
 }

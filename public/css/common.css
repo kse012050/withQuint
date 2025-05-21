@@ -26,7 +26,7 @@ input[type="file"] + label{width: 100px; aspect-ratio: 1; border: 1px solid var(
 }
 form fieldset ul li div[data-err-message]{
     > :is(&::after, p){font-size: 14px; font-weight: 400;}
-    &:has(input.error) {position: relative;
+    &:has(input.error):not(:has( + div)){position: relative;
         &::after{content: attr(data-err-message); position: absolute; left: 0; top: 100%; color: var(--color-point);}
         > :is(input, textarea).error{border-color: var(--color-point); outline: var(--color-point);}
     }

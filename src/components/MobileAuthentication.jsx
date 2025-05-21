@@ -3,7 +3,7 @@ import { inputChange } from '../api/validation';
 import { postApi } from '../api/api';
 import Popup from './Popup';
 
-export default function MobileAuthentication({ inputs, setInputs }) {
+export default function MobileAuthentication({ type, inputs, setInputs, placeholder }) {
     const [phoneAuth, setPhoneAuth] = useState()
     const [isPhoneNum, setIsPhoneNum] = useState(false)
     const [timeLeft, setTimeLeft] = useState(0);
@@ -13,14 +13,18 @@ export default function MobileAuthentication({ inputs, setInputs }) {
     const [popup, setPopup] = useState();
 
     const onAuthSend = () => {
-        postApi('signUp/mobileAuthSend', {mobile: phoneAuth.mobile})
+        postApi(`mobileAuth/send`, {type, mobile: phoneAuth.mobile})
             .then(({ result, state, message } = {})=>{
-                if(result && state){
+                if(result){
                     setPopup({
                         title: '안내',
                         description: message,
                         func: () => {
-                            setIsPhoneNum(true)
+                            if(state){
+                                setIsPhoneNum(true)
+                            }else{
+                                mobileRef.current.focus()
+                            }
                         }
                     })
                 }
@@ -29,6 +33,7 @@ export default function MobileAuthentication({ inputs, setInputs }) {
 
     useEffect(()=> {
         if(isPhoneNum){
+            mobileRef.current.classList.remove('error')
             authRef.current.focus()
             setTimeLeft(180)
             startTimer()
@@ -65,7 +70,7 @@ export default function MobileAuthentication({ inputs, setInputs }) {
     };
 
     const onAuthCheck = () => {
-        postApi('signUp/mobileAuthCheck', {...phoneAuth})
+        postApi(`mobileAuth/check`, {type, ...phoneAuth})
             .then(({ result, state, message } = {})=>{
                 if(result){
                     setPopup({
@@ -75,6 +80,7 @@ export default function MobileAuthentication({ inputs, setInputs }) {
                             if(state){
                                 stopTimer()
                                 setInputs((prev)=>({...prev, mobile: phoneAuth.mobile}))
+                                mobileRef.current.classList.remove('error')
                             }else{
                                 authRef.current.focus()
                             }
@@ -86,7 +92,7 @@ export default function MobileAuthentication({ inputs, setInputs }) {
 
     return (
         <>
-            <div data-err-message="휴대폰 번호를 확인해주세요.">
+            <div data-err-message={!phoneAuth?.mobile ? '휴대폰 번호를 확인해주세요.' : '휴대폰 인증을 진행주세요.'}>
                 <input 
                     type="text"
                     name='mobile'
@@ -100,6 +106,7 @@ export default function MobileAuthentication({ inputs, setInputs }) {
                         inputs?.mobile && setInputs((prev)=>({...prev, mobile: ''}))
                         inputChange(e, setPhoneAuth)
                     }}
+                    placeholder={placeholder && '휴대폰 번호 입력'}
                     required
                 />
                 {phoneAuth?.mobile && !inputs?.mobile &&
@@ -123,6 +130,7 @@ export default function MobileAuthentication({ inputs, setInputs }) {
                         maxLength='6'
                         ref={authRef}
                         onChange={(e)=>inputChange(e, setPhoneAuth)}
+                        placeholder={placeholder && '인증번호 입력'}
                         required
                     />
                     <div>

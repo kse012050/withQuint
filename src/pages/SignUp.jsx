@@ -49,7 +49,7 @@ export default function SignUp() {
 
     const onSubmit = (e) =>{
         e.preventDefault();
-        
+
         if(isSubmit(inputs)){
             return;
         }
@@ -60,6 +60,8 @@ export default function SignUp() {
         postApi('signUp', data)
             .then(( response )=>{
                 const { result, /* message */ } = response || {};
+                console.log(response);
+                
                 if(result){
                     navigate('/signIn')
                 }
@@ -154,7 +156,7 @@ export default function SignUp() {
                             </li>
                             <li>
                                 <label htmlFor="mobile">휴대폰 번호</label>
-                                <MobileAuthentication inputs={inputs} setInputs={setInputs} />
+                                <MobileAuthentication type="signUp" inputs={inputs} setInputs={setInputs} />
                             </li>
                         </ul>
                         <div>
