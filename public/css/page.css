@@ -156,6 +156,7 @@
                 &:not(:last-of-type){margin-bottom: 10px;}
                 input{width: 100%;
                     &::placeholder{color: #bbb;}
+                    &:has( + input){margin-bottom: 10px;}
                 }
                 > :is(button, div){position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 14px; font-weight: 700; text-decoration: underline; color: var(--color-point);}
                 > div{display: flex; gap: 10px;}

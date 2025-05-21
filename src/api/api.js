@@ -1,4 +1,4 @@
-import { isFormet, isValidation } from "./validation";
+// import { isFormet, isValidation } from "./validation";
 
 const userApiUrl =  process.env.REACT_APP_API_URL;
 // const adminApiUrl =  `${process.env.REACT_APP_API_URL}admin/`;
@@ -11,8 +11,9 @@ export function isSubmit(inputs){
                 document.querySelector(`[name="${name}"]`).classList.add('error');
             }
         })
-        return inputsSelectors.some(({ value, name, dataset: { formet, validation } }) => {
-            if(!value || (formet && !isFormet(formet, value)['is']) || (validation && !isValidation(validation, value))){
+        
+        return inputsSelectors.some(({ value, name/* , dataset: { formet, validation } */ }) => {
+            if(!value || !inputs[name]){
                 document.querySelector(`[name="${name}"]`).focus()
                 return true; 
             }

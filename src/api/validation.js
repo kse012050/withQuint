@@ -1,5 +1,6 @@
 // 필수 입력 학목 추가
 export const inputsRequiredAdd = (setInputs) =>{
+    setInputs()
     document.querySelectorAll('[required]').forEach(({ name, type, value, checked })=>{
 /*         if(name.includes('check')){
             return;

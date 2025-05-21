@@ -60,7 +60,7 @@ export default function SignUp() {
         postApi('signUp', data)
             .then(( response )=>{
                 const { result, /* message */ } = response || {};
-                console.log(response);
+                // console.log(response);
                 
                 if(result){
                     navigate('/signIn')

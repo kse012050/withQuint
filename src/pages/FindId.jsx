@@ -47,6 +47,7 @@ export default function FindId() {
                     <p>
                         가입하신 아이디는<br/>
                         <mark>{userId}</mark> 입니다.
+                        <mark>{userId.slice(0, userId.length - 2) + '**'}</mark> 입니다.
                     </p>
                     <Link to='/signIn' className='btn-bg-big'>로그인</Link>
                 </>
