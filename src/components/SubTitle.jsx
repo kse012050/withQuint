@@ -11,6 +11,7 @@ const titleName = {
     customer: '고객센터',
     signIn: '로그인',
     find: '로그인 계정 찾기',
+    infoChange: '정보변경',
     signUp: '회원가입',
     vip: 'VIP상품 신청',
     clinic: '주식상담소',

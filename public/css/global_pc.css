@@ -82,11 +82,12 @@ header{padding-inline: 40px; color: white;
     }
 }
 .introductionPage h2{background-image: url(../images/topBG-introduction.png);}
-.vipPage h2{background-image: url(../images/topBG-VIP.png);}
+.vipProductPage h2{background-image: url(../images/topBG-VIP.png);}
 .recommendationPage h2{background-image: url(../images/topBG-introduction.png);}
 .revenuePage h2{background-image: url(../images/topBG-revenue.png);}
 .stockPage h2{background-image: url(../images/topBG-stock.png);}
 .customerPage h2{background-image: url(../images/topBG-customer.png);}
+.infoChangePage h2{background-image: url(../images/topBG-infoChange.png);}
 [class^="sign"] h2{background-image: url(../images/topBG-sign.png);}
 
 

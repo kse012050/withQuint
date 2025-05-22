@@ -143,7 +143,7 @@
 
 
 /* 로그인, 회원가입, 찾기 */
-:is([class^="sign"], [class^="find"]) div form fieldset{
+:is([class^="sign"], [class^="find"], [class^="infoChange"]) div form fieldset{
     legend{font-weight: 700; text-align: center;}
     legend + p{font-weight: 400; text-align: center;}
     ul{

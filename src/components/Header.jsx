@@ -39,6 +39,7 @@ export default function Header() {
                                 <NavLink to='/signUp'>회원가입</NavLink>
                             </> :
                             <>
+                                <NavLink to='/infoChange'>정보변경</NavLink>
                                 <button onClick={onLogout}>로그아웃</button>
                             </>
                         }

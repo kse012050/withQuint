@@ -119,7 +119,7 @@
 
 
 /* 로그인, 회원가입, 찾기 */
-:is([class^="sign"], [class^="find"]) div form fieldset{
+:is([class^="sign"], [class^="find"], [class^="infoChange"]) div form fieldset{
     legend{font-size: 36px; line-height: 43px;}
     legend:not( + p){margin-bottom: 60px;}
     legend:has( + p){margin-bottom: 20px;}
@@ -141,7 +141,7 @@
 }
 
 /* 회원가입 */
-.signUpPage div form fieldset{
+:is(.signUpPage, .infoChangePage) div form fieldset{
     & > div{margin-top: 60px;}
     input[type="submit"]{margin-top: 65px;}
 }

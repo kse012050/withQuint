@@ -15,6 +15,10 @@ import CustomerWrite from '../pages/CustomerWrite';
 import Detail from '../pages/Detail';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
+import Find from '../pages/Find';
+import FindId from '../pages/FindId';
+import FindPW from '../pages/FindPW';
+import InfoChange from '../pages/InfoChange';
 import Test from '../pages/Test';
 import NotFound from '../pages/NotFound';
 // 관리자
@@ -32,9 +36,6 @@ import AdminVipProduct from '../pages/admin/VipProduct';
 import AdminVipProductWrite from '../pages/admin/VipProductWrite';
 import AdminCustomerNotice from '../pages/admin/CustomerNotice';
 import AdminBoardWrite from '../pages/admin/BoardWrite';
-import Find from '../pages/Find';
-import FindId from '../pages/FindId';
-import FindPW from '../pages/FindPW';
 
 export default function Routers() {
     return (
@@ -60,6 +61,7 @@ export default function Routers() {
                     <Route path='pw' element={<FindPW />} />
                 </Route>
                 <Route path="/signUp" element={<SignUp />} />
+                <Route path="/infoChange" element={<InfoChange />} />
                 <Route path="/:boardType/:id" element={<Detail />} />
             </Route>
             <Route path="/test" element={<Root />}>
