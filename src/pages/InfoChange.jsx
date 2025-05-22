@@ -1,7 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MobileAuthentication from '../components/MobileAuthentication';
+import { getApi, isSubmit } from '../api/api';
+import { inputChange } from '../api/validation';
 
 export default function InfoChange() {
+    const [inputs, setInputs] = useState();
+    const [currentInputs, setCurrentInputs] = useState();
+
+    useEffect(()=> {
+        getApi('info')
+            .then((res) => {
+                setCurrentInputs(res.data)
+            })
+    }, [])
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        console.log(currentInputs);
+        console.log(inputs);
+
+        if(isSubmit(inputs)){
+            return;
+        }
+        
+    }
     return (
         <div>
             <form>
@@ -10,7 +32,11 @@ export default function InfoChange() {
                         <li>
                             <label htmlFor="">아이디</label>
                             <div>
-                                <input type="text" />
+                                <input 
+                                    type="text"
+                                    defaultValue={currentInputs?.userId}
+                                    readOnly
+                                />
                             </div>
                         </li>
                         <li>
@@ -24,10 +50,9 @@ export default function InfoChange() {
                                     data-formet='password'
                                     data-validation='password'
                                     data-reset-name="password"
-                                    // onChange={(e)=>inputChange(e, setInputs)}
+                                    onChange={(e)=>inputChange(e, setInputs)}
                                     // onBlur={(e)=>inputErrCheck(e)}
                                     autoComplete="off" 
-                                    required
                                 />
                             </div>
                         </li>
@@ -42,7 +67,6 @@ export default function InfoChange() {
                                     // onChange={(e)=>inputChange(e, setInputs, inputs?.checkPW)}
                                     // onBlur={(e)=>inputErrCheck(e)}
                                     autoComplete="off" 
-                                    required
                                 />
                             </div>
                         </li>
@@ -61,19 +85,19 @@ export default function InfoChange() {
                                     id='nickname'
                                     data-formet='nickname'
                                     data-validation='nickname'
+                                    defaultValue={currentInputs?.nickname}
                                     // onChange={(e)=>checkInputChange(e, setInputs, setCheckInputs)}
                                     // onBlur={(e)=>inputErrCheck(e)}
-                                    required
                                 />
                                 {/* {!inputs?.nickname && checkInputs?.nickname && <button onClick={()=>onCheck('nickname')} type="button">중복 확인</button>} */}
                             </div>
                         </li>
                         <li>
                             <label htmlFor="mobile">휴대폰 번호</label>
-                            <MobileAuthentication type="signUp" /* inputs={inputs} setInputs={setInputs} */ />
+                            <MobileAuthentication type="signUp" currentValue={currentInputs?.mobile} inputs={inputs} setInputs={setInputs} />
                         </li>
                     </ul>
-                    <input type="submit" className='btn-bg-big' value="회원가입" /* onClick={onSubmit} *//>
+                    <input type="submit" className='btn-bg-big' value="정보변경" onClick={onSubmit}/>
                 </fieldset>
             </form>
         </div>

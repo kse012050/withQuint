@@ -55,7 +55,7 @@ export function getApi(url, data){
     if(data){
         url = url + '?' + new URLSearchParams(data)
     }
-
+    
     return userApi(url, options)
 }
 

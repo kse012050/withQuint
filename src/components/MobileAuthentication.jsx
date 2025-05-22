@@ -3,7 +3,7 @@ import { inputChange } from '../api/validation';
 import { postApi } from '../api/api';
 import Popup from './Popup';
 
-export default function MobileAuthentication({ type, inputs, setInputs, placeholder }) {
+export default function MobileAuthentication({ type, inputs, setInputs, currentValue, placeholder }) {
     const [phoneAuth, setPhoneAuth] = useState()
     const [isPhoneNum, setIsPhoneNum] = useState(false)
     const [timeLeft, setTimeLeft] = useState(0);
@@ -106,6 +106,7 @@ export default function MobileAuthentication({ type, inputs, setInputs, placehol
                         inputs?.mobile && setInputs((prev)=>({...prev, mobile: ''}))
                         inputChange(e, setPhoneAuth)
                     }}
+                    defaultValue={currentValue}
                     placeholder={placeholder && '휴대폰 번호 입력'}
                     required
                 />
