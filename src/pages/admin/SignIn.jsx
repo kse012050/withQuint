@@ -43,9 +43,10 @@ export default function SignIn() {
                 setPopup(messageType)
             })
     }
+    
     return (
         <>
-            <link rel="stylesheet" href="/css/admin/import.css" />
+            <link rel="stylesheet" href={process.env.PUBLIC_URL + '/css/admin/import.css'} />
             <div className='signInPage'>
                 <form>
                     <h2>웰스 투자 관리자</h2>

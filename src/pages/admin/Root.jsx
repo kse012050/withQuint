@@ -20,7 +20,8 @@ export default function Root() {
     
     return (
         <div className='adminPage'>
-            <link rel="stylesheet" href="/css/admin/import.css" />
+            {/* <link rel="stylesheet" href="/css/admin/import.css" /> */}
+            <link rel="stylesheet" href={process.env.PUBLIC_URL + '/css/admin/import.css'} />
             <Header />
             <section className={pathName.map((name) => `${name}Page`).join(' ')}>
                 <SubTitle />

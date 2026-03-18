@@ -3,8 +3,10 @@ import { BrowserRouter } from 'react-router-dom';
 import Routers from './router/Routers'
 
 function App() {
+  const baseName = window.location.hostname === 'localhost' ? '/' : '/WithQuant';
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={baseName}>
       <Routers />
     </BrowserRouter>
   );

@@ -100,7 +100,7 @@ header{padding-inline: var(--content-size-mobile); --headerHeight: 56px; backgro
 .stockPage h2{background-image: url(../images/topBG-stock-m.png);}
 .customerPage h2{background-image: url(../images/topBG-customer-m.png);}
 .infoChangePage h2{background-image: url(../images/topBG-infoChange-m.png);}
-[class^="sign"] h2{background-image: url(../images/topBG-sign-m.png);}
+:is([class^="sign"], [class^="find"]) h2{background-image: url(../images/topBG-sign-m.png);}
 
 
 /* 푸터 */

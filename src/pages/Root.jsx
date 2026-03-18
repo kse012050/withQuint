@@ -44,7 +44,7 @@ export default function Root() {
     return (
         <>
             <ThemeContext.Provider value={{ user, setUser }}>
-                <link rel="stylesheet" href="/css/import.css" />
+                <link rel="stylesheet" href={process.env.PUBLIC_URL + '/css/import.css'} />
                 <Helmet>
                     <base href="/" />
                 </Helmet>

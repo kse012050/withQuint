@@ -25,7 +25,7 @@ export default function SignUp() {
         if(user){
             navigate('/')
         }
-        inputsRequiredAdd(setInputs)
+        inputsRequiredAdd(setInputs, setCheckInputs)
     },[navigate, user])
 
     const onCheck = (type) =>{
@@ -49,23 +49,25 @@ export default function SignUp() {
 
     const onSubmit = (e) =>{
         e.preventDefault();
-
-        if(isSubmit(inputs)){
-            return;
-        }
+        console.log(inputs);
+        console.log(checkInputs);
         
-        const data = {...inputs};
-        delete data.checkPW;
+        // if(isSubmit(inputs)){
+        //     return;
+        // }
+        
+        // const data = {...inputs};
+        // delete data.checkPW;
 
-        postApi('signUp', data)
-            .then(( response )=>{
-                const { result, /* message */ } = response || {};
-                // console.log(response);
+        // postApi('signUp', data)
+        //     .then(( response )=>{
+        //         const { result, /* message */ } = response || {};
+        //         // console.log(response);
                 
-                if(result){
-                    navigate('/signIn')
-                }
-            })
+        //         if(result){
+        //             navigate('/signIn')
+        //         }
+        //     })
     }
 
     return (
@@ -90,9 +92,7 @@ export default function SignUp() {
                                         name='userId'
                                         id='userId'
                                         data-formet='id'
-                                        data-validation='id'
                                         onChange={(e)=>checkInputChange(e, setInputs, setCheckInputs)}
-                                        onBlur={(e)=>inputErrCheck(e)}
                                         autoComplete="off" 
                                         required
                                     />

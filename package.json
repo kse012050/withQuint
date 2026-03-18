@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env PUBLIC_URL=/WithQuant react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

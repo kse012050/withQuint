@@ -88,7 +88,7 @@ header{padding-inline: 40px; color: white;
 .stockPage h2{background-image: url(../images/topBG-stock.png);}
 .customerPage h2{background-image: url(../images/topBG-customer.png);}
 .infoChangePage h2{background-image: url(../images/topBG-infoChange.png);}
-[class^="sign"] h2{background-image: url(../images/topBG-sign.png);}
+:is([class^="sign"], [class^="find"]) h2{background-image: url(../images/topBG-sign.png);}
 
 
 /* 푸터 */

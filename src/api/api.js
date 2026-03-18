@@ -5,7 +5,7 @@ const userApiUrl =  process.env.REACT_APP_API_URL;
 
 export function isSubmit(inputs){
     if(inputs){
-        const inputsSelectors = Array.from(document.querySelectorAll(`input[name][required]`));
+        const inputsSelectors = Array.from(document.querySelectorAll(`input[name][required]`))/* .filter((selector) => inputs.hasOwnProperty(selector.name) ); */
         inputsSelectors.forEach(({ type, value, name }) => {
             if ((type === 'checkbox' && value === 'n') || !inputs[name]) {
                 document.querySelector(`[name="${name}"]`).classList.add('error');
