@@ -10,7 +10,7 @@ export default function Main() {
         getApi('boards/main')
             .then(({ result, data } = {}) => {
                 if(result){
-                    console.log(data);
+                    // console.log(data);
                     
                     setData(data);
                 }

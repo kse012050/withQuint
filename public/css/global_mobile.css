@@ -16,7 +16,7 @@
     }
 }
 
-.board-scroll{overflow: auto;
+.board-scroll{/* overflow: auto; */
     .board-title, .board-list li a{padding-inline: 30px; min-width: 800px;}
     :is(.board-title b, .board-list li a :is(span, time)){padding-inline: 20px;}
     :is(.board-title p, .board-list li a p){padding-inline: 10px;}

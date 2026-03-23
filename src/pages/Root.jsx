@@ -41,6 +41,9 @@ export default function Root() {
         )
     },[pageName])
 
+    // console.log(process.env.REACT_APP_API_URL);
+    
+
     return (
         <>
             <ThemeContext.Provider value={{ user, setUser }}>

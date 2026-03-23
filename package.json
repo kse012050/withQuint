@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "cross-env PUBLIC_URL=/WithQuant react-scripts build",
+    "build": "cross-env PUBLIC_URL=/WithQuant REACT_APP_API_URL=http://3.38.247.194/WithQuant_api/ react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

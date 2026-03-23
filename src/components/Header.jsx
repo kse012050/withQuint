@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ThemeContext } from '../context/ThemeContext';
 import { postApi } from '../api/api';
@@ -6,7 +6,12 @@ import { postApi } from '../api/api';
 export default function Header() {
     const { user, setUser } = useContext(ThemeContext);
     const [ isMobileMenu, setIsMobileMenu ] = useState(false)
+    const location = useLocation();
     const isCustomerActive = useLocation().pathname.includes('customer')
+
+    useEffect(() => {
+        setIsMobileMenu(false);
+    }, [location.pathname]);
     
 
     const onLogout = () => {
