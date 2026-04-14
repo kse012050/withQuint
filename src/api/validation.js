@@ -1,44 +1,20 @@
 // 필수 입력 학목 추가
-export function inputsRequiredAdd(){
-    console.log(arguments[0]);
+export const inputsRequiredAdd = (setInputs) =>{
+    setInputs()
     document.querySelectorAll('[required]').forEach(({ name, type, value, checked })=>{
-        Array.from(arguments).forEach((func) => {
-            func((input = {})=>{
-                if(type === 'checkbox'){
-                    input[name] = checked ? 'y' : 'n';
-                }else if(!input[name]){
-                    input[name] = value;
-                }
-                return {...input};
-            })
+/*         if(name.includes('check')){
+            return;
+        } */
+        setInputs((input = {})=>{
+            if(type === 'checkbox'){
+                input[name] = checked ? 'y' : 'n';
+            }else if(!input[name]){
+                input[name] = value;
+            }
+            return {...input};
         })
-        // setInputs((input = {})=>{
-        //     if(type === 'checkbox'){
-        //         input[name] = checked ? 'y' : 'n';
-        //     }else if(!input[name]){
-        //         input[name] = value;
-        //     }
-        //     return {...input};
-        // })
     })
 }
-// export const inputsRequiredAdd = (setInputs) =>{
-//     console.log(arguments);
-//     setInputs()
-//     document.querySelectorAll('[required]').forEach(({ name, type, value, checked })=>{
-// /*         if(name.includes('check')){
-//             return;
-//         } */
-//         setInputs((input = {})=>{
-//             if(type === 'checkbox'){
-//                 input[name] = checked ? 'y' : 'n';
-//             }else if(!input[name]){
-//                 input[name] = value;
-//             }
-//             return {...input};
-//         })
-//     })
-// }
 
 // 입력 값 검사
 const formetMap = {
@@ -74,7 +50,7 @@ export function isFormet(type, value){
 
 const validationMap = {
     id(value) {
-        const regex = /^[a-zA-Z0-9]{4,20}$/;;
+        const regex = /^.{4,20}$/;
         return regex.test(value);
     },
     password(value) {
@@ -106,51 +82,45 @@ export function isValidation(type, value, checkValue){
     return Object.keys(validationMap).includes(type) && validationMap[type](value, checkValue);
 }
 
-export const inputChange = (e, setInputs) => {
+export const inputChange = (e, setInputs, checkValue) => {
     const { value, name, checked, type, dataset: { formet, validation, resetName }, files } = e.target;
-    console.log(value);
     
+    if(formet && !!value && !isFormet(formet, value)['is']){
+        e.target.classList.add('error')
+        return
+    }else if(validation && !isValidation(validation, value, checkValue)){
+        e.target.classList.add('error')
+        setInputs((input)=> ({...input, [name]: ''}) )
+        return
+    }else if(e.target.classList.contains('error')){
+        e.target.classList.remove('error')
+    }
+
+    
+    if(resetName){
+        const target = document.querySelector(`[name="${resetName}"]`);
+        const resetValue = target?.value;
+    
+        if (resetValue) {
+            const isMismatch = value !== resetValue;
+            target.classList.toggle('error', isMismatch);
+            setInputs(input => ({
+                ...input,
+                [resetName]: isMismatch ? '' : value
+            }));
+        }
+    }
+    
+    if(type === 'checkbox'){
+        setInputs((input)=> ({...input, [name]: checked ? 'y': 'n'}))
+    }else if(type === 'radio'){
+        setInputs((input)=> ({...input, [name]: value}))
+    }else if(type === 'file'){
+        setInputs((input)=> ({...input, [name]: files[0]}))
+    }else{
+        setInputs((input)=> ({...input, [name]: e.target.value}))
+    }
 }
-
-// export const inputChange = (e, setInputs, checkValue) => {
-//     const { value, name, checked, type, dataset: { formet, validation, resetName }, files } = e.target;
-    
-//     if(formet && !!value && !isFormet(formet, value)['is']){
-//         e.target.classList.add('error')
-//         return
-//     }else if(validation && !isValidation(validation, value, checkValue)){
-//         e.target.classList.add('error')
-//         setInputs((input)=> ({...input, [name]: ''}) )
-//         return
-//     }else if(e.target.classList.contains('error')){
-//         e.target.classList.remove('error')
-//     }
-
-    
-//     if(resetName){
-//         const target = document.querySelector(`[name="${resetName}"]`);
-//         const resetValue = target?.value;
-    
-//         if (resetValue) {
-//             const isMismatch = value !== resetValue;
-//             target.classList.toggle('error', isMismatch);
-//             setInputs(input => ({
-//                 ...input,
-//                 [resetName]: isMismatch ? '' : value
-//             }));
-//         }
-//     }
-    
-//     if(type === 'checkbox'){
-//         setInputs((input)=> ({...input, [name]: checked ? 'y': 'n'}))
-//     }else if(type === 'radio'){
-//         setInputs((input)=> ({...input, [name]: value}))
-//     }else if(type === 'file'){
-//         setInputs((input)=> ({...input, [name]: files[0]}))
-//     }else{
-//         setInputs((input)=> ({...input, [name]: e.target.value}))
-//     }
-// }
 
 
 export const checkInputChange = (e, setInputs, setCheckInputs) =>{

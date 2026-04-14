@@ -25,7 +25,7 @@ export default function SignUp() {
         if(user){
             navigate('/')
         }
-        inputsRequiredAdd(setInputs, setCheckInputs)
+        inputsRequiredAdd(setInputs)
     },[navigate, user])
 
     const onCheck = (type) =>{
@@ -49,25 +49,23 @@ export default function SignUp() {
 
     const onSubmit = (e) =>{
         e.preventDefault();
-        console.log(inputs);
-        console.log(checkInputs);
-        
-        // if(isSubmit(inputs)){
-        //     return;
-        // }
-        
-        // const data = {...inputs};
-        // delete data.checkPW;
 
-        // postApi('signUp', data)
-        //     .then(( response )=>{
-        //         const { result, /* message */ } = response || {};
-        //         // console.log(response);
+        if(isSubmit(inputs)){
+            return;
+        }
+        
+        const data = {...inputs};
+        delete data.checkPW;
+
+        postApi('signUp', data)
+            .then(( response )=>{
+                const { result, /* message */ } = response || {};
+                // console.log(response);
                 
-        //         if(result){
-        //             navigate('/signIn')
-        //         }
-        //     })
+                if(result){
+                    navigate('/signIn')
+                }
+            })
     }
 
     return (
@@ -92,7 +90,9 @@ export default function SignUp() {
                                         name='userId'
                                         id='userId'
                                         data-formet='id'
+                                        data-validation='id'
                                         onChange={(e)=>checkInputChange(e, setInputs, setCheckInputs)}
+                                        onBlur={(e)=>inputErrCheck(e)}
                                         autoComplete="off" 
                                         required
                                     />
@@ -195,4 +195,3 @@ export default function SignUp() {
 
     );
 }
-

@@ -1,23 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import MobileAuthentication from '../components/MobileAuthentication';
-import { getApi, isSubmit } from '../api/api';
-import { inputChange } from '../api/validation';
+import { getApi, isSubmit, postApi } from '../api/api';
+import { checkInputChange, inputChange, inputsRequiredAdd } from '../api/validation';
 
 export default function InfoChange() {
     const [inputs, setInputs] = useState();
     const [currentInputs, setCurrentInputs] = useState();
+    const [checkInputs, setCheckInputs] = useState();
 
     useEffect(()=> {
         getApi('info')
             .then((res) => {
                 setCurrentInputs(res.data)
+                setInputs({
+                    mobile: res.data.mobile,
+                    nickname: res.data.nickname,
+                })
             })
     }, [])
 
+    const onCheck = (type) =>{
+        postApi('signUp/check', {
+            type: type,
+            value: checkInputs[type]
+        }).then(({ result, state, message } = {})=>{
+            if(result){
+                // state && setInputs((input)=>({...input, [type]: checkInputs[type]}))
+                // setPopup({
+                //     title: '안내',
+                //     description: message
+                // })
+            }
+        })
+    }
+
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(currentInputs);
-        console.log(inputs);
+        console.log('currentInputs', currentInputs);
+        console.log('inputs', inputs);
+        console.log('checkInputs', checkInputs);
 
         if(isSubmit(inputs)){
             return;
@@ -50,8 +71,18 @@ export default function InfoChange() {
                                     data-formet='password'
                                     data-validation='password'
                                     data-reset-name="password"
-                                    onChange={(e)=>inputChange(e, setInputs)}
-                                    // onBlur={(e)=>inputErrCheck(e)}
+                                    onChange={(e)=>{
+                                        if(e.target.value){
+                                            inputChange(e, setInputs)
+                                            setInputs((input)=> ({...input, password: ''}) )
+                                        }else{
+                                            e.target.classList.remove('error')
+                                            setInputs((input) => {
+                                                const { password, checkPW, ...rest } = input;
+                                                return rest;
+                                            });
+                                        }
+                                    }}
                                     autoComplete="off" 
                                 />
                             </div>
@@ -64,9 +95,10 @@ export default function InfoChange() {
                                     name='password'
                                     id='password'
                                     data-validation='checkPW'
-                                    // onChange={(e)=>inputChange(e, setInputs, inputs?.checkPW)}
-                                    // onBlur={(e)=>inputErrCheck(e)}
-                                    autoComplete="off" 
+                                    onChange={(e)=>inputChange(e, setInputs, inputs?.checkPW)}
+                                    key={inputs?.checkPW}
+                                    autoComplete="off"
+                                    disabled={!inputs?.checkPW}
                                 />
                             </div>
                         </li>
@@ -86,10 +118,10 @@ export default function InfoChange() {
                                     data-formet='nickname'
                                     data-validation='nickname'
                                     defaultValue={currentInputs?.nickname}
-                                    // onChange={(e)=>checkInputChange(e, setInputs, setCheckInputs)}
+                                    onChange={(e)=>checkInputChange(e, setInputs, setCheckInputs)}
                                     // onBlur={(e)=>inputErrCheck(e)}
                                 />
-                                {/* {!inputs?.nickname && checkInputs?.nickname && <button onClick={()=>onCheck('nickname')} type="button">중복 확인</button>} */}
+                                {!inputs?.nickname && checkInputs?.nickname && <button onClick={()=>onCheck('nickname')} type="button">중복 확인</button>}
                             </div>
                         </li>
                         <li>
