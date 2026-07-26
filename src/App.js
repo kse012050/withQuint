@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Routers from './router/Routers'
 
 function App() {
-  const baseName = window.location.hostname === 'localhost' ? '/' : '/WithQuant';
+  const baseName = process.env.PUBLIC_URL || '/';
 
   return (
     <BrowserRouter basename={baseName}>

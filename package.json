@@ -2,6 +2,7 @@
   "name": "with-quint",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/with-quint",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -16,9 +17,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "cross-env PUBLIC_URL=/WithQuant REACT_APP_API_URL=http://3.38.247.194/WithQuant_api/ react-scripts build",
+    "build": "cross-env PUBLIC_URL=/with-quint REACT_APP_API_URL=/with-quint/api/ react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   },
   "eslintConfig": {
     "extends": [

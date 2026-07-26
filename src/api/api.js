@@ -1,6 +1,12 @@
 // import { isFormet, isValidation } from "./validation";
 
-const userApiUrl =  process.env.REACT_APP_API_URL;
+const defaultApiUrl = process.env.NODE_ENV === 'development'
+    ? 'http://localhost:8001/'
+    : '/with-quint/api/';
+const configuredApiUrl = process.env.REACT_APP_API_URL || defaultApiUrl;
+const userApiUrl = configuredApiUrl.endsWith('/')
+    ? configuredApiUrl
+    : `${configuredApiUrl}/`;
 // const adminApiUrl =  `${process.env.REACT_APP_API_URL}admin/`;
 
 export function isSubmit(inputs){
