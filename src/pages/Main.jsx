@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { getApi } from '../api/api';
 import BoardLink from '../components/BoardLink';
 
 export default function Main() {
-    const [data, setData] = useState();
-
-    useEffect(()=>{
-        getApi('boards/main')
-            .then(({ result, data } = {}) => {
-                if(result){
-                    // console.log(data);
-                    
-                    setData(data);
-                }
-            })
-    }, [])
+    const { data, isError } = useQuery({
+        queryKey: ['boards', 'main'],
+        queryFn: async () => {
+            const response = await getApi('boards/main');
+            if (!response?.result) {
+                throw new Error('Failed to load the main boards');
+            }
+            return response.data;
+        },
+    });
 
     return (
         <>
+            {isError && <p role="alert">게시글을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>}
             <p>
                 부(Wealth)의 지름길!
                 <strong>위드퀀트가 안내합니다</strong>
